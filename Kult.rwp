@@ -45,10 +45,15 @@ Source code available at https://github.com/rulesetwizard/KultDivinityLost</Anno
   <Folders>
     <ID>3</ID>
     <ParentFolderID>0</ParentFolderID>
-    <Folder>graphics</Folder>
+    <Folder>data</Folder>
   </Folders>
   <Folders>
     <ID>4</ID>
+    <ParentFolderID>0</ParentFolderID>
+    <Folder>graphics</Folder>
+  </Folders>
+  <Folders>
+    <ID>5</ID>
     <ParentFolderID>0</ParentFolderID>
     <Folder>npc</Folder>
   </Folders>
@@ -121,7 +126,7 @@ Source code available at https://github.com/rulesetwizard/KultDivinityLost</Anno
   </Windows>
   <Windows>
     <Name>npc_main</Name>
-    <FolderID>4</FolderID>
+    <FolderID>5</FolderID>
   </Windows>
 </DocumentElement>
 
@@ -1187,7 +1192,12 @@ end</LUACode>
     if ListNode.getChildCount() == 0 then
         for k, v in pairs(data_kult.getMoves()) do
             local nodeMove = ListNode.createChild();
-            DB.setValue(nodeMove, "name", "string", k);
+            local moveName = Interface.getString(k);
+            if moveName then
+				DB.setValue(nodeMove, "name", "string", moveName);
+            else
+				DB.setValue(nodeMove, "name", "string", k);
+			end
             DB.setValue(nodeMove, "attribute", "string", v["attribute"]);
         end
     end
@@ -11798,7 +11808,7 @@ end</LUACode>
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>data_kult</ScriptName>
-    <FolderID>0</FolderID>
+    <FolderID>3</FolderID>
     <Script>local moves = {
   ["Keep it Together"] = {attribute="Willpower"},
   ["Endure Injury"] = {attribute="Fortitude"},
@@ -11859,7 +11869,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>npc_roll</ScriptName>
-    <FolderID>4</FolderID>
+    <FolderID>5</FolderID>
     <Script>local bParsed = false;
 local aComponents = {};
 
@@ -12000,19 +12010,56 @@ end
   </Scripts>
 </DocumentElement>
 
-<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd" />
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <XMLFiles>
+    <XmlName>strings_moves</XmlName>
+    <FolderID>3</FolderID>
+    <XML>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;root&gt;
+  &lt;string name="Keep it Together"&gt;Keep it Together&lt;/string&gt;
+  &lt;string name="Endure Injury"&gt;Endure Injury&lt;/string&gt;
+  &lt;string name="Avoid Harm"&gt;Avoid Harm&lt;/string&gt;
+  &lt;string name="Investigate"&gt;Investigate&lt;/string&gt;
+  &lt;string name="Read a Person"&gt;Read a Person&lt;/string&gt;
+  &lt;string name="Observe a situation"&gt;Observe a situation&lt;/string&gt;
+  &lt;string name="Act Under Pressure"&gt;Act Under Pressure&lt;/string&gt;
+  &lt;string name="Engage in Combat"&gt;Engage in Combat&lt;/string&gt;
+  &lt;string name="Influence Other"&gt;Influence Other&lt;/string&gt;
+  &lt;string name="See Through the Illusion"&gt;See Through the Illusion&lt;/string&gt;
+&lt;/root&gt;      
+    </XML>
+  </XMLFiles>
+  <XMLFiles>
+    <XmlName>strings_moves_es</XmlName>
+    <FolderID>3</FolderID>
+    <XML>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;root&gt;
+  &lt;string name="Keep it Together_es"&gt;Mantener la calma&lt;/string&gt;
+  &lt;string name="Endure Injury_es"&gt;Soportar el dolor&lt;/string&gt;
+  &lt;string name="Avoid Harm_es"&gt;Evitar el daño&lt;/string&gt;
+  &lt;string name="Investigate_es"&gt;Investigar&lt;/string&gt;
+  &lt;string name="Read a Person_es"&gt;Leer a una persona&lt;/string&gt;
+  &lt;string name="Observe a situation_es"&gt;Observar una situación&lt;/string&gt;
+  &lt;string name="Act Under Pressure_es"&gt;Actuar bajo presión&lt;/string&gt;
+  &lt;string name="Engage in Combat_es"&gt;Combatir&lt;/string&gt;
+  &lt;string name="Influence Other_es"&gt;Influenciar&lt;/string&gt;
+  &lt;string name="See Through the Illusion_es"&gt;Ver a través de la ilusión&lt;/string&gt;
+&lt;/root&gt;      
+    </XML>
+  </XMLFiles>
+</DocumentElement>
 
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd" />
 
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Icons>
     <IconName>charsheet_attributes</IconName>
-    <FolderID>3</FolderID>
+    <FolderID>4</FolderID>
     <IconFile>Attributes.png</IconFile>
   </Icons>
   <Icons>
     <IconName>KultLogo</IconName>
-    <FolderID>3</FolderID>
+    <FolderID>4</FolderID>
     <IconFile>Kult-Divinity-lost-logo.png</IconFile>
   </Icons>
 </DocumentElement>
@@ -12020,7 +12067,7 @@ end
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Fonts>
     <FontName>kultbig</FontName>
-    <FolderID>3</FolderID>
+    <FolderID>4</FolderID>
     <FontFile>Infidel C W00 C.ttf</FontFile>
     <FontFamilyName>InfidelCW00-C</FontFamilyName>
     <FontSize>34</FontSize>
@@ -12030,7 +12077,7 @@ end
   </Fonts>
   <Fonts>
     <FontName>kultsmall</FontName>
-    <FolderID>3</FolderID>
+    <FolderID>4</FolderID>
     <FontFile>Infidel C W00 C.ttf</FontFile>
     <FontFamilyName>InfidelCW00-C</FontFamilyName>
     <FontSize>22</FontSize>
