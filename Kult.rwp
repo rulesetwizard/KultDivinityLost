@@ -854,6 +854,7 @@ end</LUACode>
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
+      {"Name":"Center"},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"name"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
@@ -11844,12 +11845,12 @@ function resolveRoll(rSource, rTarget, rRoll)
 	local total = rRoll.aDice[1].result + rRoll.aDice[2].result + rRoll.nMod + rRoll.nBonuses;
     local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
     if total &gt;= 15 then
-		rMessage.text = rMessage.text .. ' [COMPLETE SUCCESS]';
+		rMessage.text = rMessage.text .. ' [' .. Interface.getString("COMPLETE SUCCESS") .. ']';
     else
 		if total &gt;= 10 then
-			rMessage.text = rMessage.text .. ' [SUCCESS WITH COMPLICATIONS]';
+			rMessage.text = rMessage.text .. ' [' .. Interface.getString("SUCCESS WITH COMPLICATIONS") .. ']';
 		else
-			rMessage.text = rMessage.text .. ' [FAILURE]';
+			rMessage.text = rMessage.text .. ' [' .. Interface.getString("FAILURE") .. ']';
 		end
 	end
 	
@@ -11860,8 +11861,6 @@ end
 function addNPCKult(sClass, nodeNPC, sName)
 
 	local nodeEntry, nodeLastMatch = CombatManager.addNPCHelper(nodeNPC, sName);
-	
-	
 
 end</Script>
     <RegisterScript>true</RegisterScript>
@@ -12012,7 +12011,7 @@ end
 
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <XMLFiles>
-    <XmlName>strings_moves</XmlName>
+    <XmlName>strings_kult</XmlName>
     <FolderID>3</FolderID>
     <XML>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;root&gt;
@@ -12026,11 +12025,16 @@ end
   &lt;string name="Engage in Combat"&gt;Engage in Combat&lt;/string&gt;
   &lt;string name="Influence Other"&gt;Influence Other&lt;/string&gt;
   &lt;string name="See Through the Illusion"&gt;See Through the Illusion&lt;/string&gt;
+  
+  &lt;string name="COMPLETE SUCCESS"&gt;COMPLETE SUCCESS&lt;/string&gt;
+  &lt;string name="SUCCESS WITH COMPLICATIONS"&gt;SUCCESS WITH COMPLICATIONS&lt;/string&gt;
+  &lt;string name="FAILURE"&gt;FAILURE&lt;/string&gt;
+      
 &lt;/root&gt;      
     </XML>
   </XMLFiles>
   <XMLFiles>
-    <XmlName>strings_moves_es</XmlName>
+    <XmlName>strings_kult_es</XmlName>
     <FolderID>3</FolderID>
     <XML>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;root&gt;
@@ -12044,6 +12048,11 @@ end
   &lt;string name="Engage in Combat_es"&gt;Combatir&lt;/string&gt;
   &lt;string name="Influence Other_es"&gt;Influenciar&lt;/string&gt;
   &lt;string name="See Through the Illusion_es"&gt;Ver a través de la ilusión&lt;/string&gt;
+  
+  &lt;string name="COMPLETE SUCCESS_es"&gt;ÉXITO COMPLETO&lt;/string&gt;
+  &lt;string name="SUCCESS WITH COMPLICATIONS_es"&gt;ÉXITO CON COMPLICACIONES&lt;/string&gt;
+  &lt;string name="FAILURE_es"&gt;FRACASO&lt;/string&gt;
+    
 &lt;/root&gt;      
     </XML>
   </XMLFiles>
