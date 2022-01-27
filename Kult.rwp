@@ -28,6 +28,7 @@ Source code available at https://github.com/rulesetwizard/KultDivinityLost</Anno
     <Announcement3Icon />
     <ExcludeRSWScripts>false</ExcludeRSWScripts>
     <CompileToFolder>false</CompileToFolder>
+    <DefaultEncoding>UTF-8</DefaultEncoding>
   </RulesetProperties>
 </Ruleset>
 
@@ -229,10 +230,12 @@ function getAttributeValue()
 	local nodeWin = window.windowlist.window.getDatabaseNode();
 	local nodeAttr = nodeWin.getChild(window.attribute.getSelectedValue());
 	if nodeAttr then
-		return nodeAttr.getValue();
-	else
-		return 0;
+		local attrValue = nodeAttr.getValue();
+		if attrValue then
+			return attrValue;
+		end
 	end
+	return 0;
 end</LUACode>
     <GroupIndex>0</GroupIndex>
   </WindowControls>
@@ -417,7 +420,7 @@ end</LUACode>
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
-      {"Name":"LinkFieldAllowDrop"},
+      {"Name":"LinkFieldAllowDrop","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"LinkFieldClass","Value":{"@xsi:type":"xsd:string","#text":"ability"}},
       {"Name":"LinkFieldDescriptionField","Value":{"@xsi:type":"xsd:string","#text":"name"}},
       {"Name":"LinkFieldRecordName"},
@@ -4109,7 +4112,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"28"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"32"}},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {self}","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {self}","DiceRollDescription":"Reflexes Check","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -11821,6 +11824,7 @@ end</LUACode>
   ["Engage in Combat"] = {attribute="Violence"},
   ["Influence Other"] = {attribute="Charisma"},
   ["See Through the Illusion"] = {attribute="Soul"},
+  ["Helping or Hindering"] = {attribute=""},
 }
 
 function getMoves()
@@ -12025,7 +12029,8 @@ end
   &lt;string name="Engage in Combat"&gt;Engage in Combat&lt;/string&gt;
   &lt;string name="Influence Other"&gt;Influence Other&lt;/string&gt;
   &lt;string name="See Through the Illusion"&gt;See Through the Illusion&lt;/string&gt;
-  
+  &lt;string name="Helping or Hindering"&gt;Helping or Hindering&lt;/string&gt;
+    
   &lt;string name="COMPLETE SUCCESS"&gt;COMPLETE SUCCESS&lt;/string&gt;
   &lt;string name="SUCCESS WITH COMPLICATIONS"&gt;SUCCESS WITH COMPLICATIONS&lt;/string&gt;
   &lt;string name="FAILURE"&gt;FAILURE&lt;/string&gt;
@@ -12048,7 +12053,8 @@ end
   &lt;string name="Engage in Combat_es"&gt;Combatir&lt;/string&gt;
   &lt;string name="Influence Other_es"&gt;Influenciar&lt;/string&gt;
   &lt;string name="See Through the Illusion_es"&gt;Ver a través de la ilusión&lt;/string&gt;
-  
+  &lt;string name="Helping or Hindering_es"&gt;Ayudar o Interferir&lt;/string&gt;
+    
   &lt;string name="COMPLETE SUCCESS_es"&gt;ÉXITO COMPLETO&lt;/string&gt;
   &lt;string name="SUCCESS WITH COMPLICATIONS_es"&gt;ÉXITO CON COMPLICACIONES&lt;/string&gt;
   &lt;string name="FAILURE_es"&gt;FRACASO&lt;/string&gt;
