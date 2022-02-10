@@ -7503,7 +7503,7 @@ end</LUACode>
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
       {"Name":"StackVertWith"},
-      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Friend"}},
+      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Foe"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"246"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"358"}}
@@ -7587,7 +7587,7 @@ end</LUACode>
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
       {"Name":"StackVertWith"},
-      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Friend"}},
+      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Neutral"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"220"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"358"}}
