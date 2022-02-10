@@ -187,7 +187,7 @@ Source code available at https://github.com/rulesetwizard/KultDivinityLost</Anno
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"ButtonCaption","Value":{"@xsi:type":"xsd:string","#text":"Roll"}},
+      {"Name":"ButtonCaption","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"ButtonField"},
       {"Name":"ButtonStateList","Value":{"@xsi:type":"ArrayOfButtonStateDefinition"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"btnRoll"}},
@@ -212,7 +212,7 @@ Source code available at https://github.com/rulesetwizard/KultDivinityLost</Anno
       {"Name":"Invisible"},
       {"Name":"Merge"},
       {"Name":"NextTabTarget"},
-      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"field_rollable"}},
       {"Name":"PressedIconName"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
@@ -2472,51 +2472,7 @@ end</LUACode>
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
-    <ControlName>CriticalWound</ControlName>
-    <ZIndex>62</ZIndex>
-    <ControlClass>FGCheckbox</ControlClass>
-    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedTemplate"},
-      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"CriticalWound"}},
-      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DefaultChecked"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"Disabled"},
-      {"Name":"FrameName"},
-      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"GMEditOnly"},
-      {"Name":"GMVisibleOnly"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"HoverCursor"},
-      {"Name":"InheritSizePosition"},
-      {"Name":"InsertBefore"},
-      {"Name":"Invisible"},
-      {"Name":"Merge"},
-      {"Name":"NextTabTarget"},
-      {"Name":"OffStateIcon"},
-      {"Name":"OnStateIcon"},
-      {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
-      {"Name":"RelativeMargin"},
-      {"Name":"RelativeStacking"},
-      {"Name":"ScriptFile"},
-      {"Name":"Source"},
-      {"Name":"StackVertWith"},
-      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Critically wounded"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"442"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"177"}}
-]}}</Definition>
-    <LUACode />
-    <GroupIndex>0</GroupIndex>
-  </WindowControls>
-  <WindowControls>
-    <WindowName>charsheet_main</WindowName>
-    <ControlName>CriticalWoundDesc</ControlName>
+    <ControlName>criticalwound</ControlName>
     <ZIndex>61</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
@@ -2524,14 +2480,14 @@ end</LUACode>
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
       {"Name":"Center"},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"CriticalWoundDesc"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"criticalwound"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"167"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"172"}},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"EmptyText"},
@@ -2606,7 +2562,7 @@ end</LUACode>
       {"Name":"StackVertWith"},
       {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Stabilized"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"467"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"458"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"177"}}
 ]}}</Definition>
     <LUACode />
@@ -3938,7 +3894,7 @@ end</LUACode>
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"19"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"51"}},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameName"},
@@ -3949,7 +3905,7 @@ end</LUACode>
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
-      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"St."}},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Stab."}},
       {"Name":"Merge"},
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
@@ -3960,7 +3916,7 @@ end</LUACode>
       {"Name":"StackVertWith"},
       {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Stabilized"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"467"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"441"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"27"}}
 ]}}</Definition>
     <LUACode />
@@ -4140,49 +4096,6 @@ end</LUACode>
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
-    <ControlName>lblWound</ControlName>
-    <ZIndex>49</ZIndex>
-    <ControlClass>FGLabel</ControlClass>
-    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedTemplate"},
-      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"CanGrowVert"},
-      {"Name":"Center","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"lblWound"}},
-      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"19"}},
-      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"FrameName"},
-      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"GMVisibleOnly"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"HoverCursor"},
-      {"Name":"InheritSizePosition"},
-      {"Name":"InsertBefore"},
-      {"Name":"Invisible"},
-      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Wn."}},
-      {"Name":"Merge"},
-      {"Name":"MultilineSpacing"},
-      {"Name":"NextTabTarget"},
-      {"Name":"PrevTabTarget"},
-      {"Name":"RelativeMargin"},
-      {"Name":"RelativeStacking"},
-      {"Name":"ScriptFile"},
-      {"Name":"StackVertWith"},
-      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Wound"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"442"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"27"}}
-]}}</Definition>
-    <LUACode />
-    <GroupIndex>0</GroupIndex>
-  </WindowControls>
-  <WindowControls>
-    <WindowName>charsheet_main</WindowName>
     <ControlName>perception</ControlName>
     <ZIndex>17</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
@@ -4342,61 +4255,6 @@ end</LUACode>
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"198"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"96"}}
-]}}</Definition>
-    <LUACode />
-    <GroupIndex>0</GroupIndex>
-  </WindowControls>
-  <WindowControls>
-    <WindowName>charsheet_main</WindowName>
-    <ControlName>seriouswounds</ControlName>
-    <ZIndex>35</ZIndex>
-    <ControlClass>FGNumberField</ControlClass>
-    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedTemplate"},
-      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"seriouswounds"}},
-      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DefaultValue"},
-      {"Name":"DelayKeyUpdate"},
-      {"Name":"DescriptionText"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"49"}},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
-      {"Name":"Disabled"},
-      {"Name":"DisplaySign"},
-      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
-      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"GMEditOnly"},
-      {"Name":"GMVisibleOnly"},
-      {"Name":"HideOnValue"},
-      {"Name":"HideRollWidget"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"HoverCursor"},
-      {"Name":"InheritSizePosition"},
-      {"Name":"InsertBefore"},
-      {"Name":"Invisible"},
-      {"Name":"MaxValue"},
-      {"Name":"Merge"},
-      {"Name":"MinValue"},
-      {"Name":"NextTabTarget"},
-      {"Name":"NoDrag"},
-      {"Name":"NoDrop"},
-      {"Name":"NoKeyEdit"},
-      {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
-      {"Name":"RelativeMargin"},
-      {"Name":"RelativeStacking"},
-      {"Name":"ScriptFile"},
-      {"Name":"Source"},
-      {"Name":"StackVertWith"},
-      {"Name":"Tooltip"},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"361"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"22"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -4682,7 +4540,7 @@ end</LUACode>
       {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"167"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"172"}},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"EmptyText"},
@@ -4757,7 +4615,7 @@ end</LUACode>
       {"Name":"StackVertWith"},
       {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Stabilized"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"467"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"458"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"51"}}
 ]}}</Definition>
     <LUACode />
@@ -4780,7 +4638,7 @@ end</LUACode>
       {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"167"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"172"}},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"EmptyText"},
@@ -4855,7 +4713,7 @@ end</LUACode>
       {"Name":"StackVertWith"},
       {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Stabilized"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"467"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"458"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"73"}}
 ]}}</Definition>
     <LUACode />
@@ -4878,7 +4736,7 @@ end</LUACode>
       {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"167"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"172"}},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"EmptyText"},
@@ -4953,7 +4811,7 @@ end</LUACode>
       {"Name":"StackVertWith"},
       {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Stabilized"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"467"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"458"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"95"}}
 ]}}</Definition>
     <LUACode />
@@ -4976,7 +4834,7 @@ end</LUACode>
       {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"167"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"172"}},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"EmptyText"},
@@ -5051,183 +4909,7 @@ end</LUACode>
       {"Name":"StackVertWith"},
       {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Stabilized"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"467"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"117"}}
-]}}</Definition>
-    <LUACode />
-    <GroupIndex>0</GroupIndex>
-  </WindowControls>
-  <WindowControls>
-    <WindowName>charsheet_main</WindowName>
-    <ControlName>wounded1</ControlName>
-    <ZIndex>45</ZIndex>
-    <ControlClass>FGCheckbox</ControlClass>
-    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedTemplate"},
-      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"wounded1"}},
-      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DefaultChecked"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"Disabled"},
-      {"Name":"FrameName"},
-      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"GMEditOnly"},
-      {"Name":"GMVisibleOnly"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"HoverCursor"},
-      {"Name":"InheritSizePosition"},
-      {"Name":"InsertBefore"},
-      {"Name":"Invisible"},
-      {"Name":"Merge"},
-      {"Name":"NextTabTarget"},
-      {"Name":"OffStateIcon"},
-      {"Name":"OnStateIcon"},
-      {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
-      {"Name":"RelativeMargin"},
-      {"Name":"RelativeStacking"},
-      {"Name":"ScriptFile"},
-      {"Name":"Source"},
-      {"Name":"StackVertWith"},
-      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Wounded"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"442"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"51"}}
-]}}</Definition>
-    <LUACode />
-    <GroupIndex>0</GroupIndex>
-  </WindowControls>
-  <WindowControls>
-    <WindowName>charsheet_main</WindowName>
-    <ControlName>wounded2</ControlName>
-    <ZIndex>46</ZIndex>
-    <ControlClass>FGCheckbox</ControlClass>
-    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedTemplate"},
-      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"wounded2"}},
-      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DefaultChecked"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"Disabled"},
-      {"Name":"FrameName"},
-      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"GMEditOnly"},
-      {"Name":"GMVisibleOnly"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"HoverCursor"},
-      {"Name":"InheritSizePosition"},
-      {"Name":"InsertBefore"},
-      {"Name":"Invisible"},
-      {"Name":"Merge"},
-      {"Name":"NextTabTarget"},
-      {"Name":"OffStateIcon"},
-      {"Name":"OnStateIcon"},
-      {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
-      {"Name":"RelativeMargin"},
-      {"Name":"RelativeStacking"},
-      {"Name":"ScriptFile"},
-      {"Name":"Source"},
-      {"Name":"StackVertWith"},
-      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Wounded"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"442"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"73"}}
-]}}</Definition>
-    <LUACode />
-    <GroupIndex>0</GroupIndex>
-  </WindowControls>
-  <WindowControls>
-    <WindowName>charsheet_main</WindowName>
-    <ControlName>wounded3</ControlName>
-    <ZIndex>47</ZIndex>
-    <ControlClass>FGCheckbox</ControlClass>
-    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedTemplate"},
-      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"wounded3"}},
-      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DefaultChecked"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"Disabled"},
-      {"Name":"FrameName"},
-      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"GMEditOnly"},
-      {"Name":"GMVisibleOnly"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"HoverCursor"},
-      {"Name":"InheritSizePosition"},
-      {"Name":"InsertBefore"},
-      {"Name":"Invisible"},
-      {"Name":"Merge"},
-      {"Name":"NextTabTarget"},
-      {"Name":"OffStateIcon"},
-      {"Name":"OnStateIcon"},
-      {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
-      {"Name":"RelativeMargin"},
-      {"Name":"RelativeStacking"},
-      {"Name":"ScriptFile"},
-      {"Name":"Source"},
-      {"Name":"StackVertWith"},
-      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Wounded"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"442"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"95"}}
-]}}</Definition>
-    <LUACode />
-    <GroupIndex>0</GroupIndex>
-  </WindowControls>
-  <WindowControls>
-    <WindowName>charsheet_main</WindowName>
-    <ControlName>wounded4</ControlName>
-    <ZIndex>48</ZIndex>
-    <ControlClass>FGCheckbox</ControlClass>
-    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedTemplate"},
-      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"wounded4"}},
-      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DefaultChecked"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"Disabled"},
-      {"Name":"FrameName"},
-      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"GMEditOnly"},
-      {"Name":"GMVisibleOnly"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"HoverCursor"},
-      {"Name":"InheritSizePosition"},
-      {"Name":"InsertBefore"},
-      {"Name":"Invisible"},
-      {"Name":"Merge"},
-      {"Name":"NextTabTarget"},
-      {"Name":"OffStateIcon"},
-      {"Name":"OnStateIcon"},
-      {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
-      {"Name":"RelativeMargin"},
-      {"Name":"RelativeStacking"},
-      {"Name":"ScriptFile"},
-      {"Name":"Source"},
-      {"Name":"StackVertWith"},
-      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Wounded"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"442"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"458"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"117"}}
 ]}}</Definition>
     <LUACode />
@@ -12269,16 +11951,16 @@ function resolveRoll(rSource, rTarget, rRoll)
 
 	local woundstring = "";
 						
-	if (DB.getValue(charNode, "wounded1", false) == 1) and (DB.getValue(charNode, "wound1sta", false) == 0) 
-	or (DB.getValue(charNode, "wounded2", false) == 1) and (DB.getValue(charNode, "wound2sta", false) == 0) 
-	or (DB.getValue(charNode, "wounded3", false) == 1) and (DB.getValue(charNode, "wound3sta", false) == 0) 
-	or (DB.getValue(charNode, "wounded4", false) == 1) and (DB.getValue(charNode, "wound4sta", false) == 0) 
+	if ( (trim(DB.getValue(charNode, "wound1", '')) ~= "") and (DB.getValue(charNode, "wound1sta", 0) == 0) )
+	or ( (trim(DB.getValue(charNode, "wound2", '')) ~= "") and (DB.getValue(charNode, "wound2sta", 0) == 0) )
+	or ( (trim(DB.getValue(charNode, "wound3", '')) ~= "") and (DB.getValue(charNode, "wound3sta", 0) == 0) )
+	or ( (trim(DB.getValue(charNode, "wound4", '')) ~= "") and (DB.getValue(charNode, "wound4sta", 0) == 0) )
 	then
 		rRoll.nMod = rRoll.nMod - 1;
 		woundstring = woundstring .. ' [' .. Interface.getString("WOUNDED") .. ' -1]';
 	end;
 
-	if (DB.getValue(charNode, "CriticalWound", false) == 1) and (DB.getValue(charNode, "CriticalWoundStabilized", false) == 0) 
+	if (trim(DB.getValue(charNode, "criticalwound", '')) ~= "") and (DB.getValue(charNode, "CriticalWoundStabilized", 0) == 0)
 	then
 		rRoll.nMod = rRoll.nMod - 1;
 		woundstring = woundstring .. ' [' .. Interface.getString("CRITICAL") .. ' -1]';
@@ -12303,9 +11985,11 @@ function resolveRoll(rSource, rTarget, rRoll)
 end
 
 function addNPCKult(sClass, nodeNPC, sName)
-
 	local nodeEntry, nodeLastMatch = CombatManager.addNPCHelper(nodeNPC, sName);
+end
 
+function trim(s)
+   return s:match "^%s*(.-)%s*$"
 end</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
