@@ -212,7 +212,7 @@ Source code available at https://github.com/rulesetwizard/KultDivinityLost</Anno
       {"Name":"Invisible"},
       {"Name":"Merge"},
       {"Name":"NextTabTarget"},
-      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"field_rollable"}},
+      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"dKult"}},
       {"Name":"PressedIconName"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
@@ -220,7 +220,7 @@ Source code available at https://github.com/rulesetwizard/KultDivinityLost</Anno
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
       {"Name":"StackVertWith"},
-      {"Name":"Tooltip"},
+      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Roll"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"365"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"1"}}
@@ -12428,6 +12428,11 @@ end
     <IconName>charsheet_attributes</IconName>
     <FolderID>4</FolderID>
     <IconFile>Attributes.png</IconFile>
+  </Icons>
+  <Icons>
+    <IconName>dKult</IconName>
+    <FolderID>4</FolderID>
+    <IconFile>dKult.png</IconFile>
   </Icons>
   <Icons>
     <IconName>KultLogo</IconName>

@@ -46,7 +46,7 @@ Kult</RulesetList>
     <FolderID>0</FolderID>
     <XML>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;root&gt;
-
+  &lt;string name="char_move_btnRoll_Tooltip"&gt;Chequeo&lt;/string&gt;
   &lt;string name="charsheet_abilities_lblLog_LabelCaption"&gt;Ventajas y Desventajas&lt;/string&gt;
   &lt;string name="charsheet_abilities_lblMoves_LabelCaption"&gt;Movimientos&lt;/string&gt;
   &lt;string name="charsheet_inventory_lblNumber_LabelCaption"&gt;#&lt;/string&gt;
