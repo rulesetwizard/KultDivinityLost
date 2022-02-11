@@ -86,7 +86,7 @@ Kult</RulesetList>
   &lt;string name="charsheet_main_lblWeaponName_LabelCaption"&gt;Nombre&lt;/string&gt;
   &lt;string name="charsheet_main_lblWeaponDamage_LabelCaption"&gt;Daño&lt;/string&gt;
   &lt;string name="charsheet_main_lblWeaponAmmo_LabelCaption"&gt;Mun.&lt;/string&gt;
-  &lt;string name="charsheet_main_lblStability_LabelCaption"&gt;Estabilizado&lt;/string&gt;
+  &lt;string name="charsheet_main_lblStability_LabelCaption"&gt;Estabilidad&lt;/string&gt;
   &lt;string name="charsheet_main_stability_Label_Composed"&gt;Tranquilo&lt;/string&gt;
   &lt;string name="charsheet_main_stability_Label_Uneasy"&gt;Incómodo&lt;/string&gt;
   &lt;string name="charsheet_main_stability_Label_Unfocused"&gt;Descentrado&lt;/string&gt;
