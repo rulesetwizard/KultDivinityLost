@@ -2931,7 +2931,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>Label1</ControlName>
-    <ZIndex>60</ZIndex>
+    <ZIndex>59</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedTemplate"},
@@ -5085,7 +5085,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>wounds</ControlName>
-    <ZIndex>61</ZIndex>
+    <ZIndex>60</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedTemplate"},
@@ -12317,13 +12317,17 @@ function resolveRoll(rSource, rTarget, rRoll)
 		msgstring = msgstring .. ' [' .. Interface.getString("CRITICAL") .. ' -1]';
 	end;
 
---	if rRoll["attribute"] == "Fortitude" then
---		local armorBonus = DB.getValue(charNode, "armor", 0);
---		if armorBonus ~= 0 then
---			rRoll.nMod = rRoll.nMod + armorBonus;
---			msgstring = msgstring .. ' [' .. Interface.getString("ARMOR") .. ' ' .. armorBonus .. ']';
---		end;
---	end;
+	if rRoll["attribute"] == "Willpower" then
+		local stability = tonumber(DB.getValue(charNode, "stability", "0"));
+		if stability and stability &gt;= 4 then 
+			local stabilityPenalty = -1;
+			if stability &gt;= 7 then
+				stabilityPenalty = -2;
+			end
+			rRoll.nMod = rRoll.nMod + stabilityPenalty;
+			msgstring = msgstring .. ' [' .. Interface.getString("STABILITY") .. ' ' .. stabilityPenalty .. ']';
+		end;
+	end;
 
     local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
     rMessage.text = rMessage.text .. msgstring;
@@ -12520,8 +12524,9 @@ end
 
   &lt;string name="WOUNDED"&gt;WOUNDED&lt;/string&gt;
   &lt;string name="CRITICAL"&gt;CRITICAL&lt;/string&gt;
+  &lt;string name="STABILITY"&gt;STABILITY&lt;/string&gt;
   &lt;string name="ARMOR"&gt;Armor&lt;/string&gt;
-                                                                        
+                                                                                                                                                
 &lt;/root&gt;      
     </XML>
   </XMLFiles>

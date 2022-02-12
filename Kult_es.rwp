@@ -173,6 +173,7 @@ Kult</RulesetList>
     
   &lt;string name="WOUNDED"&gt;HERIDO&lt;/string&gt;
   &lt;string name="CRITICAL"&gt;MALHERIDO&lt;/string&gt;
+  &lt;string name="STABILITY"&gt;ESTABILIDAD&lt;/string&gt;
   &lt;string name="ARMOR"&gt;Armadura&lt;/string&gt;
         
 &lt;/root&gt;      
