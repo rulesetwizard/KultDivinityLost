@@ -12329,6 +12329,14 @@ function resolveRoll(rSource, rTarget, rRoll)
 		end;
 	end;
 
+	if rRoll["attribute"] == "Soul" then
+		local stability = tonumber(DB.getValue(charNode, "stability", "0"));
+		if stability and stability &gt;= 7 then 
+			rRoll.nMod = rRoll.nMod + 1;
+			msgstring = msgstring .. ' [' .. Interface.getString("STABILITY") .. ' +1]';
+		end;
+	end;
+
     local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
     rMessage.text = rMessage.text .. msgstring;
     
