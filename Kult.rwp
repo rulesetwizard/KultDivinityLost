@@ -6783,7 +6783,7 @@ end</LUACode>
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
-      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Add +1 to any Attribute (max +5)."}},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Add +1 to any Attribute (max +5)"}},
       {"Name":"Merge"},
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
