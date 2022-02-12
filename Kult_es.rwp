@@ -137,15 +137,16 @@ Kult</RulesetList>
   &lt;string name="ct_entry_activateattacks_statetooltip_Attacks"&gt;Ataques&lt;/string&gt;
   &lt;string name="ct_spacing_spacelabel_LabelCaption"&gt;Tamaño&lt;/string&gt;
   &lt;string name="ct_spacing_reachlabel_LabelCaption"&gt;Alcance&lt;/string&gt;
-  &lt;string name="npc_main_Label3_LabelCaption"&gt;Tipo de criatura&lt;/string&gt;
-  &lt;string name="npc_main_Label7_LabelCaption"&gt;Heridas&lt;/string&gt;
-  &lt;string name="npc_main_Label2_LabelCaption"&gt;Nombre no ident.&lt;/string&gt;
-  &lt;string name="npc_main_Label8_LabelCaption"&gt;Habilidades&lt;/string&gt;
-  &lt;string name="npc_main_Label1_LabelCaption"&gt;Atributos&lt;/string&gt;
-  &lt;string name="npc_main_Label4_LabelCaption"&gt;Combate&lt;/string&gt;
-  &lt;string name="npc_main_Label5_LabelCaption"&gt;Influencia&lt;/string&gt;
-  &lt;string name="npc_main_Label6_LabelCaption"&gt;Magia&lt;/string&gt;
-  
+  &lt;string name="npc_main_lblNonIdName_LabelCaption"&gt;Nombre no Ident.&lt;/string&gt;
+  &lt;string name="npc_main_lblCreatureType_LabelCaption"&gt;Tipo de criatura&lt;/string&gt;
+  &lt;string name="npc_main_lblWounds_LabelCaption"&gt;Heridas&lt;/string&gt;
+  &lt;string name="npc_main_lblArmor_LabelCaption"&gt;Armadura&lt;/string&gt;
+  &lt;string name="npc_main_lblAbilities_LabelCaption"&gt;Habilidades&lt;/string&gt;
+  &lt;string name="npc_main_lblAttributes_LabelCaption"&gt;Atributos&lt;/string&gt;
+  &lt;string name="npc_main_lblCombat_LabelCaption"&gt;Combate&lt;/string&gt;
+  &lt;string name="npc_main_lblInfluence_LabelCaption"&gt;Influencia&lt;/string&gt;
+  &lt;string name="npc_main_lblMagic_LabelCaption"&gt;Magia&lt;/string&gt;
+    
 &lt;/root&gt;      
     </XML>
   </XMLFiles>
