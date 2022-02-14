@@ -8,7 +8,7 @@
     <Website />
     <Version>1</Version>
     <Release>0</Release>
-    <RulesetWizardVersion>0.7.12</RulesetWizardVersion>
+    <RulesetWizardVersion>0.8.0</RulesetWizardVersion>
     <RulesetList>CoreRPG
 Kult</RulesetList>
     <LoadOrder />
@@ -188,7 +188,14 @@ Kult</RulesetList>
   &lt;string name="CRITICAL"&gt;MALHERIDO&lt;/string&gt;
   &lt;string name="STABILITY"&gt;ESTABILIDAD&lt;/string&gt;
   &lt;string name="ARMOR"&gt;Armadura&lt;/string&gt;
-        
+
+  &lt;string name="MODERATE_STRESS"&gt;Estrés moderado&lt;/string&gt;
+  &lt;string name="SERIOUS_STRESS"&gt;Estrés grave&lt;/string&gt;
+  &lt;string name="CRITICAL_STRESS"&gt;Estrés crítico&lt;/string&gt;
+  &lt;string name="MODERATE_STRESS_HELP"&gt;−1 a las tiradas de Desventaja&lt;/string&gt;
+  &lt;string name="SERIOUS_STRESS_HELP"&gt;−1 a Mantener la calma / −2 a las tiradas de Desventaja&lt;/string&gt;
+  &lt;string name="CRITICAL_STRESS_HELP"&gt;−2 a Mantener la calma / −3 a las tiradas de Desventaja / +1 a Ver más allá de de la ilusión&lt;/string&gt;
+
 &lt;/root&gt;      
     </XML>
   </XMLFiles>
