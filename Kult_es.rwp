@@ -8,7 +8,7 @@
     <Website />
     <Version>1</Version>
     <Release>0</Release>
-    <RulesetWizardVersion>0.7.13</RulesetWizardVersion>
+    <RulesetWizardVersion>0.7.14</RulesetWizardVersion>
     <RulesetList>CoreRPG
 Kult</RulesetList>
     <LoadOrder />

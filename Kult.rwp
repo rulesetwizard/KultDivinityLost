@@ -8,7 +8,7 @@
     <Website>https://www.rulesetwizard.com</Website>
     <Version>1</Version>
     <Release>0</Release>
-    <RulesetWizardVersion>0.7.13</RulesetWizardVersion>
+    <RulesetWizardVersion>0.7.14</RulesetWizardVersion>
     <RulesetList>CoreRPG</RulesetList>
     <LoadOrder />
     <Comments />
@@ -182,6 +182,7 @@ Source code available at https://github.com/rulesetwizard/KultDivinityLost</Anno
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>char_move</WindowName>
@@ -242,6 +243,7 @@ function getAttributeValue()
 	return 0;
 end</LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>char_move</WindowName>
@@ -296,6 +298,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>char_move</WindowName>
@@ -345,6 +348,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>char_move</WindowName>
@@ -399,6 +403,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>char_move</WindowName>
@@ -446,6 +451,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>char_weapon</WindowName>
@@ -501,6 +507,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>char_weapon</WindowName>
@@ -548,6 +555,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>char_weapon</WindowName>
@@ -602,6 +610,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>char_weapon</WindowName>
@@ -657,6 +666,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>char_weapon</WindowName>
@@ -704,6 +714,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>char_weapon</WindowName>
@@ -758,6 +769,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>char_weapon</WindowName>
@@ -813,6 +825,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet</WindowName>
@@ -867,6 +880,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet</WindowName>
@@ -909,6 +923,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet</WindowName>
@@ -954,6 +969,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet</WindowName>
@@ -1008,6 +1024,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet</WindowName>
@@ -1050,6 +1067,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet</WindowName>
@@ -1093,6 +1111,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet</WindowName>
@@ -1138,6 +1157,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_abilities</WindowName>
@@ -1192,6 +1212,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_abilities</WindowName>
@@ -1241,6 +1262,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_abilities</WindowName>
@@ -1290,6 +1312,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_abilities</WindowName>
@@ -1360,6 +1383,7 @@ end</LUACode>
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_abilities</WindowName>
@@ -1403,6 +1427,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_abilities</WindowName>
@@ -1446,6 +1471,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_abilities</WindowName>
@@ -1500,6 +1526,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_abilities</WindowName>
@@ -1549,6 +1576,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_abilities</WindowName>
@@ -1598,6 +1626,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_abilities</WindowName>
@@ -1642,6 +1671,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_abilities</WindowName>
@@ -1686,6 +1716,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_inventory</WindowName>
@@ -1740,6 +1771,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_inventory</WindowName>
@@ -1783,6 +1815,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_inventory</WindowName>
@@ -1837,6 +1870,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_inventory</WindowName>
@@ -1880,6 +1914,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_inventory</WindowName>
@@ -1923,6 +1958,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_inventory</WindowName>
@@ -1966,6 +2002,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_inventory</WindowName>
@@ -2009,6 +2046,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_inventory</WindowName>
@@ -2052,6 +2090,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_inventory</WindowName>
@@ -2095,6 +2134,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_inventory</WindowName>
@@ -2139,6 +2179,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_log</WindowName>
@@ -2193,6 +2234,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_log</WindowName>
@@ -2236,6 +2278,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_log</WindowName>
@@ -2277,6 +2320,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -2336,6 +2380,7 @@ function onDoubleClick(x, y)
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -2397,6 +2442,7 @@ function onButtonPress()
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -2460,6 +2506,7 @@ end
 	end
 end</LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -2515,6 +2562,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -2587,6 +2635,7 @@ function calcWounds()
 	--DB.setValue(getDatabaseNode(), "wounds", number, nWounds);
 end</LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -2642,6 +2691,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -2696,6 +2746,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -2740,6 +2791,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -2795,6 +2847,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -2837,6 +2890,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -2879,6 +2933,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -2921,6 +2976,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -2976,6 +3032,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3020,6 +3077,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>1</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3064,6 +3122,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3108,6 +3167,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3152,6 +3212,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3196,6 +3257,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3240,6 +3302,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3284,6 +3347,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3328,6 +3392,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3372,6 +3437,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3416,6 +3482,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3460,6 +3527,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3504,6 +3572,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3548,6 +3617,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3592,6 +3662,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3636,6 +3707,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3680,6 +3752,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3724,6 +3797,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3768,6 +3842,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3812,6 +3887,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3856,6 +3932,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3900,6 +3977,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3944,6 +4022,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -3988,6 +4067,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -4032,6 +4112,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -4076,6 +4157,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -4120,6 +4202,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -4164,6 +4247,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -4208,6 +4292,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -4252,6 +4337,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -4296,6 +4382,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -4340,6 +4427,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -4384,6 +4472,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -4428,6 +4517,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -4483,6 +4573,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -4538,6 +4629,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -4593,6 +4685,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -4648,6 +4741,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -4727,6 +4821,7 @@ end
 
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -4782,6 +4877,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -4838,6 +4934,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -4893,6 +4990,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -4947,6 +5045,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -4991,6 +5090,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -5045,6 +5145,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -5089,6 +5190,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -5143,6 +5245,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -5187,6 +5290,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -5241,6 +5345,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -5285,6 +5390,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
@@ -5340,6 +5446,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>1</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_notes</WindowName>
@@ -5394,6 +5501,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_notes</WindowName>
@@ -5448,6 +5556,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_notes</WindowName>
@@ -5502,6 +5611,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_notes</WindowName>
@@ -5556,6 +5666,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_notes</WindowName>
@@ -5610,6 +5721,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_notes</WindowName>
@@ -5664,6 +5776,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_notes</WindowName>
@@ -5707,6 +5820,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_notes</WindowName>
@@ -5750,6 +5864,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_notes</WindowName>
@@ -5793,6 +5908,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_notes</WindowName>
@@ -5836,6 +5952,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_notes</WindowName>
@@ -5879,6 +5996,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_notes</WindowName>
@@ -5922,6 +6040,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_notes</WindowName>
@@ -5965,6 +6084,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_notes</WindowName>
@@ -6008,6 +6128,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_notes</WindowName>
@@ -6062,6 +6183,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_notes</WindowName>
@@ -6116,6 +6238,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -6160,6 +6283,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -6207,6 +6331,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -6262,6 +6387,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -6309,6 +6435,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -6364,6 +6491,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -6411,6 +6539,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -6466,6 +6595,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -6513,6 +6643,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -6568,6 +6699,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -6615,6 +6747,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -6670,6 +6803,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -6714,6 +6848,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -6758,6 +6893,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -6802,6 +6938,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -6856,6 +6993,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -6911,6 +7049,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -6954,6 +7093,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -6997,6 +7137,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -7040,6 +7181,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -7083,6 +7225,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -7126,6 +7269,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -7169,6 +7313,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -7212,6 +7357,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -7255,6 +7401,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -7298,6 +7445,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -7341,6 +7489,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -7384,6 +7533,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -7427,6 +7577,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_xp</WindowName>
@@ -7470,6 +7621,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>client_ct_entry</WindowName>
@@ -7527,6 +7679,7 @@ end
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>client_ct_entry</WindowName>
@@ -7584,6 +7737,7 @@ end
     end
 end</LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>client_ct_entry</WindowName>
@@ -7627,6 +7781,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>client_ct_entry</WindowName>
@@ -7743,6 +7898,7 @@ function onIDChanged()
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>client_ct_entry</WindowName>
@@ -7786,6 +7942,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>client_ct_entry</WindowName>
@@ -7828,6 +7985,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>client_ct_entry</WindowName>
@@ -7880,6 +8038,7 @@ end
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>client_ct_entry</WindowName>
@@ -7938,6 +8097,7 @@ end
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>client_ct_entry</WindowName>
@@ -7981,6 +8141,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>client_ct_entry</WindowName>
@@ -8028,6 +8189,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>client_ct_entry</WindowName>
@@ -8082,6 +8244,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>client_ct_entry</WindowName>
@@ -8136,6 +8299,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>client_ct_entry</WindowName>
@@ -8181,6 +8345,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>client_ct_entry</WindowName>
@@ -8224,6 +8389,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>client_ct_entry</WindowName>
@@ -8268,6 +8434,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>client_ct_entry</WindowName>
@@ -8322,6 +8489,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>client_ct_entry</WindowName>
@@ -8376,6 +8544,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>client_ct_entry</WindowName>
@@ -8431,6 +8600,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>clientct_effects</WindowName>
@@ -8490,6 +8660,7 @@ end
 
 end</LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>clientct_effects</WindowName>
@@ -8544,6 +8715,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>clientct_effects</WindowName>
@@ -8586,6 +8758,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_client</WindowName>
@@ -8635,6 +8808,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_client</WindowName>
@@ -8684,6 +8858,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_client</WindowName>
@@ -8751,6 +8926,7 @@ function updateShowOrder()
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_client</WindowName>
@@ -8794,6 +8970,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_client</WindowName>
@@ -8837,6 +9014,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_client</WindowName>
@@ -8880,6 +9058,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_client</WindowName>
@@ -9015,6 +9194,7 @@ function onClickRelease(button, x, y)
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_client</WindowName>
@@ -9057,6 +9237,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_client</WindowName>
@@ -9112,6 +9293,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_client</WindowName>
@@ -9156,6 +9338,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_client</WindowName>
@@ -9214,6 +9397,7 @@ function onDragStart(button, x, y, draginfo)
     return true;
 end</LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -9263,6 +9447,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -9305,6 +9490,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -9347,6 +9533,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -9389,6 +9576,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -9438,6 +9626,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -9497,6 +9686,7 @@ function onDragStart(button, x, y, draginfo)
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -9546,6 +9736,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -9609,6 +9800,7 @@ function onDragEnd(draginfo)
     widget.setVisible(true);
 end</LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -9661,6 +9853,7 @@ end</LUACode>
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -9713,6 +9906,7 @@ end
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -9765,6 +9959,7 @@ end
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -9817,6 +10012,7 @@ end
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -9869,6 +10065,7 @@ end
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -9918,6 +10115,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -9971,6 +10169,7 @@ function onButtonPress()
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -10025,6 +10224,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -10067,6 +10267,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -10109,6 +10310,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -10152,6 +10354,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -10195,6 +10398,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -10238,6 +10442,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -10281,6 +10486,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -10529,6 +10735,7 @@ function onDrop(x, y, draginfo)
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -10571,6 +10778,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -10626,6 +10834,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
@@ -10670,6 +10879,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_attacks</WindowName>
@@ -10724,6 +10934,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_attacks</WindowName>
@@ -10778,6 +10989,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_effects</WindowName>
@@ -10837,6 +11049,7 @@ end
 
 end</LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_effects</WindowName>
@@ -10891,6 +11104,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_effects</WindowName>
@@ -10940,6 +11154,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -10993,6 +11208,7 @@ end</LUACode>
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -11046,6 +11262,7 @@ end
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -11099,6 +11316,7 @@ end
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -11152,6 +11370,7 @@ end
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -11201,6 +11420,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -11243,6 +11463,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -11286,6 +11507,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -11535,6 +11757,7 @@ function setAttacksVisible()
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -11578,6 +11801,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -11620,6 +11844,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -11672,6 +11897,7 @@ end
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -11730,6 +11956,7 @@ end
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -11783,6 +12010,7 @@ end
     end
 end</LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -11833,6 +12061,7 @@ end</LUACode>
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -11887,6 +12116,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -11941,6 +12171,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -11995,6 +12226,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -12037,6 +12269,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -12082,6 +12315,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -12127,6 +12361,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -12172,6 +12407,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -12217,6 +12453,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -12260,6 +12497,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -12302,6 +12540,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -12346,6 +12585,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -12400,6 +12640,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -12454,6 +12695,7 @@ end
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -12505,6 +12747,7 @@ end
     window.onVisibilityChanged();
 end</LUACode>
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_entry</WindowName>
@@ -12560,6 +12803,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_spacing</WindowName>
@@ -12612,6 +12856,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_spacing</WindowName>
@@ -12665,6 +12910,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_spacing</WindowName>
@@ -12708,6 +12954,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_spacing</WindowName>
@@ -12761,6 +13008,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_spacing</WindowName>
@@ -12804,6 +13052,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -12858,6 +13107,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -12913,6 +13163,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -12967,6 +13218,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -13021,6 +13273,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -13075,6 +13328,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -13129,6 +13383,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -13173,6 +13428,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -13217,6 +13473,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -13261,6 +13518,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -13305,6 +13563,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -13349,6 +13608,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -13393,6 +13653,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -13437,6 +13698,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -13481,6 +13743,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -13525,6 +13788,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -13569,6 +13833,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -13623,6 +13888,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -13677,6 +13943,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -13731,6 +13998,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -13774,6 +14042,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -13817,6 +14086,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -13871,6 +14141,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
@@ -13926,6 +14197,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
+    <Template />
   </WindowControls>
 </DocumentElement>
 
