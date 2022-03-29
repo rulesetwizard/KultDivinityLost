@@ -8,7 +8,7 @@
     <Website>https://www.rulesetwizard.com</Website>
     <Version>1</Version>
     <Release>0</Release>
-    <RulesetWizardVersion>0.7.14</RulesetWizardVersion>
+    <RulesetWizardVersion>0.7.15</RulesetWizardVersion>
     <RulesetList>CoreRPG</RulesetList>
     <LoadOrder />
     <Comments />
@@ -19,7 +19,7 @@ Source code available at https://github.com/rulesetwizard/KultDivinityLost</Anno
     <AdvancedDevelopment>true</AdvancedDevelopment>
     <GeneratePath>C:\Users\alzal\Documents\Fantasy Grounds Unity\rulesets\Kult.pak</GeneratePath>
     <AnnouncementFont>narratorfont</AnnouncementFont>
-    <AnnouncementIcon />
+    <AnnouncementIcon>KultLogo</AnnouncementIcon>
     <Announcement2>Kult Font made from oNline Web Fonts http://www.onlinewebfonts.com is licensed by CC BY 3.0</Announcement2>
     <Announcement2Font>narratorfont</Announcement2Font>
     <Announcement2Icon />
@@ -28,7 +28,7 @@ Source code available at https://github.com/rulesetwizard/KultDivinityLost</Anno
     <Announcement3Icon />
     <ExcludeRSWScripts>false</ExcludeRSWScripts>
     <CompileToFolder>false</CompileToFolder>
-    <DefaultEncoding>UTF-8</DefaultEncoding>
+    <DefaultEncoding>iso-8859-1</DefaultEncoding>
   </RulesetProperties>
 </Ruleset>
 
