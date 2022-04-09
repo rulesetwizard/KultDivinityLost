@@ -8,7 +8,7 @@
     <Website />
     <Version>1</Version>
     <Release>0</Release>
-    <RulesetWizardVersion>0.7.14</RulesetWizardVersion>
+    <RulesetWizardVersion>0.7.15</RulesetWizardVersion>
     <RulesetList>CoreRPG
 Kult</RulesetList>
     <LoadOrder />
@@ -159,6 +159,7 @@ Kult</RulesetList>
   &lt;string name="npc_main_lblCombat_LabelCaption"&gt;Combate&lt;/string&gt;
   &lt;string name="npc_main_lblInfluence_LabelCaption"&gt;Influencia&lt;/string&gt;
   &lt;string name="npc_main_lblMagic_LabelCaption"&gt;Magia&lt;/string&gt;
+  &lt;string name="npc_main_lblAttacks_LabelCaption"&gt;Ataques&lt;/string&gt;
   &lt;string name="npc_main_lblWoundMoves_LabelCaption"&gt;Movs. de Herida&lt;/string&gt;
         
 &lt;/root&gt;      
