@@ -4,11 +4,13 @@
     <Name>Kult</Name>
     <CompilationType>Ruleset</CompilationType>
     <Description />
+    <DisplayName />
+    <DisplayVersion />
     <Author>Psicodelix</Author>
     <Website>https://www.rulesetwizard.com</Website>
     <Version>1</Version>
     <Release>0</Release>
-    <RulesetWizardVersion>0.8.0</RulesetWizardVersion>
+    <RulesetWizardVersion>0.8.1</RulesetWizardVersion>
     <RulesetList>CoreRPG</RulesetList>
     <LoadOrder />
     <Comments />
@@ -1092,7 +1094,7 @@ end</LUACode>
       {"Name":"LineOffset","Value":{"@xsi:type":"xsd:int","#text":"2"}},
       {"Name":"MaximumHeight"},
       {"Name":"MaximumWidth"},
-      {"Name":"Merge"},
+      {"Name":"Merge","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"MinimumHeight"},
       {"Name":"MinimumWidth"},
       {"Name":"MultilineSpacing"},
@@ -1146,7 +1148,7 @@ end</LUACode>
       {"Name":"Invisible"},
       {"Name":"MaximumHeight"},
       {"Name":"MaximumWidth"},
-      {"Name":"Merge"},
+      {"Name":"Merge","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"MinimumHeight"},
       {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},

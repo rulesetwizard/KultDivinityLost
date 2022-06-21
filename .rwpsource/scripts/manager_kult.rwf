@@ -1,0 +1,79 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>manager_kult</ScriptName>
+    <FolderID>0</FolderID>
+    <Script>
+function onInit()
+	-- Set custom handler function for adding NPCs
+	CombatManager.setCustomAddNPC(addNPCKult);
+end
+
+function resolveRoll(rSource, rTarget, rRoll)
+
+	local charNode = ActorManager.getCreatureNode(rSource);
+
+	local msgstring = "";
+						
+	if ( (trim(DB.getValue(charNode, "wound1", '')) ~= "") and (DB.getValue(charNode, "wound1sta", 0) == 0) )
+	or ( (trim(DB.getValue(charNode, "wound2", '')) ~= "") and (DB.getValue(charNode, "wound2sta", 0) == 0) )
+	or ( (trim(DB.getValue(charNode, "wound3", '')) ~= "") and (DB.getValue(charNode, "wound3sta", 0) == 0) )
+	or ( (trim(DB.getValue(charNode, "wound4", '')) ~= "") and (DB.getValue(charNode, "wound4sta", 0) == 0) )
+	then
+		rRoll.nMod = rRoll.nMod - 1;
+		msgstring = msgstring .. ' [' .. Interface.getString("WOUNDED") .. ' -1]';
+	end;
+
+	if trim(DB.getValue(charNode, "criticalwound", '')) ~= "" then
+		rRoll.nMod = rRoll.nMod - 1;
+		msgstring = msgstring .. ' [' .. Interface.getString("CRITICAL") .. ' -1]';
+	end;
+
+	if rRoll["attribute"] == "Willpower" then
+		local stability = tonumber(DB.getValue(charNode, "stability", "0"));
+		if stability and stability &gt;= 4 then 
+			local stabilityPenalty = -1;
+			if stability &gt;= 7 then
+				stabilityPenalty = -2;
+			end
+			rRoll.nMod = rRoll.nMod + stabilityPenalty;
+			msgstring = msgstring .. ' [' .. Interface.getString("STABILITY") .. ' ' .. stabilityPenalty .. ']';
+		end;
+	end;
+
+	if rRoll["attribute"] == "Soul" then
+		local stability = tonumber(DB.getValue(charNode, "stability", "0"));
+		if stability and stability &gt;= 7 then 
+			rRoll.nMod = rRoll.nMod + 1;
+			msgstring = msgstring .. ' [' .. Interface.getString("STABILITY") .. ' +1]';
+		end;
+	end;
+
+    local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
+    rMessage.text = rMessage.text .. msgstring;
+    
+	local total = rRoll.aDice[1].result + rRoll.aDice[2].result + rRoll.nMod + rRoll.nBonuses;
+    if total &gt;= 15 then
+		rMessage.text = rMessage.text .. ' [' .. Interface.getString("COMPLETE SUCCESS") .. ']';
+    else
+		if total &gt;= 10 then
+			rMessage.text = rMessage.text .. ' [' .. Interface.getString("SUCCESS WITH COMPLICATIONS") .. ']';
+		else
+			rMessage.text = rMessage.text .. ' [' .. Interface.getString("FAILURE") .. ']';
+		end
+	end
+	
+    Comm.deliverChatMessage(rMessage);    
+
+end
+
+function addNPCKult(sClass, nodeNPC, sName)
+	local nodeEntry, nodeLastMatch = CombatManager.addNPCHelper(nodeNPC, sName);
+end
+
+function trim(s)
+   return s:match "^%s*(.-)%s*$"
+end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>
