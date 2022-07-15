@@ -1,0 +1,36 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>SideBarData</ScriptName>
+    <FolderID>7</FolderID>
+    <Script>function onInit()
+
+	aRecordOverrides = {
+		["advantages"] = { 
+			bExport = true,
+			aDataMap = { "reference.advantages" }, 
+			sRecordDisplayClass = "advantagedisadvantage", 
+		},		
+		["disadvantages"] = { 
+			bExport = true,
+			aDataMap = { "reference.disadvantages" }, 
+			sRecordDisplayClass = "advantagedisadvantage", 
+		},		
+	}
+	
+	LibraryData.overrideRecordTypes(aRecordOverrides);
+
+	if User.isHost() then
+		local advantages = DB.findNode("reference.advantages");
+		if advantages then
+			advantages.setPublic(true);
+		end
+		local disadvantages = DB.findNode("reference.disadvantages");
+		if disadvantages then
+			disadvantages.setPublic(true);
+		end
+	end		
+end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

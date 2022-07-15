@@ -1,0 +1,39 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <XMLFiles>
+    <XmlName>strings_kult</XmlName>
+    <FolderID>4</FolderID>
+    <XML>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;root&gt;
+  &lt;string name="Keep it Together"&gt;Keep it Together&lt;/string&gt;
+  &lt;string name="Endure Injury"&gt;Endure Injury&lt;/string&gt;
+  &lt;string name="Avoid Harm"&gt;Avoid Harm&lt;/string&gt;
+  &lt;string name="Investigate"&gt;Investigate&lt;/string&gt;
+  &lt;string name="Read a Person"&gt;Read a Person&lt;/string&gt;
+  &lt;string name="Observe a situation"&gt;Observe a situation&lt;/string&gt;
+  &lt;string name="Act Under Pressure"&gt;Act Under Pressure&lt;/string&gt;
+  &lt;string name="Engage in Combat"&gt;Engage in Combat&lt;/string&gt;
+  &lt;string name="Influence Other"&gt;Influence Other&lt;/string&gt;
+  &lt;string name="See Through the Illusion"&gt;See Through the Illusion&lt;/string&gt;
+  &lt;string name="Helping or Hindering"&gt;Helping or Hindering&lt;/string&gt;
+    
+  &lt;string name="COMPLETE SUCCESS"&gt;COMPLETE SUCCESS&lt;/string&gt;
+  &lt;string name="SUCCESS WITH COMPLICATIONS"&gt;SUCCESS WITH COMPLICATIONS&lt;/string&gt;
+  &lt;string name="FAILURE"&gt;FAILURE&lt;/string&gt;
+
+  &lt;string name="WOUNDED"&gt;WOUNDED&lt;/string&gt;
+  &lt;string name="CRITICAL"&gt;CRITICAL&lt;/string&gt;
+  &lt;string name="STABILITY"&gt;STABILITY&lt;/string&gt;
+  &lt;string name="ARMOR"&gt;Armor&lt;/string&gt;
+
+  &lt;string name="MODERATE_STRESS"&gt;Moderate stress&lt;/string&gt;
+  &lt;string name="SERIOUS_STRESS"&gt;Serious stress&lt;/string&gt;
+  &lt;string name="CRITICAL_STRESS"&gt;Critical stress&lt;/string&gt;
+  &lt;string name="MODERATE_STRESS_HELP"&gt;−1 to Disadvantage rolls&lt;/string&gt;
+  &lt;string name="SERIOUS_STRESS_HELP"&gt;−1 Keep it Together / −2 to Disadvantage rolls&lt;/string&gt;
+  &lt;string name="CRITICAL_STRESS_HELP"&gt;−2 Keep it Together / −3 to Disadvantage rolls / +1 See Through the Illusion&lt;/string&gt;
+  
+ 
+&lt;/root&gt;      
+ </XML>
+  </XMLFiles>
+</DocumentElement>
