@@ -130,23 +130,23 @@ end
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop","PropertyAcceptDrop":{"ClassName":"advantagedisadvantage"}}},
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
-      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"list_text"}},
-      {"Name":"AllowCreate"},
-      {"Name":"AllowDelete"},
+      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"AllowCreate","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"AllowDelete","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"Columns","Value":{"@xsi:type":"PropertyColumns","ColumnWidth":{"@xsi:nil":"true"},"FillDown":"false","FillWidth":{"@xsi:nil":"true"}}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"abilities"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty","CustomProperty":{"PropertyName":"newfocus","PropertyValue":"name","PropertyAttributes":null}}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DataSource","Value":{"@xsi:type":"xsd:string","#text":".abilitylist"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"119"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"435"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"450"}},
       {"Name":"Disabled"},
       {"Name":"EmptyListFontName"},
       {"Name":"EmptyListText"},
-      {"Name":"Fields"},
+      {"Name":"Fields","Value":{"@xsi:type":"xsd:string","#text":"*"}},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -179,7 +179,21 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"21"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"35"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function addEntry(bFocus)
+	local w = createWindow();
+	w.name.setFocus();
+	return w;
+end
+
+function update()
+	local sEdit = getName() .. "_iedit";
+	if window[sEdit] then
+		local bEdit = (window[sEdit].getValue() == 1);
+		for _,w in ipairs(getWindows()) do
+			w.idelete.setVisibility(bEdit);
+		end
+	end
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -420,7 +434,7 @@ end
       {"Name":"DataSource","Value":{"@xsi:type":"xsd:string","#text":".moveslist"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"268"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"435"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"450"}},
       {"Name":"Disabled"},
       {"Name":"EmptyListFontName"},
       {"Name":"EmptyListText"},
@@ -505,7 +519,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"445"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"450"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"188"}}
 ]}}</Definition>
     <LUACode />

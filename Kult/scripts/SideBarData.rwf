@@ -5,16 +5,30 @@
     <Script>function onInit()
 
 	aRecordOverrides = {
-		["advantages"] = { 
+		["advantage"] = { 
 			bExport = true,
 			aDataMap = { "reference.advantages" }, 
 			sRecordDisplayClass = "advantagedisadvantage", 
+			sSidebarCategory  = "player",
 		},		
-		["disadvantages"] = { 
+		["disadvantage"] = { 
 			bExport = true,
 			aDataMap = { "reference.disadvantages" }, 
 			sRecordDisplayClass = "advantagedisadvantage", 
+			sSidebarCategory  = "player",
 		},		
+		["archetype"] = { 
+			bExport = true,
+			aDataMap = { "reference.archetypes" }, 
+			sRecordDisplayClass = "archetype", 
+			sSidebarCategory  = "player",
+		},	
+		["darksecret"] = { 
+			bExport = true,
+			aDataMap = { "reference.darksecrets" }, 
+			sRecordDisplayClass = "darksecret", 
+			sSidebarCategory  = "player",
+		},					
 	}
 	
 	LibraryData.overrideRecordTypes(aRecordOverrides);
