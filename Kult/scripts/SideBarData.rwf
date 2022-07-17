@@ -42,6 +42,14 @@
 		if disadvantages then
 			disadvantages.setPublic(true);
 		end
+		local archetypes = DB.findNode("reference.archetypes");
+		if archetypes then
+			archetypes.setPublic(true);
+		end
+		local darksecrets = DB.findNode("reference.darksecrets");
+		if darksecrets then
+			darksecrets.setPublic(true);
+		end		
 	end		
 end</Script>
     <RegisterScript>true</RegisterScript>
