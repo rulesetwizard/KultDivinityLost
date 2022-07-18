@@ -4,11 +4,13 @@
     <Name>Kult_es</Name>
     <CompilationType>Extension</CompilationType>
     <Description>Kult - Español</Description>
+    <DisplayName />
+    <DisplayVersion />
     <Author>Psicodelix</Author>
     <Website />
     <Version>1</Version>
     <Release>0</Release>
-    <RulesetWizardVersion>0.7.15</RulesetWizardVersion>
+    <RulesetWizardVersion>0.8.1</RulesetWizardVersion>
     <RulesetList>CoreRPG
 Kult</RulesetList>
     <LoadOrder />
@@ -46,6 +48,11 @@ Kult</RulesetList>
     <FolderID>0</FolderID>
     <XML>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;root&gt;
+  &lt;string name="advantagedisadvantage_name_EmptyText"&gt;Nueva Ventaja&lt;/string&gt;
+  &lt;string name="advantagedisadvantage_lblAttribute_LabelCaption"&gt;Atributo&lt;/string&gt;
+  &lt;string name="advantagedisadvantage_lblDescription_LabelCaption"&gt;Descripción&lt;/string&gt;
+  &lt;string name="archetype_name_EmptyText"&gt;Nuevo Arquetipo&lt;/string&gt;
+  &lt;string name="darksecret_name_EmptyText"&gt;Nuevo Secreto Inconfesable&lt;/string&gt;
   &lt;string name="char_move_btnRoll_Tooltip"&gt;Chequeo&lt;/string&gt;
   &lt;string name="charsheet_abilities_lblLog_LabelCaption"&gt;Ventajas y Desventajas&lt;/string&gt;
   &lt;string name="charsheet_abilities_lblMoves_LabelCaption"&gt;Movimientos&lt;/string&gt;
@@ -198,6 +205,10 @@ Kult</RulesetList>
   &lt;string name="SERIOUS_STRESS_HELP"&gt;−1 a Mantener la calma / −2 a las tiradas de Desventaja&lt;/string&gt;
   &lt;string name="CRITICAL_STRESS_HELP"&gt;−2 a Mantener la calma / −3 a las tiradas de Desventaja / +1 a Ver más allá de de la ilusión&lt;/string&gt;
 
+	&lt;string name="library_recordtype_label_advantage"&gt;Ventajas&lt;/string&gt;	
+	&lt;string name="library_recordtype_label_disadvantage"&gt;Desventajas&lt;/string&gt;		
+	&lt;string name="library_recordtype_label_archetype"&gt;Arquetipos&lt;/string&gt;	
+	&lt;string name="library_recordtype_label_darksecret"&gt;Secretos Inconfesables&lt;/string&gt;
 &lt;/root&gt;      
     </XML>
   </XMLFiles>
