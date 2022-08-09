@@ -10,7 +10,7 @@
     <Website>https://www.rulesetwizard.com</Website>
     <Version>1</Version>
     <Release>0</Release>
-    <RulesetWizardVersion>0.8.1</RulesetWizardVersion>
+    <RulesetWizardVersion>0.8.2</RulesetWizardVersion>
     <RulesetList>CoreRPG</RulesetList>
     <LoadOrder />
     <Comments />
@@ -19,7 +19,7 @@ Source code available at https://github.com/rulesetwizard/KultDivinityLost</Anno
     <LogoFile />
     <ImportRuleset>CoreRPG</ImportRuleset>
     <AdvancedDevelopment>true</AdvancedDevelopment>
-    <GeneratePath>c:\Users\alzal\AppData\Roaming\SmiteWorks\Fantasy Grounds\rulesets\Kult.pak</GeneratePath>
+    <GeneratePath />
     <AnnouncementFont>narratorfont</AnnouncementFont>
     <AnnouncementIcon>KultLogo</AnnouncementIcon>
     <Announcement2>Kult Font made from oNline Web Fonts http://www.onlinewebfonts.com is licensed by CC BY 3.0</Announcement2>
@@ -2665,6 +2665,7 @@ end</LUACode>
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"WindowListChildDefinition","Value":{"@xsi:type":"ArrayOfChildDefinition","ChildDefinition":[{"BackgroundColor":null,"sBackgroundColor":"0;0;0;0"},{"BackgroundColor":null,"sBackgroundColor":"255;148;148;148"}]}},
       {"Name":"WindowListClassName","Value":{"@xsi:type":"xsd:string","#text":"char_advdis"}},
       {"Name":"WindowListFilterBy","Value":{"@xsi:type":"FilterByDefinition","FilterSourceType":"Control","FilterOnSourceType":"Control"}},
       {"Name":"WindowListSortBy","Value":{"@xsi:type":"ArrayOfSortByDefinition"}},
@@ -3029,6 +3030,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"WindowListChildDefinition","Value":{"@xsi:type":"ArrayOfChildDefinition","ChildDefinition":[{"BackgroundColor":null,"sBackgroundColor":"0;0;0;0"},{"BackgroundColor":null,"sBackgroundColor":"255;148;148;148"}]}},
       {"Name":"WindowListClassName","Value":{"@xsi:type":"xsd:string","#text":"char_move"}},
       {"Name":"WindowListFilterBy","Value":{"@xsi:type":"FilterByDefinition","FilterSourceType":"Control","FilterOnSourceType":"Control"}},
       {"Name":"WindowListSortBy","Value":{"@xsi:type":"ArrayOfSortByDefinition"}},
@@ -6664,7 +6666,9 @@ end</LUACode>
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
       {"Name":"Source"},
+      {"Name":"Sourceless"},
       {"Name":"StackVertWith"},
+      {"Name":"StringCyclerAlign","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"StringCyclerItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"Composed","Value":"1"},{"Label":"Uneasy","Value":"2"},{"Label":"Unfocused","Value":"3"},{"Label":"Shaken","Value":"4"},{"Label":"Distressed","Value":"5"},{"Label":"Neurotic","Value":"6"},{"Label":"Anxious","Value":"7"},{"Label":"Irrational","Value":"8"},{"Label":"Unhinged","Value":"9"},{"Label":"Broken","Value":"10"}]}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
@@ -6823,6 +6827,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"WindowListChildDefinition","Value":{"@xsi:type":"ArrayOfChildDefinition"}},
       {"Name":"WindowListClassName","Value":{"@xsi:type":"xsd:string","#text":"char_weapon"}},
       {"Name":"WindowListFilterBy","Value":{"@xsi:type":"FilterByDefinition","FilterSourceType":"Control","FilterOnSourceType":"Control"}},
       {"Name":"WindowListSortBy","Value":{"@xsi:type":"ArrayOfSortByDefinition"}},
