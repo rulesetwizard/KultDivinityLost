@@ -1,77 +1,6 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <WindowControls>
-    <WindowName>advantagedisadvantage</WindowName>
-    <ControlName>advantagedisadvantage</ControlName>
-    <ZIndex>0</ZIndex>
-    <ControlClass>FGWindow</ControlClass>
-    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AllowResize","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"BottomMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"Comments","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"advantagedisadvantage"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DataSource"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"400"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"400"}},
-      {"Name":"Disabled"},
-      {"Name":"Dynamic"},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"referencepage"}},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"HostControl","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"HoverCursor"},
-      {"Name":"InheritSizePosition"},
-      {"Name":"Invisible"},
-      {"Name":"Locked"},
-      {"Name":"MaximumHeight"},
-      {"Name":"MaximumWidth"},
-      {"Name":"MergeWindow"},
-      {"Name":"MinimizedIcon"},
-      {"Name":"MinimumHeight","Value":{"@xsi:type":"xsd:int","#text":"356"}},
-      {"Name":"MinimumWidth","Value":{"@xsi:type":"xsd:int","#text":"294"}},
-      {"Name":"NoClose"},
-      {"Name":"NoDelete","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"NoMove"},
-      {"Name":"Panel"},
-      {"Name":"PanelModeClient"},
-      {"Name":"PanelModeHost"},
-      {"Name":"PanelModeLocal"},
-      {"Name":"PlayerControl","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"Resize","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"RightMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"ScriptFile"},
-      {"Name":"Sharable","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"ShareAs"},
-      {"Name":"SoftClose"},
-      {"Name":"Tooltip"},
-      {"Name":"TooltipField","Value":{"@xsi:type":"xsd:string","#text":"name"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"WindowMargins"},
-      {"Name":"WindowTitle"},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
-]}}</Definition>
-    <LUACode>
-function onInit()
-	update();
-end
-
-function onLockChanged()
-	update();
-end
-			
-function update()
-
-	local bReadOnly = WindowManager.getReadOnlyState(getDatabaseNode());
-	name.setReadOnly(bReadOnly);
-	attribute.setReadOnly(bReadOnly);
-	description.setReadOnly(bReadOnly);
-end</LUACode>
-    <GroupIndex>0</GroupIndex>
-    <Template />
-  </WindowControls>
-  <WindowControls>
-    <WindowName>advantagedisadvantage</WindowName>
+    <WindowName>move</WindowName>
     <ControlName>attribute</ControlName>
     <ZIndex>7</ZIndex>
     <ControlClass>FGComboBox</ControlClass>
@@ -129,7 +58,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>advantagedisadvantage</WindowName>
+    <WindowName>move</WindowName>
     <ControlName>button_close</ControlName>
     <ZIndex>5</ZIndex>
     <ControlClass>FGButton</ControlClass>
@@ -188,7 +117,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>advantagedisadvantage</WindowName>
+    <WindowName>move</WindowName>
     <ControlName>description</ControlName>
     <ZIndex>9</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -250,7 +179,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>advantagedisadvantage</WindowName>
+    <WindowName>move</WindowName>
     <ControlName>framecontent</ControlName>
     <ZIndex>1</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -300,7 +229,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>advantagedisadvantage</WindowName>
+    <WindowName>move</WindowName>
     <ControlName>lblAttribute</ControlName>
     <ZIndex>6</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -353,7 +282,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>advantagedisadvantage</WindowName>
+    <WindowName>move</WindowName>
     <ControlName>lblDescription</ControlName>
     <ZIndex>8</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -406,7 +335,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>advantagedisadvantage</WindowName>
+    <WindowName>move</WindowName>
     <ControlName>link_header</ControlName>
     <ZIndex>2</ZIndex>
     <ControlClass>FGLinkField</ControlClass>
@@ -461,7 +390,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>advantagedisadvantage</WindowName>
+    <WindowName>move</WindowName>
     <ControlName>locked</ControlName>
     <ZIndex>3</ZIndex>
     <ControlClass>FGButton</ControlClass>
@@ -520,7 +449,78 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>advantagedisadvantage</WindowName>
+    <WindowName>move</WindowName>
+    <ControlName>move</ControlName>
+    <ZIndex>0</ZIndex>
+    <ControlClass>FGWindow</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AllowResize","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"BottomMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"Comments","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"move"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DataSource"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"400"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"400"}},
+      {"Name":"Disabled"},
+      {"Name":"Dynamic"},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"referencepage"}},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HostControl","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"Invisible"},
+      {"Name":"Locked"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"MergeWindow"},
+      {"Name":"MinimizedIcon"},
+      {"Name":"MinimumHeight","Value":{"@xsi:type":"xsd:int","#text":"356"}},
+      {"Name":"MinimumWidth","Value":{"@xsi:type":"xsd:int","#text":"294"}},
+      {"Name":"NoClose"},
+      {"Name":"NoDelete","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"NoMove"},
+      {"Name":"Panel"},
+      {"Name":"PanelModeClient"},
+      {"Name":"PanelModeHost"},
+      {"Name":"PanelModeLocal"},
+      {"Name":"PlayerControl","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"Resize","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"RightMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"ScriptFile"},
+      {"Name":"Sharable","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"ShareAs"},
+      {"Name":"SoftClose"},
+      {"Name":"Tooltip"},
+      {"Name":"TooltipField","Value":{"@xsi:type":"xsd:string","#text":"name"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"WindowMargins","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"WindowTitle"},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
+]}}</Definition>
+    <LUACode>
+function onInit()
+	update();
+end
+
+function onLockChanged()
+	update();
+end
+			
+function update()
+
+	local bReadOnly = WindowManager.getReadOnlyState(getDatabaseNode());
+	name.setReadOnly(bReadOnly);
+	attribute.setReadOnly(bReadOnly);
+	description.setReadOnly(bReadOnly);
+end</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>move</WindowName>
     <ControlName>name</ControlName>
     <ZIndex>4</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -582,7 +582,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>advantagedisadvantage</WindowName>
+    <WindowName>move</WindowName>
     <ControlName>resize</ControlName>
     <ZIndex>10</ZIndex>
     <ControlClass>FGIconControl</ControlClass>

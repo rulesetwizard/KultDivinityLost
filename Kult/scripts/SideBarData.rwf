@@ -5,6 +5,12 @@
     <Script>function onInit()
 
 	aRecordOverrides = {
+		["move"] = { 
+			bExport = true,
+			aDataMap = { "reference.moves" }, 
+			sRecordDisplayClass = "move", 
+			sSidebarCategory  = "player",
+		},		
 		["advantage"] = { 
 			bExport = true,
 			aDataMap = { "reference.advantages" }, 
@@ -34,6 +40,10 @@
 	LibraryData.overrideRecordTypes(aRecordOverrides);
 
 	if User.isHost() then
+		local moves = DB.findNode("reference.moves");
+		if moves then
+			moves.setPublic(true);
+		end
 		local advantages = DB.findNode("reference.advantages");
 		if advantages then
 			advantages.setPublic(true);

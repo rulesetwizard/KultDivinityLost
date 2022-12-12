@@ -4,6 +4,7 @@
     <FolderID>7</FolderID>
     <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
 &lt;root&gt;
+	&lt;string name="library_recordtype_label_move"&gt;Moves&lt;/string&gt;	
 	&lt;string name="library_recordtype_label_advantage"&gt;Advantages&lt;/string&gt;	
 	&lt;string name="library_recordtype_label_disadvantage"&gt;Disadvantages&lt;/string&gt;		
 	&lt;string name="library_recordtype_label_archetype"&gt;Archetypes&lt;/string&gt;	
