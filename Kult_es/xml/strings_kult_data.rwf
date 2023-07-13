@@ -4,33 +4,33 @@
     <FolderID>0</FolderID>
     <XML>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;root&gt;
-  &lt;string name="Keep it Together"&gt;Mantener la calma&lt;/string&gt;
-  &lt;string name="Endure Injury"&gt;Soportar el dolor&lt;/string&gt;
-  &lt;string name="Avoid Harm"&gt;Evitar el daño&lt;/string&gt;
-  &lt;string name="Investigate"&gt;Investigar&lt;/string&gt;
-  &lt;string name="Read a Person"&gt;Leer a una persona&lt;/string&gt;
-  &lt;string name="Observe a situation"&gt;Observar una situación&lt;/string&gt;
-  &lt;string name="Act Under Pressure"&gt;Actuar bajo presión&lt;/string&gt;
-  &lt;string name="Engage in Combat"&gt;Combatir&lt;/string&gt;
-  &lt;string name="Influence Other"&gt;Influenciar&lt;/string&gt;
-  &lt;string name="See Through the Illusion"&gt;Ver a través de la ilusión&lt;/string&gt;
-  &lt;string name="Helping or Hindering"&gt;Ayudar o Interferir&lt;/string&gt;
-    
-  &lt;string name="COMPLETE SUCCESS"&gt;ÉXITO COMPLETO&lt;/string&gt;
-  &lt;string name="SUCCESS WITH COMPLICATIONS"&gt;ÉXITO CON COMPLICACIONES&lt;/string&gt;
-  &lt;string name="FAILURE"&gt;FRACASO&lt;/string&gt;
-    
-  &lt;string name="WOUNDED"&gt;HERIDO&lt;/string&gt;
-  &lt;string name="CRITICAL"&gt;MALHERIDO&lt;/string&gt;
-  &lt;string name="STABILITY"&gt;ESTABILIDAD&lt;/string&gt;
-  &lt;string name="ARMOR"&gt;Armadura&lt;/string&gt;
+	&lt;string name="Keep it Together"&gt;Mantener la calma&lt;/string&gt;
+	&lt;string name="Endure Injury"&gt;Soportar el dolor&lt;/string&gt;
+	&lt;string name="Avoid Harm"&gt;Evitar el daño&lt;/string&gt;
+	&lt;string name="Investigate"&gt;Investigar&lt;/string&gt;
+	&lt;string name="Read a Person"&gt;Leer a una persona&lt;/string&gt;
+	&lt;string name="Observe a situation"&gt;Observar una situación&lt;/string&gt;
+	&lt;string name="Act Under Pressure"&gt;Actuar bajo presión&lt;/string&gt;
+	&lt;string name="Engage in Combat"&gt;Combatir&lt;/string&gt;
+	&lt;string name="Influence Other"&gt;Influenciar&lt;/string&gt;
+	&lt;string name="See Through the Illusion"&gt;Ver a través de la ilusión&lt;/string&gt;
+	&lt;string name="Helping or Hindering"&gt;Ayudar o Interferir&lt;/string&gt;
 
-  &lt;string name="MODERATE_STRESS"&gt;Estrés moderado&lt;/string&gt;
-  &lt;string name="SERIOUS_STRESS"&gt;Estrés grave&lt;/string&gt;
-  &lt;string name="CRITICAL_STRESS"&gt;Estrés crítico&lt;/string&gt;
-  &lt;string name="MODERATE_STRESS_HELP"&gt;−1 a las tiradas de Desventaja&lt;/string&gt;
-  &lt;string name="SERIOUS_STRESS_HELP"&gt;−1 a Mantener la calma / −2 a las tiradas de Desventaja&lt;/string&gt;
-  &lt;string name="CRITICAL_STRESS_HELP"&gt;−2 a Mantener la calma / −3 a las tiradas de Desventaja / +1 a Ver más allá de de la ilusión&lt;/string&gt;
+	&lt;string name="COMPLETE SUCCESS"&gt;ÉXITO COMPLETO&lt;/string&gt;
+	&lt;string name="SUCCESS WITH COMPLICATIONS"&gt;ÉXITO CON COMPLICACIONES&lt;/string&gt;
+	&lt;string name="FAILURE"&gt;FRACASO&lt;/string&gt;
+
+	&lt;string name="WOUNDED"&gt;HERIDO&lt;/string&gt;
+	&lt;string name="CRITICAL"&gt;MALHERIDO&lt;/string&gt;
+	&lt;string name="STABILITY"&gt;ESTABILIDAD&lt;/string&gt;
+	&lt;string name="ARMOR"&gt;Armadura&lt;/string&gt;
+
+	&lt;string name="MODERATE_STRESS"&gt;Estrés moderado&lt;/string&gt;
+	&lt;string name="SERIOUS_STRESS"&gt;Estrés grave&lt;/string&gt;
+	&lt;string name="CRITICAL_STRESS"&gt;Estrés crítico&lt;/string&gt;
+	&lt;string name="MODERATE_STRESS_HELP"&gt;−1 a las tiradas de Desventaja&lt;/string&gt;
+	&lt;string name="SERIOUS_STRESS_HELP"&gt;−1 a Mantener la calma / −2 a las tiradas de Desventaja&lt;/string&gt;
+	&lt;string name="CRITICAL_STRESS_HELP"&gt;−2 a Mantener la calma / −3 a las tiradas de Desventaja / +1 a Ver más allá de de la ilusión&lt;/string&gt;
 
 	&lt;string name="library_recordtype_label_move"&gt;Movimientos&lt;/string&gt;	
 	&lt;string name="library_recordtype_label_advantage"&gt;Ventajas&lt;/string&gt;	
