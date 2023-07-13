@@ -3,11 +3,6 @@
     <ScriptName>manager_kult</ScriptName>
     <FolderID>0</FolderID>
     <Script>
-function onInit()
-	-- Set custom handler function for adding NPCs
-	CombatManager.setCustomAddNPC(addNPCKult);
-end
-
 function resolveRoll(rSource, rTarget, rRoll)
 
 	local charNode = ActorManager.getCreatureNode(rSource);
@@ -64,10 +59,6 @@ function resolveRoll(rSource, rTarget, rRoll)
 	
     Comm.deliverChatMessage(rMessage);    
 
-end
-
-function addNPCKult(sClass, nodeNPC, sName)
-	local nodeEntry, nodeLastMatch = CombatManager.addNPCHelper(nodeNPC, sName);
 end
 
 function trim(s)

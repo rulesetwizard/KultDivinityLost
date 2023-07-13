@@ -10,7 +10,7 @@
     <Website>https://www.rulesetwizard.com</Website>
     <Version>1</Version>
     <Release>0</Release>
-    <RulesetWizardVersion>0.8.5</RulesetWizardVersion>
+    <RulesetWizardVersion>0.8.9</RulesetWizardVersion>
     <RulesetList>CoreRPG</RulesetList>
     <LoadOrder />
     <Comments />
@@ -20,6 +20,7 @@ Source code available at https://github.com/rulesetwizard/KultDivinityLost</Anno
     <ImportRuleset>CoreRPG</ImportRuleset>
     <AdvancedDevelopment>true</AdvancedDevelopment>
     <GeneratePath />
+    <UseAutoPath>false</UseAutoPath>
     <AnnouncementFont>narratorfont</AnnouncementFont>
     <AnnouncementIcon>KultLogo</AnnouncementIcon>
     <Announcement2>Kult Font made from oNline Web Fonts http://www.onlinewebfonts.com is licensed by CC BY 3.0</Announcement2>
@@ -18546,11 +18547,6 @@ end</Script>
     <ScriptName>manager_kult</ScriptName>
     <FolderID>0</FolderID>
     <Script>
-function onInit()
-	-- Set custom handler function for adding NPCs
-	CombatManager.setCustomAddNPC(addNPCKult);
-end
-
 function resolveRoll(rSource, rTarget, rRoll)
 
 	local charNode = ActorManager.getCreatureNode(rSource);
@@ -18607,10 +18603,6 @@ function resolveRoll(rSource, rTarget, rRoll)
 	
     Comm.deliverChatMessage(rMessage);    
 
-end
-
-function addNPCKult(sClass, nodeNPC, sName)
-	local nodeEntry, nodeLastMatch = CombatManager.addNPCHelper(nodeNPC, sName);
 end
 
 function trim(s)
