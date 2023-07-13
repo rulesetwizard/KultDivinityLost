@@ -192,6 +192,7 @@ Source code available at https://github.com/rulesetwizard/KultDivinityLost</Anno
       {"Name":"DataSource"},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"400"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"400"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"Dynamic"},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"referencepage"}},
@@ -224,7 +225,7 @@ Source code available at https://github.com/rulesetwizard/KultDivinityLost</Anno
       {"Name":"Tooltip"},
       {"Name":"TooltipField","Value":{"@xsi:type":"xsd:string","#text":"name"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"WindowMargins"},
+      {"Name":"WindowMargins","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"WindowTitle"},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
@@ -265,6 +266,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"26"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"100"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"EmptyText"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -326,6 +328,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"24"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"24"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -353,6 +356,7 @@ end</LUACode>
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
+      {"Name":"Source"},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -368,7 +372,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>advantagedisadvantage</WindowName>
     <ControlName>description</ControlName>
-    <ZIndex>9</ZIndex>
+    <ZIndex>11</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -384,6 +388,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"242"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"339"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"EmptyText"},
@@ -442,6 +447,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"321"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"370"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"groupbox"}},
@@ -494,6 +500,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"100"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"sheetlabel"}},
@@ -533,7 +540,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>advantagedisadvantage</WindowName>
     <ControlName>lblDescription</ControlName>
-    <ZIndex>8</ZIndex>
+    <ZIndex>10</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -547,6 +554,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"100"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"sheetlabel"}},
@@ -585,6 +593,60 @@ end</LUACode>
   </WindowControls>
   <WindowControls>
     <WindowName>advantagedisadvantage</WindowName>
+    <ControlName>lblRollable</ControlName>
+    <ZIndex>9</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"lblRollable"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"59"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Rollable"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"268"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"82"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>advantagedisadvantage</WindowName>
     <ControlName>link_header</ControlName>
     <ZIndex>2</ZIndex>
     <ControlClass>FGLinkField</ControlClass>
@@ -598,6 +660,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
@@ -658,6 +721,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -685,6 +749,7 @@ end</LUACode>
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
+      {"Name":"Source"},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -716,6 +781,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"38"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"308"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"EmptyText","Value":{"@xsi:type":"xsd:string","#text":"New Advantage"}},
@@ -762,7 +828,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>advantagedisadvantage</WindowName>
     <ControlName>resize</ControlName>
-    <ZIndex>10</ZIndex>
+    <ZIndex>12</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -774,6 +840,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"18"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"18"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"FrameName"},
@@ -804,6 +871,59 @@ end</LUACode>
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"373"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"371"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>advantagedisadvantage</WindowName>
+    <ControlName>rollable</ControlName>
+    <ZIndex>8</ZIndex>
+    <ControlClass>FGCheckbox</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"rollable"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultChecked"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"OffStateIcon"},
+      {"Name":"OnStateIcon"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"247"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"82"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -1215,6 +1335,82 @@ end</LUACode>
   </WindowControls>
   <WindowControls>
     <WindowName>char_advdis</WindowName>
+    <ControlName>btnRoll</ControlName>
+    <ZIndex>3</ZIndex>
+    <ControlClass>FGButton</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"left","Parent":"link"}}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"AllowDoubleClick"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ButtonCaption","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"ButtonField"},
+      {"Name":"ButtonStateList","Value":{"@xsi:type":"ArrayOfButtonStateDefinition"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"btnRoll"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultValue"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"26"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"35"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {@getAttributeValue()}","DiceRollDescription":" {name} ({attribute})","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"Targeting":"none","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"{attribute}"}}}},
+      {"Name":"Disabled"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"button-white"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"buttonup"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
+      {"Name":"HoverCursor"},
+      {"Name":"HoverIconName"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"dKult"}},
+      {"Name":"PressedIconName"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Roll"}},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"135"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
+]}}</Definition>
+    <LUACode>
+function getAttributeValue()
+	local nodeWin = window.windowlist.window.getDatabaseNode();
+	local nodeAdvDis = window.getDatabaseNode();
+	local attr = nodeAdvDis.getChild("attributevalue");
+	if attr then 
+		local nodeAttr = nodeWin.getChild(attr.getValue());
+		if nodeAttr then
+			local attrValue = nodeAttr.getValue();
+			if attrValue then
+				return attrValue;
+			end
+		end
+	end;
+	return 0;
+end</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>char_advdis</WindowName>
     <ControlName>char_advdis</ControlName>
     <ZIndex>0</ZIndex>
     <ControlClass>FGWindow</ControlClass>
@@ -1228,6 +1424,7 @@ end</LUACode>
       {"Name":"DataSource"},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"24"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"217"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"Dynamic"},
       {"Name":"FrameName"},
@@ -1260,12 +1457,27 @@ end</LUACode>
       {"Name":"Tooltip"},
       {"Name":"TooltipField"},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"WindowMargins"},
+      {"Name":"WindowMargins","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"WindowTitle"},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onFirstLayout()
+	setRollVisible();
+	DB.addHandler(DB.getPath(getDatabaseNode(),  "rollable"), "onUpdate", setRollVisible);
+end
+
+function setRollVisible()
+	local nodeWin = getDatabaseNode();
+	local rollable = nodeWin.getChild("rollable");
+	if rollable and rollable.getValue() == 1 then
+		btnRoll.setVisible(true);
+	else
+		btnRoll.setVisible(false);
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1289,6 +1501,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -1316,6 +1529,7 @@ end</LUACode>
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
+      {"Name":"Source"},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -1343,6 +1557,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
@@ -1386,10 +1601,10 @@ end</LUACode>
   <WindowControls>
     <WindowName>char_advdis</WindowName>
     <ControlName>name</ControlName>
-    <ZIndex>3</ZIndex>
+    <ZIndex>4</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"left","Parent":"link"}}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"left","Parent":"btnRoll"}}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
@@ -1401,7 +1616,8 @@ end</LUACode>
       {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"165"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"126"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"EmptyText"},
@@ -1460,6 +1676,7 @@ end</LUACode>
       {"Name":"DataSource"},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"24"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"217"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"Dynamic"},
       {"Name":"FrameName"},
@@ -1492,6 +1709,7 @@ end</LUACode>
       {"Name":"Tooltip"},
       {"Name":"TooltipField"},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"WindowMargins"},
       {"Name":"WindowTitle"},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
@@ -1508,6 +1726,7 @@ end</LUACode>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"right"}}},
       {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"button_idelete"}},
+      {"Name":"AllowDoubleClick"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonCaption","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"ButtonField"},
@@ -1519,6 +1738,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -1546,7 +1766,9 @@ end</LUACode>
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
+      {"Name":"Source"},
       {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
@@ -1572,6 +1794,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
@@ -1601,6 +1824,7 @@ end</LUACode>
       {"Name":"ScriptFile"},
       {"Name":"Source"},
       {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
@@ -1630,6 +1854,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"165"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"EmptyText"},
@@ -1662,6 +1887,7 @@ end</LUACode>
       {"Name":"ScriptFile"},
       {"Name":"Source"},
       {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
@@ -1689,6 +1915,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"26"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"100"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"EmptyText"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -1750,6 +1977,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"26"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"35"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {@getAttributeValue()}","DiceRollDescription":"MOVE {name}","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"Targeting":"none","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"{attribute}"}}}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -1777,6 +2005,7 @@ end</LUACode>
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
+      {"Name":"Source"},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Roll"}},
@@ -1815,6 +2044,7 @@ end</LUACode>
       {"Name":"DataSource"},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"28"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"405"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"Dynamic"},
       {"Name":"FrameName"},
@@ -1876,6 +2106,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -1903,6 +2134,7 @@ end</LUACode>
       {"Name":"RelativeMargin","Value":{"@xsi:type":"xsd:int","#text":"6"}},
       {"Name":"RelativeStacking","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"ScriptFile"},
+      {"Name":"Source"},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -1934,6 +2166,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"213"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"EmptyText"},
@@ -1992,6 +2225,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
@@ -16622,6 +16856,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"26"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"100"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"EmptyText"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -16683,6 +16918,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"24"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"24"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -16710,6 +16946,7 @@ end</LUACode>
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
+      {"Name":"Source"},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -16741,6 +16978,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"242"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"339"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"EmptyText"},
@@ -16799,6 +17037,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"321"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"370"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"groupbox"}},
@@ -16851,6 +17090,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"100"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"sheetlabel"}},
@@ -16904,6 +17144,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"100"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"sheetlabel"}},
@@ -16955,6 +17196,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
@@ -17015,6 +17257,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -17042,6 +17285,7 @@ end</LUACode>
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
+      {"Name":"Source"},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -17069,6 +17313,7 @@ end</LUACode>
       {"Name":"DataSource"},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"400"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"400"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"Dynamic"},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"referencepage"}},
@@ -17144,6 +17389,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"38"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"308"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"EmptyText","Value":{"@xsi:type":"xsd:string","#text":"New Advantage"}},
@@ -17202,6 +17448,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"18"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"18"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"FrameName"},
