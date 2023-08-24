@@ -975,7 +975,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"TooltipField"},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"WindowMargins"},
+      {"Name":"WindowMargins","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"WindowTitle","Value":{"@xsi:type":"xsd:string","#text":"Combat Tracker"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
@@ -1552,7 +1552,6 @@ function onDrop(x, y, draginfo)
 	if win then
 		local nodeWin = win.getDatabaseNode();
 		if nodeWin then
-			--return CombatManager.onDrop("ct", nodeWin.getPath(), draginfo);
 			return CombatDropManager.handleAnyDrop(draginfo, nodeWin.getPath());
 		end
 	end

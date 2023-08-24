@@ -169,7 +169,7 @@
       {"Name":"Tooltip"},
       {"Name":"TooltipField"},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"WindowMargins"},
+      {"Name":"WindowMargins","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"WindowTitle","Value":{"@xsi:type":"xsd:string","#text":"Combat Tracker"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
@@ -468,17 +468,6 @@ function onFilter(w)
 	return false;
 end
 
-function onDrop(x, y, draginfo)
-	local w = getWindowAt(x,y);
-	if w then
-		local nodeWin = w.getDatabaseNode();
-		if nodeWin then
-			--return CombatManager.onDrop("ct", nodeWin.getPath(), draginfo);
-			return CombatDropManager.handleAnyDrop(draginfo, nodeWin.getPath());
-		end
-	end
-end
-
 function onClickDown(button, x, y)
 	if Input.isControlPressed() then
 		return true;
@@ -494,6 +483,11 @@ function onClickRelease(button, x, y)
 
 		return true;
 	end
+end
+
+function onDrop(x, y, draginfo)
+	local sCTNode = UtilityManager.getWindowDatabasePath(getWindowAt(x,y));
+	return CombatDropManager.handleAnyDrop(draginfo, sCTNode);
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
