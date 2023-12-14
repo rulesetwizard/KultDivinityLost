@@ -70,13 +70,14 @@
 	&lt;string name="charsheet_notes_lblBackground_LabelCaption"&gt;Trasfondo&lt;/string&gt;
 	&lt;string name="charsheet_notes_lblRelations_LabelCaption"&gt;Relaciones&lt;/string&gt;
 	&lt;string name="charsheet_notes_lblDarkSecrets_LabelCaption"&gt;Secretos inconfesables&lt;/string&gt;
+	&lt;string name="charsheet_notes_darksecrets_EmptyListText"&gt;- Añade algún secreto inconfesable -&lt;/string&gt;
 	&lt;string name="charsheet_notes_lblDramaticHooks_LabelCaption"&gt;Ganchos dramáticos&lt;/string&gt;
 	&lt;string name="charsheet_xp_lblExperiencePoints_LabelCaption"&gt;Puntos de Experiencia&lt;/string&gt;
 	&lt;string name="charsheet_xp_lblAdvancement_LabelCaption"&gt;Avances&lt;/string&gt;
 	&lt;string name="charsheet_xp_lblAdv1_LabelCaption"&gt;Súmale +1 a un atributo cualquiera (máximo +5)&lt;/string&gt;
 	&lt;string name="charsheet_xp_lblAdv2_LabelCaption"&gt;Súmale +1 a un atributo activo (máximo +4)&lt;/string&gt;
 	&lt;string name="charsheet_xp_lblAdv3_LabelCaption"&gt;Súmale +1 a un atributo pasivo (máximo +4)&lt;/string&gt;
-	&lt;string name="charsheet_xp_lblAdv4_LabelCaption"&gt;Elige una nueva habilidad de tu arquetipo&lt;/string&gt;
+	&lt;string name="charsheet_xp_lblAdv4_LabelCaption"&gt;Elige una nueva ventaja de tu arquetipo&lt;/string&gt;
 	&lt;string name="charsheet_xp_lblAdvancement2_LabelCaption"&gt;Tras 5 Avances&lt;/string&gt;
 	&lt;string name="charsheet_xp_lblAdv5_LabelCaption"&gt;Súmale +1 a un atributo cualquiera (máximo +5)&lt;/string&gt;
 	&lt;string name="charsheet_xp_lblAdv6_LabelCaption"&gt;Obtén una habilidad o ventaja de tu elección&lt;/string&gt;
