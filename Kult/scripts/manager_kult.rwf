@@ -3,6 +3,18 @@
     <ScriptName>manager_kult</ScriptName>
     <FolderID>0</FolderID>
     <Script>
+function onInit()
+	CombatRecordManager.setRecordTypePostAddCallback("npc", onNPCPostAdd);
+end
+
+function onNPCPostAdd(tCustom)
+	if not tCustom.nodeRecord or not tCustom.nodeCT then
+		return;
+	end
+	DB.setValue(tCustom.nodeCT, 'maxWounds', 'number', DB.getValue(tCustom.nodeCT, 'wounds'));
+	DB.setValue(tCustom.nodeCT, 'wounds', 'number', 0);
+end
+
 function resolveRoll(rSource, rTarget, rRoll)
 
 	local charNode = ActorManager.getCreatureNode(rSource);
@@ -63,7 +75,8 @@ end
 
 function trim(s)
    return s:match "^%s*(.-)%s*$"
-end</Script>
+end
+</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
   </Scripts>

@@ -103,7 +103,8 @@
 	&lt;string name="combattracker_host_button_ct_menu_Tooltip"&gt;Menú Asistente&lt;/string&gt;
 	&lt;string name="combattracker_host_label_ct_host_rounds_LabelCaption"&gt;Ronda&lt;/string&gt;
 	&lt;string name="combattracker_host_clientview_ButtonCaption"&gt;Cliente&lt;/string&gt;
-	&lt;string name="combattracker_host_Label1_LabelCaption"&gt;Heridas&lt;/string&gt;
+	&lt;string name="combattracker_host_label_wounds_LabelCaption"&gt;Hrds.&lt;/string&gt;
+	&lt;string name="combattracker_host_label_maxWounds_LabelCaption"&gt;H. Max.&lt;/string&gt;
 	&lt;string name="ct_effects_effects_iadd_Tooltip"&gt;Añadir efecto&lt;/string&gt;
 	&lt;string name="ct_entry_tokenvis_statetooltip_Show NPC"&gt;Mostrar PNJ&lt;/string&gt;
 	&lt;string name="ct_entry_tokenvis_statetooltip_Hide NPC"&gt;Ocultar PNJ&lt;/string&gt;
