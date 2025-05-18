@@ -139,7 +139,7 @@
       {"Name":"GMVisibleOnly"},
       {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"HoverCursor"},
-      {"Name":"InheritSizePosition","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"InheritSizePosition","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"MaximumHeight"},
@@ -164,7 +164,7 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"VerticalTabItems","Value":{"@xsi:type":"ArrayOfVerticalTabDefinition","VerticalTabDefinition":[{"Icon":"tab_main","SubWindowName":"main"},{"Icon":"tab_abilities","SubWindowName":"abilities"},{"Icon":"tab_notes","SubWindowName":"notes"},{"Icon":"tab_inventory","SubWindowName":"inventory"},{"Icon":"tab_log","SubWindowName":"log"},{"Icon":"tab_xp","SubWindowName":"xp"}]}},
+      {"Name":"VerticalTabItems","Value":{"@xsi:type":"ArrayOfVerticalTabDefinition","VerticalTabDefinition":[{"Label":null,"Icon":"tab_main","SubWindowName":"main"},{"Label":null,"Icon":"tab_abilities","SubWindowName":"abilities"},{"Label":null,"Icon":"tab_notes","SubWindowName":"notes"},{"Label":null,"Icon":"tab_inventory","SubWindowName":"inventory"},{"Label":null,"Icon":"tab_log","SubWindowName":"log"},{"Label":null,"Icon":"tab_xp","SubWindowName":"xp"}]}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"494"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"87"}}
 ]}}</Definition>
