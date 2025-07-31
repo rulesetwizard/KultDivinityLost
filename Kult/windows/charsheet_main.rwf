@@ -112,6 +112,7 @@ end
       {"Name":"NextTabTarget"},
       {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"button_action_damage"}},
       {"Name":"PressedIconName"},
+      {"Name":"PressedOffset"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -186,6 +187,7 @@ end
       {"Name":"NextTabTarget"},
       {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"button_action_heal"}},
       {"Name":"PressedIconName"},
+      {"Name":"PressedOffset"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -2947,7 +2949,7 @@ end</LUACode>
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source"},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"Sourceless"},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
@@ -2972,25 +2974,28 @@ end
 function setStability()
 	local stabilityDesc = "";
 	local stabilityHelp = "";
-	local stability = tonumber(getDatabaseNode().getValue());
+	local node = getDatabaseNode();
+	if node then
+		local stability = tonumber(node.getValue());
 
-	if stability and stability &gt;= 7 then 
-		stabilityDesc = Interface.getString("CRITICAL_STRESS");
-		stabilityHelp = Interface.getString("CRITICAL_STRESS_HELP");
-	else
-		if stability and stability &gt;= 4 then 
-			stabilityDesc = Interface.getString("SERIOUS_STRESS");
-			stabilityHelp = Interface.getString("SERIOUS_STRESS_HELP");
+		if stability and stability &gt;= 7 then 
+			stabilityDesc = Interface.getString("CRITICAL_STRESS");
+			stabilityHelp = Interface.getString("CRITICAL_STRESS_HELP");
 		else
-			if stability and stability &gt;= 2 then 
-				stabilityDesc = Interface.getString("MODERATE_STRESS");
-				stabilityHelp = Interface.getString("MODERATE_STRESS_HELP");
+			if stability and stability &gt;= 4 then 
+				stabilityDesc = Interface.getString("SERIOUS_STRESS");
+				stabilityHelp = Interface.getString("SERIOUS_STRESS_HELP");
+			else
+				if stability and stability &gt;= 2 then 
+					stabilityDesc = Interface.getString("MODERATE_STRESS");
+					stabilityHelp = Interface.getString("MODERATE_STRESS_HELP");
+				end
 			end
-		end
-	end;
+		end;
 
-	window.lblStabilityDesc.setValue(stabilityDesc);
-	window.lblStabilityHelp.setTooltipText(stabilityHelp);
+		window.lblStabilityDesc.setValue(stabilityDesc);
+		window.lblStabilityHelp.setTooltipText(stabilityHelp);
+	end
 end
 
 </LUACode>

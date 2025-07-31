@@ -30,7 +30,7 @@ Source code available at https://github.com/rulesetwizard/KultDivinityLost</Anno
     <Announcement3Font />
     <Announcement3Icon />
     <ExcludeRSWScripts>false</ExcludeRSWScripts>
-    <CompileToFolder>false</CompileToFolder>
+    <CompileToFolder>true</CompileToFolder>
     <DefaultEncoding>iso-8859-1</DefaultEncoding>
   </RulesetProperties>
 </Ruleset>
@@ -1945,6 +1945,7 @@ end
       {"Name":"EmptyText"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameHideReadonly"},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string","#text":"8,0,8,0"}},
       {"Name":"GMEditOnly"},
@@ -2007,6 +2008,7 @@ end
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"button-white"}},
+      {"Name":"FrameHideReadonly"},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"buttonup"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -2025,6 +2027,7 @@ end
       {"Name":"NextTabTarget"},
       {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"dKult"}},
       {"Name":"PressedIconName"},
+      {"Name":"PressedOffset"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -2072,7 +2075,6 @@ end</LUACode>
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"Dynamic"},
-      {"Name":"DynamicSize"},
       {"Name":"FrameName"},
       {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"HostControl"},
@@ -2103,6 +2105,7 @@ end</LUACode>
       {"Name":"Tooltip"},
       {"Name":"TooltipField"},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"WindowClassCopy"},
       {"Name":"WindowMargins","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"WindowTitle"},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
@@ -2137,6 +2140,7 @@ end</LUACode>
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"button-white"}},
+      {"Name":"FrameHideReadonly"},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -2155,6 +2159,7 @@ end</LUACode>
       {"Name":"NextTabTarget"},
       {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"button_delete"}},
       {"Name":"PressedIconName"},
+      {"Name":"PressedOffset"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin","Value":{"@xsi:type":"xsd:int","#text":"6"}},
@@ -2198,6 +2203,7 @@ end</LUACode>
       {"Name":"EmptyText"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameHideReadonly"},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -2253,6 +2259,7 @@ end</LUACode>
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
+      {"Name":"FrameHideReadonly"},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -4373,6 +4380,7 @@ end
       {"Name":"NextTabTarget"},
       {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"button_action_damage"}},
       {"Name":"PressedIconName"},
+      {"Name":"PressedOffset"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -4447,6 +4455,7 @@ end
       {"Name":"NextTabTarget"},
       {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"button_action_heal"}},
       {"Name":"PressedIconName"},
+      {"Name":"PressedOffset"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -7208,7 +7217,7 @@ end</LUACode>
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source"},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"Sourceless"},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
@@ -7233,25 +7242,28 @@ end
 function setStability()
 	local stabilityDesc = "";
 	local stabilityHelp = "";
-	local stability = tonumber(getDatabaseNode().getValue());
+	local node = getDatabaseNode();
+	if node then
+		local stability = tonumber(node.getValue());
 
-	if stability and stability &gt;= 7 then 
-		stabilityDesc = Interface.getString("CRITICAL_STRESS");
-		stabilityHelp = Interface.getString("CRITICAL_STRESS_HELP");
-	else
-		if stability and stability &gt;= 4 then 
-			stabilityDesc = Interface.getString("SERIOUS_STRESS");
-			stabilityHelp = Interface.getString("SERIOUS_STRESS_HELP");
+		if stability and stability &gt;= 7 then 
+			stabilityDesc = Interface.getString("CRITICAL_STRESS");
+			stabilityHelp = Interface.getString("CRITICAL_STRESS_HELP");
 		else
-			if stability and stability &gt;= 2 then 
-				stabilityDesc = Interface.getString("MODERATE_STRESS");
-				stabilityHelp = Interface.getString("MODERATE_STRESS_HELP");
+			if stability and stability &gt;= 4 then 
+				stabilityDesc = Interface.getString("SERIOUS_STRESS");
+				stabilityHelp = Interface.getString("SERIOUS_STRESS_HELP");
+			else
+				if stability and stability &gt;= 2 then 
+					stabilityDesc = Interface.getString("MODERATE_STRESS");
+					stabilityHelp = Interface.getString("MODERATE_STRESS_HELP");
+				end
 			end
-		end
-	end;
+		end;
 
-	window.lblStabilityDesc.setValue(stabilityDesc);
-	window.lblStabilityHelp.setTooltipText(stabilityHelp);
+		window.lblStabilityDesc.setValue(stabilityDesc);
+		window.lblStabilityHelp.setTooltipText(stabilityHelp);
+	end
 end
 
 </LUACode>
@@ -20192,16 +20204,16 @@ end</LUACode>
     <ScriptName>data_kult</ScriptName>
     <FolderID>4</FolderID>
     <Script>local moves = {
-  ["Keep it Together"] = {attribute="Willpower"},
-  ["Endure Injury"] = {attribute="Fortitude"},
-  ["Avoid Harm"] = {attribute="Reflexes"},
-  ["Investigate"] = {attribute="Reason"},
-  ["Read a Person"] = {attribute="Intuition"},
-  ["Observe a situation"] = {attribute="Perception"},
-  ["Act Under Pressure"] = {attribute="Coolness"},
-  ["Engage in Combat"] = {attribute="Violence"},
-  ["Influence Other"] = {attribute="Charisma"},
-  ["See Through the Illusion"] = {attribute="Soul"},
+  ["Keep it Together"] = {attribute="willpower"},
+  ["Endure Injury"] = {attribute="fortitude"},
+  ["Avoid Harm"] = {attribute="reflexes"},
+  ["Investigate"] = {attribute="reason"},
+  ["Read a Person"] = {attribute="intuition"},
+  ["Observe a situation"] = {attribute="perception"},
+  ["Act Under Pressure"] = {attribute="coolness"},
+  ["Engage in Combat"] = {attribute="violence"},
+  ["Influence Other"] = {attribute="charisma"},
+  ["See Through the Illusion"] = {attribute="soul"},
   ["Helping or Hindering"] = {attribute=""},
 }
 
