@@ -30,7 +30,7 @@ Source code available at https://github.com/rulesetwizard/KultDivinityLost</Anno
     <Announcement3Font />
     <Announcement3Icon />
     <ExcludeRSWScripts>false</ExcludeRSWScripts>
-    <CompileToFolder>true</CompileToFolder>
+    <CompileToFolder>false</CompileToFolder>
     <DefaultEncoding>iso-8859-1</DefaultEncoding>
   </RulesetProperties>
 </Ruleset>
