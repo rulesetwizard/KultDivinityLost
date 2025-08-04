@@ -6,7 +6,7 @@
     <ControlClass>FGComboBox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
-      {"Name":"AdvancedTemplate"},
+      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"rsw_combobox_legacy"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonOffset"},
       {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":null,"Value":null},{"Label":"Willpower","Value":"willpower"},{"Label":"Fortitude","Value":"fortitude"},{"Label":"Reflexes","Value":"reflexes"},{"Label":"Reason","Value":"reason"},{"Label":"Intuition","Value":"intuition"},{"Label":"Perception","Value":"perception"},{"Label":"Coolness","Value":"coolness"},{"Label":"Violence","Value":"violence"},{"Label":"Charisma","Value":"charisma"},{"Label":"Soul","Value":"soul"}]}},

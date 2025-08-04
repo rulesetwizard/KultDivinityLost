@@ -3,16 +3,16 @@
     <ScriptName>data_kult</ScriptName>
     <FolderID>4</FolderID>
     <Script>local moves = {
-  ["Keep it Together"] = {attribute="willpower"},
-  ["Endure Injury"] = {attribute="fortitude"},
-  ["Avoid Harm"] = {attribute="reflexes"},
-  ["Investigate"] = {attribute="reason"},
-  ["Read a Person"] = {attribute="intuition"},
-  ["Observe a situation"] = {attribute="perception"},
-  ["Act Under Pressure"] = {attribute="coolness"},
-  ["Engage in Combat"] = {attribute="violence"},
-  ["Influence Other"] = {attribute="charisma"},
-  ["See Through the Illusion"] = {attribute="soul"},
+  ["Keep it Together"] = {attribute="Willpower"},
+  ["Endure Injury"] = {attribute="Fortitude"},
+  ["Avoid Harm"] = {attribute="Reflexes"},
+  ["Investigate"] = {attribute="Reason"},
+  ["Read a Person"] = {attribute="Intuition"},
+  ["Observe a situation"] = {attribute="Perception"},
+  ["Act Under Pressure"] = {attribute="Coolness"},
+  ["Engage in Combat"] = {attribute="Violence"},
+  ["Influence Other"] = {attribute="Charisma"},
+  ["See Through the Illusion"] = {attribute="Soul"},
   ["Helping or Hindering"] = {attribute=""},
 }
 
