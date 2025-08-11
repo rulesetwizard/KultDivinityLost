@@ -12876,11 +12876,11 @@ end</LUACode>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
     <ControlName>button_ct_faction_foe</ControlName>
-    <ZIndex>19</ZIndex>
+    <ZIndex>17</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
-      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"button_ct_friendfoe"}},
+      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"button_ct_controls_faction"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"button_ct_faction_foe"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
@@ -12929,11 +12929,11 @@ end</LUACode>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
     <ControlName>button_ct_faction_friend</ControlName>
-    <ZIndex>17</ZIndex>
+    <ZIndex>15</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
-      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"button_ct_friendfoe"}},
+      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"button_ct_controls_faction"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"button_ct_faction_friend"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
@@ -12982,11 +12982,11 @@ end</LUACode>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
     <ControlName>button_ct_faction_neutral</ControlName>
-    <ZIndex>18</ZIndex>
+    <ZIndex>16</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
-      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"button_ct_friendfoe"}},
+      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"button_ct_controls_faction"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"button_ct_faction_neutral"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
@@ -13035,7 +13035,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
     <ControlName>button_ct_menu</ControlName>
-    <ZIndex>20</ZIndex>
+    <ZIndex>18</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -13098,7 +13098,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
     <ControlName>button_ct_nextactor</ControlName>
-    <ZIndex>16</ZIndex>
+    <ZIndex>14</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -13171,11 +13171,11 @@ end
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
     <ControlName>button_ct_nextround</ControlName>
-    <ZIndex>23</ZIndex>
+    <ZIndex>21</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
-      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"button_ct_nextround"}},
+      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"button_ct_controls_nextround"}},
       {"Name":"AllowDoubleClick"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonCaption","Value":{"@xsi:type":"xsd:string"}},
@@ -13234,7 +13234,7 @@ end
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
     <ControlName>button_ct_setactive</ControlName>
-    <ZIndex>15</ZIndex>
+    <ZIndex>13</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -13311,7 +13311,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
     <ControlName>button_global_attacks</ControlName>
-    <ZIndex>13</ZIndex>
+    <ZIndex>11</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -13377,7 +13377,7 @@ end
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
     <ControlName>button_global_effects</ControlName>
-    <ZIndex>12</ZIndex>
+    <ZIndex>10</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -13443,7 +13443,7 @@ end
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
     <ControlName>button_global_spacing</ControlName>
-    <ZIndex>11</ZIndex>
+    <ZIndex>9</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -13509,7 +13509,7 @@ end
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
     <ControlName>button_global_targeting</ControlName>
-    <ZIndex>10</ZIndex>
+    <ZIndex>8</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -13641,7 +13641,7 @@ end
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
     <ControlName>clientview</ControlName>
-    <ZIndex>24</ZIndex>
+    <ZIndex>22</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -13766,7 +13766,7 @@ end
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
     <ControlName>CustomControl1</ControlName>
-    <ZIndex>26</ZIndex>
+    <ZIndex>24</ZIndex>
     <ControlClass>FGCustomControl</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -13821,7 +13821,7 @@ end
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
     <ControlName>frame_ctbox_host_header_toggles</ControlName>
-    <ZIndex>9</ZIndex>
+    <ZIndex>7</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -13927,7 +13927,7 @@ end
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
     <ControlName>label_ct_host_rounds</ControlName>
-    <ZIndex>21</ZIndex>
+    <ZIndex>19</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -13982,7 +13982,7 @@ end
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
     <ControlName>label_maxWounds</ControlName>
-    <ZIndex>25</ZIndex>
+    <ZIndex>23</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -14037,7 +14037,7 @@ end
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
     <ControlName>label_name</ControlName>
-    <ZIndex>7</ZIndex>
+    <ZIndex>5</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -14092,7 +14092,7 @@ end
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
     <ControlName>label_wounds</ControlName>
-    <ZIndex>8</ZIndex>
+    <ZIndex>6</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -14147,7 +14147,7 @@ end
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
     <ControlName>list</ControlName>
-    <ZIndex>6</ZIndex>
+    <ZIndex>4</ZIndex>
     <ControlClass>FGWindowList</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop"}},
@@ -14459,7 +14459,7 @@ end
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
     <ControlName>round</ControlName>
-    <ZIndex>22</ZIndex>
+    <ZIndex>20</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -14524,7 +14524,7 @@ end
   <WindowControls>
     <WindowName>combattracker_host</WindowName>
     <ControlName>scrollbar_list</ControlName>
-    <ZIndex>14</ZIndex>
+    <ZIndex>12</ZIndex>
     <ControlClass>FGScrollBar</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -14894,6 +14894,7 @@ end</LUACode>
       {"Name":"NextTabTarget"},
       {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"button_sword_down"}},
       {"Name":"PressedIconName"},
+      {"Name":"PressedOffset"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -14960,6 +14961,7 @@ end
       {"Name":"NextTabTarget"},
       {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"button_effect_down"}},
       {"Name":"PressedIconName"},
+      {"Name":"PressedOffset"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -15026,6 +15028,7 @@ end
       {"Name":"NextTabTarget"},
       {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"button_space_down"}},
       {"Name":"PressedIconName"},
+      {"Name":"PressedOffset"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -15092,6 +15095,7 @@ end
       {"Name":"NextTabTarget"},
       {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"button_section_targeting_down"}},
       {"Name":"PressedIconName"},
+      {"Name":"PressedOffset"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -15158,6 +15162,7 @@ end
       {"Name":"NextTabTarget"},
       {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"ct_passive"}},
       {"Name":"PressedIconName"},
+      {"Name":"PressedOffset"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -15276,6 +15281,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XMLCode"},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"34"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"233"}}
 ]}}</Definition>
@@ -15332,7 +15338,7 @@ end
       {"Name":"TooltipField"},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"WindowClassCopy"},
-      {"Name":"WindowMargins"},
+      {"Name":"WindowMargins","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"WindowTitle"},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
@@ -15689,6 +15695,7 @@ end
       {"Name":"NextTabTarget"},
       {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"ct_faction_neutral"}},
       {"Name":"PressedIconName"},
+      {"Name":"PressedOffset"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -15822,6 +15829,7 @@ end
       {"Name":"NextTabTarget"},
       {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"record_identified"}},
       {"Name":"PressedIconName"},
+      {"Name":"PressedOffset"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -16045,7 +16053,7 @@ end
       {"Name":"Center"},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"nonid_name"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty","CustomProperty":{"PropertyName":"empty","PropertyValue":null,"PropertyAttributes":"textres=\"library_recordtype_empty_nonid_npc\"","ParentElement":null}}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty","CustomProperty":{"PropertyName":"empty","PropertyValue":null,"PropertyAttributes":"textres=\"library_recordtype_empty_nonid_npc\"","ParentElement":null,"XMLCode":null}}},
       {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
@@ -16772,6 +16780,7 @@ end
       {"Name":"NextTabTarget"},
       {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"visibilityon"}},
       {"Name":"PressedIconName"},
+      {"Name":"PressedOffset"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
