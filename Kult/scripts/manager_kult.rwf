@@ -58,7 +58,7 @@ function resolveRoll(rSource, rTarget, rRoll)
     local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
     rMessage.text = rMessage.text .. msgstring;
     
-	local total = rRoll.aDice[1].result + rRoll.aDice[2].result + rRoll.nMod + rRoll.nBonuses;
+	local total = ActionsManager.total(rRoll); -- the total FG shows in chat (dice, fixed bonus and modifiers)
     if total &gt;= 15 then
 		rMessage.text = rMessage.text .. ' [' .. Interface.getString("COMPLETE SUCCESS") .. ']';
     else
