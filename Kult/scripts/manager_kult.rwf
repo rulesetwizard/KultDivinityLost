@@ -11,8 +11,38 @@ function onNPCPostAdd(tCustom)
 	if not tCustom.nodeRecord or not tCustom.nodeCT then
 		return;
 	end
-	DB.setValue(tCustom.nodeCT, 'maxWounds', 'number', DB.getValue(tCustom.nodeCT, 'wounds'));
+	DB.setValue(tCustom.nodeCT, 'maxWounds', 'number', DB.getValue(tCustom.nodeCT, 'wounds', 0));
 	DB.setValue(tCustom.nodeCT, 'wounds', 'number', 0);
+end
+
+-- Stability: 1 Composed ... 10 Broken (empty also means Composed)
+function getStressLevel(nStability)
+	if not nStability then
+		return "";
+	end
+	if nStability &gt;= 10 then
+		return "BROKEN";
+	elseif nStability &gt;= 7 then
+		return "CRITICAL_STRESS";
+	elseif nStability &gt;= 4 then
+		return "SERIOUS_STRESS";
+	elseif nStability &gt;= 2 then
+		return "MODERATE_STRESS";
+	end
+	return "";
+end
+
+-- Returns the Keep it Together, Disadvantage roll and See Through the Illusion modifiers
+function getStressModifiers(nStability)
+	local sLevel = getStressLevel(nStability);
+	if sLevel == "CRITICAL_STRESS" then
+		return -2, -3, 1;
+	elseif sLevel == "SERIOUS_STRESS" then
+		return -1, -2, 0;
+	elseif sLevel == "MODERATE_STRESS" then
+		return 0, -1, 0;
+	end
+	return 0, 0, 0;
 end
 
 function resolveRoll(rSource, rTarget, rRoll)
@@ -20,40 +50,45 @@ function resolveRoll(rSource, rTarget, rRoll)
 	local charNode = ActorManager.getCreatureNode(rSource);
 
 	local msgstring = "";
-						
-	if ( (trim(DB.getValue(charNode, "wound1", '')) ~= "") and (DB.getValue(charNode, "wound1sta", 0) == 0) )
-	or ( (trim(DB.getValue(charNode, "wound2", '')) ~= "") and (DB.getValue(charNode, "wound2sta", 0) == 0) )
-	or ( (trim(DB.getValue(charNode, "wound3", '')) ~= "") and (DB.getValue(charNode, "wound3sta", 0) == 0) )
-	or ( (trim(DB.getValue(charNode, "wound4", '')) ~= "") and (DB.getValue(charNode, "wound4sta", 0) == 0) )
-	then
-		rRoll.nMod = rRoll.nMod - 1;
-		msgstring = msgstring .. ' [' .. Interface.getString("WOUNDED") .. ' -1]';
-	end;
 
-	if trim(DB.getValue(charNode, "criticalwound", '')) ~= "" then
-		rRoll.nMod = rRoll.nMod - 1;
-		msgstring = msgstring .. ' [' .. Interface.getString("CRITICAL") .. ' -1]';
-	end;
-
-	if rRoll["attribute"] == "Willpower" then
-		local stability = tonumber(DB.getValue(charNode, "stability", "0"));
-		if stability and stability &gt;= 4 then 
-			local stabilityPenalty = -1;
-			if stability &gt;= 7 then
-				stabilityPenalty = -2;
+	if charNode then
+		local bSeriousWound = false;
+		for i = 1, 4 do
+			if (trim(DB.getValue(charNode, "wound" .. i, '')) ~= "") and (DB.getValue(charNode, "wound" .. i .. "sta", 0) == 0) then
+				bSeriousWound = true;
 			end
-			rRoll.nMod = rRoll.nMod + stabilityPenalty;
-			msgstring = msgstring .. ' [' .. Interface.getString("STABILITY") .. ' ' .. stabilityPenalty .. ']';
+		end
+		if bSeriousWound then
+			rRoll.nMod = rRoll.nMod - 1;
+			msgstring = msgstring .. ' [' .. Interface.getString("WOUNDED") .. ' -1]';
 		end;
-	end;
 
-	if rRoll["attribute"] == "Soul" then
-		local stability = tonumber(DB.getValue(charNode, "stability", "0"));
-		if stability and stability &gt;= 7 then 
-			rRoll.nMod = rRoll.nMod + 1;
-			msgstring = msgstring .. ' [' .. Interface.getString("STABILITY") .. ' +1]';
+		-- A stabilized critical wound counts as a stabilized serious wound
+		if (trim(DB.getValue(charNode, "criticalwound", '')) ~= "") and (DB.getValue(charNode, "CriticalWoundStabilized", 0) == 0) then
+			rRoll.nMod = rRoll.nMod - 1;
+			msgstring = msgstring .. ' [' .. Interface.getString("CRITICAL") .. ' -1]';
 		end;
-	end;
+
+		local nKeepItTogether, nDisadvantage, nSeeThrough = getStressModifiers(tonumber(DB.getValue(charNode, "stability", "")));
+		local nStabilityMod = 0;
+		if rRoll["attribute"] == "Willpower" then
+			nStabilityMod = nStabilityMod + nKeepItTogether;
+		end
+		if rRoll["attribute"] == "Soul" then
+			nStabilityMod = nStabilityMod + nSeeThrough;
+		end
+		if rRoll["disadvantage"] == "1" then
+			nStabilityMod = nStabilityMod + nDisadvantage;
+		end
+		if nStabilityMod ~= 0 then
+			rRoll.nMod = rRoll.nMod + nStabilityMod;
+			local sSign = "";
+			if nStabilityMod &gt; 0 then
+				sSign = "+";
+			end
+			msgstring = msgstring .. ' [' .. Interface.getString("STABILITY") .. ' ' .. sSign .. nStabilityMod .. ']';
+		end;
+	end
 
     local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
     rMessage.text = rMessage.text .. msgstring;

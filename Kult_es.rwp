@@ -52,6 +52,7 @@ Kult</RulesetList>
 	&lt;string name="advantagedisadvantage_name_EmptyText"&gt;Nueva Ventaja&lt;/string&gt;
 	&lt;string name="advantagedisadvantage_lblAttribute_LabelCaption"&gt;Atributo&lt;/string&gt;
 	&lt;string name="advantagedisadvantage_lblRollable_LabelCaption"&gt;Lanzable&lt;/string&gt;
+	&lt;string name="advantagedisadvantage_lblIsDisadvantage_LabelCaption"&gt;Desventaja&lt;/string&gt;
 	&lt;string name="advantagedisadvantage_lblDescription_LabelCaption"&gt;Descripción&lt;/string&gt;
 	&lt;string name="archetype_name_EmptyText"&gt;Nuevo Arquetipo&lt;/string&gt;
 	&lt;string name="darksecret_name_EmptyText"&gt;Nuevo Secreto Inconfesable&lt;/string&gt;
@@ -119,17 +120,17 @@ Kult</RulesetList>
 	&lt;string name="charsheet_notes_lblDramaticHooks_LabelCaption"&gt;Ganchos dramáticos&lt;/string&gt;
 	&lt;string name="charsheet_xp_lblExperiencePoints_LabelCaption"&gt;Puntos de Experiencia&lt;/string&gt;
 	&lt;string name="charsheet_xp_lblAdvancement_LabelCaption"&gt;Avances&lt;/string&gt;
-	&lt;string name="charsheet_xp_lblAdv1_LabelCaption"&gt;Súmale +1 a un atributo cualquiera (máximo +5)&lt;/string&gt;
-	&lt;string name="charsheet_xp_lblAdv2_LabelCaption"&gt;Súmale +1 a un atributo activo (máximo +4)&lt;/string&gt;
-	&lt;string name="charsheet_xp_lblAdv3_LabelCaption"&gt;Súmale +1 a un atributo pasivo (máximo +4)&lt;/string&gt;
+	&lt;string name="charsheet_xp_lblAdv1_LabelCaption"&gt;Súmale +1 a un atributo cualquiera (máximo +4)&lt;/string&gt;
+	&lt;string name="charsheet_xp_lblAdv2_LabelCaption"&gt;Súmale +1 a un atributo activo (máximo +3)&lt;/string&gt;
+	&lt;string name="charsheet_xp_lblAdv3_LabelCaption"&gt;Súmale +1 a un atributo pasivo (máximo +3)&lt;/string&gt;
 	&lt;string name="charsheet_xp_lblAdv4_LabelCaption"&gt;Elige una nueva ventaja de tu arquetipo&lt;/string&gt;
 	&lt;string name="charsheet_xp_lblAdvancement2_LabelCaption"&gt;Tras 5 Avances&lt;/string&gt;
-	&lt;string name="charsheet_xp_lblAdv5_LabelCaption"&gt;Súmale +1 a un atributo cualquiera (máximo +5)&lt;/string&gt;
-	&lt;string name="charsheet_xp_lblAdv6_LabelCaption"&gt;Obtén una habilidad o ventaja de tu elección&lt;/string&gt;
-	&lt;string name="charsheet_xp_lblAdv7_LabelCaption"&gt;Acaba la historia de tu personaje y hazte uno nuevo&lt;/string&gt;
-	&lt;string name="charsheet_xp_lblAdv8_LabelCaption"&gt;Cambia el arquetipo de tu personaje por otro Iluminado&lt;/string&gt;
+	&lt;string name="charsheet_xp_lblAdv5_LabelCaption"&gt;Súmale +1 a un atributo cualquiera (máximo +4)&lt;/string&gt;
+	&lt;string name="charsheet_xp_lblAdv6_LabelCaption"&gt;Ventaja de cualquier arquetipo Consciente&lt;/string&gt;
+	&lt;string name="charsheet_xp_lblAdv7_LabelCaption"&gt;Retira al PJ; nuevo PJ Consciente con 2 avances&lt;/string&gt;
+	&lt;string name="charsheet_xp_lblAdv8_LabelCaption"&gt;Cambia a otro arquetipo Consciente (pierdes 1 ventaja)&lt;/string&gt;
 	&lt;string name="charsheet_xp_lblAdvancement3_LabelCaption"&gt;Tras 10 Avances&lt;/string&gt;
-	&lt;string name="charsheet_xp_lblAdv9_LabelCaption"&gt;Empieza tu viaje hacia el Despertar&lt;/string&gt;
+	&lt;string name="charsheet_xp_lblAdv9_LabelCaption"&gt;Convierte a tu personaje en un arquetipo Iluminado&lt;/string&gt;
 	&lt;string name="client_ct_entry_activateeffects_statetooltip_Effects"&gt;Efectos&lt;/string&gt;
 	&lt;string name="Window_combattracker_client_Title"&gt;Asistente de Combate&lt;/string&gt;
 	&lt;string name="combattracker_client_label_name_LabelCaption"&gt;Nombre&lt;/string&gt;
@@ -207,6 +208,8 @@ Kult</RulesetList>
 	&lt;string name="MODERATE_STRESS_HELP"&gt;−1 a las tiradas de Desventaja&lt;/string&gt;
 	&lt;string name="SERIOUS_STRESS_HELP"&gt;−1 a Mantener la calma / −2 a las tiradas de Desventaja&lt;/string&gt;
 	&lt;string name="CRITICAL_STRESS_HELP"&gt;−2 a Mantener la calma / −3 a las tiradas de Desventaja / +1 a Ver más allá de de la ilusión&lt;/string&gt;
+	&lt;string name="BROKEN"&gt;Roto&lt;/string&gt;
+	&lt;string name="BROKEN_HELP"&gt;El director hace un movimiento de la lista de Roto&lt;/string&gt;
 
 	&lt;string name="library_recordtype_label_move"&gt;Movimientos&lt;/string&gt;	
 	&lt;string name="library_recordtype_label_advantage"&gt;Ventajas&lt;/string&gt;	

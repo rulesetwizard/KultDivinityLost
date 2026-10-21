@@ -28,9 +28,11 @@
   &lt;string name="MODERATE_STRESS"&gt;Moderate stress&lt;/string&gt;
   &lt;string name="SERIOUS_STRESS"&gt;Serious stress&lt;/string&gt;
   &lt;string name="CRITICAL_STRESS"&gt;Critical stress&lt;/string&gt;
+  &lt;string name="BROKEN"&gt;Broken&lt;/string&gt;
   &lt;string name="MODERATE_STRESS_HELP"&gt;−1 to Disadvantage rolls&lt;/string&gt;
   &lt;string name="SERIOUS_STRESS_HELP"&gt;−1 Keep it Together / −2 to Disadvantage rolls&lt;/string&gt;
-  &lt;string name="CRITICAL_STRESS_HELP"&gt;−2 Keep it Together / −3 to Disadvantage rolls / +1 See Through the Illusion&lt;/string&gt;
+  &lt;string name="CRITICAL_STRESS_HELP"&gt;−2 Keep it Together / −3 to Disadvantage rolls / +1 See Through the Illusion&lt;/string&gt;
+  &lt;string name="BROKEN_HELP"&gt;The GM makes a move from the Broken list&lt;/string&gt;
   
  
 &lt;/root&gt;      
