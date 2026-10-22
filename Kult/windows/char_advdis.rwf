@@ -20,7 +20,7 @@
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"35"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {@getAttributeValue()}","DiceRollDescription":" {name} ({attribute})","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"Targeting":"none","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":[{"Label":"attribute","Value":"{attribute}"},{"Label":"disadvantage","Value":"{isdisadvantage}"}]}}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {@getAttributeValue()}","DiceRollDescription":"{name}{@getAttributeSuffix()}","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"Targeting":"none","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":[{"Label":"attribute","Value":"{attribute}"},{"Label":"disadvantage","Value":"{isdisadvantage}"}]}}},
       {"Name":"Disabled"},
       {"Name":"DropTypes"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -60,20 +60,25 @@
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
     <LUACode>
+function getAttributeKey()
+	return manager_kult.getAttributeKey(DB.getValue(window.getDatabaseNode(), "attribute", ""));
+end
+
 function getAttributeValue()
-	local nodeWin = window.windowlist.window.getDatabaseNode();
-	local nodeAdvDis = window.getDatabaseNode();
-	local attr = nodeAdvDis.getChild("attributevalue");
-	if attr then 
-		local nodeAttr = nodeWin.getChild(attr.getValue());
-		if nodeAttr then
-			local attrValue = nodeAttr.getValue();
-			if attrValue then
-				return attrValue;
-			end
-		end
-	end;
+	local sKey = getAttributeKey();
+	if sKey then
+		return DB.getValue(window.windowlist.window.getDatabaseNode(), sKey, 0);
+	end
 	return 0;
+end
+
+-- Attribute name in the active language, for the roll description
+function getAttributeSuffix()
+	local sKey = getAttributeKey();
+	if sKey then
+		return " (" .. manager_kult.getAttributeName(sKey) .. ")";
+	end
+	return "";
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />

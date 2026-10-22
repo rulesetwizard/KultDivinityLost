@@ -282,7 +282,7 @@ end</LUACode>
       {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"rsw_combobox_legacy"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonOffset"},
-      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":null,"Value":null},{"Label":"Willpower","Value":"willpower"},{"Label":"Fortitude","Value":"fortitude"},{"Label":"Reflexes","Value":"reflexes"},{"Label":"Reason","Value":"reason"},{"Label":"Intuition","Value":"intuition"},{"Label":"Perception","Value":"perception"},{"Label":"Coolness","Value":"coolness"},{"Label":"Violence","Value":"violence"},{"Label":"Charisma","Value":"charisma"},{"Label":"Soul","Value":"soul"}]}},
+      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"attribute"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
@@ -329,7 +329,23 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"142"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"79"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onInit()
+	super.onInit();
+	add("", "");
+	for _,sKey in ipairs(manager_kult.getAttributeKeys()) do
+		add(sKey, manager_kult.getAttributeName(sKey));
+	end
+	-- Records saved in another language show the name in the active one
+	local sValue = getValue();
+	local sKey = manager_kult.getAttributeKey(sValue);
+	if sKey and sValue ~= manager_kult.getAttributeName(sKey) then
+		local node = getDatabaseNode();
+		if node and DB.isOwner(node) and not DB.isReadOnly(node) then
+			setListValue(manager_kult.getAttributeName(sKey));
+		end
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1282,7 +1298,7 @@ end</LUACode>
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"35"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {@getAttributeValue()}","DiceRollDescription":" {name} ({attribute})","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"Targeting":"none","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":[{"Label":"attribute","Value":"{attribute}"},{"Label":"disadvantage","Value":"{isdisadvantage}"}]}}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {@getAttributeValue()}","DiceRollDescription":"{name}{@getAttributeSuffix()}","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"Targeting":"none","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":[{"Label":"attribute","Value":"{attribute}"},{"Label":"disadvantage","Value":"{isdisadvantage}"}]}}},
       {"Name":"Disabled"},
       {"Name":"DropTypes"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -1322,20 +1338,25 @@ end</LUACode>
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
     <LUACode>
+function getAttributeKey()
+	return manager_kult.getAttributeKey(DB.getValue(window.getDatabaseNode(), "attribute", ""));
+end
+
 function getAttributeValue()
-	local nodeWin = window.windowlist.window.getDatabaseNode();
-	local nodeAdvDis = window.getDatabaseNode();
-	local attr = nodeAdvDis.getChild("attributevalue");
-	if attr then 
-		local nodeAttr = nodeWin.getChild(attr.getValue());
-		if nodeAttr then
-			local attrValue = nodeAttr.getValue();
-			if attrValue then
-				return attrValue;
-			end
-		end
-	end;
+	local sKey = getAttributeKey();
+	if sKey then
+		return DB.getValue(window.windowlist.window.getDatabaseNode(), sKey, 0);
+	end
 	return 0;
+end
+
+-- Attribute name in the active language, for the roll description
+function getAttributeSuffix()
+	local sKey = getAttributeKey();
+	if sKey then
+		return " (" .. manager_kult.getAttributeName(sKey) .. ")";
+	end
+	return "";
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -1863,7 +1884,7 @@ end
       {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"rsw_combobox_legacy"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonOffset"},
-      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":null,"Value":null},{"Label":"Willpower","Value":"willpower"},{"Label":"Fortitude","Value":"fortitude"},{"Label":"Reflexes","Value":"reflexes"},{"Label":"Reason","Value":"reason"},{"Label":"Intuition","Value":"intuition"},{"Label":"Perception","Value":"perception"},{"Label":"Coolness","Value":"coolness"},{"Label":"Violence","Value":"violence"},{"Label":"Charisma","Value":"charisma"},{"Label":"Soul","Value":"soul"}]}},
+      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"attribute"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
@@ -1872,6 +1893,7 @@ end
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"100"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
+      {"Name":"DropTypes"},
       {"Name":"EmptyText"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
@@ -1909,7 +1931,23 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"265"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"1"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onInit()
+	super.onInit();
+	add("", "");
+	for _,sKey in ipairs(manager_kult.getAttributeKeys()) do
+		add(sKey, manager_kult.getAttributeName(sKey));
+	end
+	-- Entries saved in another language show the name in the active one
+	local sValue = getValue();
+	local sKey = manager_kult.getAttributeKey(sValue);
+	if sKey and sValue ~= manager_kult.getAttributeName(sKey) then
+		local node = getDatabaseNode();
+		if node and DB.isOwner(node) and not DB.isReadOnly(node) then
+			setListValue(manager_kult.getAttributeName(sKey));
+		end
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1934,8 +1972,9 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"35"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {@getAttributeValue()}","DiceRollDescription":"MOVE {name}","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"Targeting":"none","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"{attribute}"}}}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {@getAttributeValue()}","DiceRollDescription":"{@Interface.getString('ROLL_MOVE')} {name}","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"Targeting":"none","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"{attribute}"}}}},
       {"Name":"Disabled"},
+      {"Name":"DropTypes"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"button-white"}},
       {"Name":"FrameHideReadonly"},
@@ -1974,13 +2013,9 @@ end
 ]}}</Definition>
     <LUACode>
 function getAttributeValue()
-	local nodeWin = window.windowlist.window.getDatabaseNode();
-	local nodeAttr = nodeWin.getChild(window.attribute.getSelectedValue());
-	if nodeAttr then
-		local attrValue = nodeAttr.getValue();
-		if attrValue then
-			return attrValue;
-		end
+	local sKey = manager_kult.getAttributeKey(window.attribute.getValue());
+	if sKey then
+		return DB.getValue(window.windowlist.window.getDatabaseNode(), sKey, 0);
 	end
 	return 0;
 end</LUACode>
@@ -2009,6 +2044,7 @@ end</LUACode>
       {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"HostControl"},
       {"Name":"HoverCursor"},
+      {"Name":"InheritedTabs","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"InheritSizePosition"},
       {"Name":"Invisible"},
       {"Name":"Locked"},
@@ -2037,6 +2073,7 @@ end</LUACode>
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"WindowClassCopy"},
       {"Name":"WindowMargins","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"WindowTabs","Value":{"@xsi:type":"ArrayOfWindowTabDefinition"}},
       {"Name":"WindowTitle"},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
@@ -2068,6 +2105,7 @@ end</LUACode>
       {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
+      {"Name":"DropTypes"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"button-white"}},
       {"Name":"FrameHideReadonly"},
@@ -2129,6 +2167,7 @@ end</LUACode>
       {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
+      {"Name":"DropTypes"},
       {"Name":"DynamicSize"},
       {"Name":"EmptyText"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -2189,6 +2228,7 @@ end</LUACode>
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
+      {"Name":"DropTypes"},
       {"Name":"FrameHideReadonly"},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
@@ -3187,12 +3227,17 @@ end</LUACode>
         for k, v in pairs(data_kult.getMoves()) do
             local nodeMove = ListNode.createChild();
             local moveName = Interface.getString(k);
-            if moveName then
+            if moveName ~= "" then
 				DB.setValue(nodeMove, "name", "string", moveName);
             else
 				DB.setValue(nodeMove, "name", "string", k);
 			end
-            DB.setValue(nodeMove, "attribute", "string", v["attribute"]);
+			-- Attribute name in the active language
+			local sKey = manager_kult.getAttributeKey(v["attribute"]);
+			if sKey then
+	            DB.setValue(nodeMove, "attribute", "string", manager_kult.getAttributeName(sKey));
+	            DB.setValue(nodeMove, "attributevalue", "string", sKey);
+			end
         end
     end
 end
@@ -4534,7 +4579,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"32"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {self}","DiceRollDescription":"Charisma Check","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"Charisma"}}}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {self}","DiceRollDescription":"{@manager_kult.getAttributeRollDesc('charisma')}","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"charisma"}}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DropTypes"},
@@ -4691,7 +4736,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"32"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {self}","DiceRollDescription":"Coolness Check","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"Coolness"}}}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {self}","DiceRollDescription":"{@manager_kult.getAttributeRollDesc('coolness')}","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"coolness"}}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DropTypes"},
@@ -4877,7 +4922,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"32"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {self}","DiceRollDescription":"Fortitude Check","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"Fortitude"}}}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {self}","DiceRollDescription":"{@manager_kult.getAttributeRollDesc('fortitude')}","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"fortitude"}}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DropTypes"},
@@ -5105,7 +5150,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"32"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {self}","DiceRollDescription":"Intuition Check","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"Intuition"}}}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {self}","DiceRollDescription":"{@manager_kult.getAttributeRollDesc('intuition')}","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"intuition"}}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DropTypes"},
@@ -7052,7 +7097,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"32"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {self}","DiceRollDescription":"Perception Check","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"Perception"}}}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {self}","DiceRollDescription":"{@manager_kult.getAttributeRollDesc('perception')}","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"perception"}}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DropTypes"},
@@ -7118,7 +7163,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"32"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {self}","DiceRollDescription":"Reason Check","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"Reason"}}}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {self}","DiceRollDescription":"{@manager_kult.getAttributeRollDesc('reason')}","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"reason"}}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DropTypes"},
@@ -7184,7 +7229,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"32"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {self}","DiceRollDescription":"Reflexes Check","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"Reflexes"}}}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {self}","DiceRollDescription":"{@manager_kult.getAttributeRollDesc('reflexes')}","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"reflexes"}}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DropTypes"},
@@ -7250,7 +7295,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"32"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {self}","DiceRollDescription":"Soul Check","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"Soul"}}}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {self}","DiceRollDescription":"{@manager_kult.getAttributeRollDesc('soul')}","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"soul"}}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DropTypes"},
@@ -7398,7 +7443,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"32"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {self}","DiceRollDescription":"Violence Check","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"Violence"}}}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {self}","DiceRollDescription":"{@manager_kult.getAttributeRollDesc('violence')}","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"violence"}}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DropTypes"},
@@ -7534,7 +7579,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"32"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {self}","DiceRollDescription":"Willpower Check","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"Willpower"}}}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {self}","DiceRollDescription":"{@manager_kult.getAttributeRollDesc('willpower')}","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"willpower"}}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DropTypes"},
@@ -18099,7 +18144,7 @@ end</LUACode>
       {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"rsw_combobox_legacy"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonOffset"},
-      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":null,"Value":null},{"Label":"Willpower","Value":"willpower"},{"Label":"Fortitude","Value":"fortitude"},{"Label":"Reflexes","Value":"reflexes"},{"Label":"Reason","Value":"reason"},{"Label":"Intuition","Value":"intuition"},{"Label":"Perception","Value":"perception"},{"Label":"Coolness","Value":"coolness"},{"Label":"Violence","Value":"violence"},{"Label":"Charisma","Value":"charisma"},{"Label":"Soul","Value":"soul"}]}},
+      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"attribute"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
@@ -18146,7 +18191,23 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"142"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"79"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onInit()
+	super.onInit();
+	add("", "");
+	for _,sKey in ipairs(manager_kult.getAttributeKeys()) do
+		add(sKey, manager_kult.getAttributeName(sKey));
+	end
+	-- Records saved in another language show the name in the active one
+	local sValue = getValue();
+	local sKey = manager_kult.getAttributeKey(sValue);
+	if sKey and sValue ~= manager_kult.getAttributeName(sKey) then
+		local node = getDatabaseNode();
+		if node and DB.isOwner(node) and not DB.isReadOnly(node) then
+			setListValue(manager_kult.getAttributeName(sKey));
+		end
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -20187,6 +20248,8 @@ end</Script>
     <ScriptName>manager_kult</ScriptName>
     <FolderID>0</FolderID>
     <Script>
+local aAttributeKeys = { "willpower", "fortitude", "reflexes", "reason", "intuition", "perception", "coolness", "violence", "charisma", "soul" };
+
 function onInit()
 	CombatRecordManager.setRecordTypePostAddCallback("npc", onNPCPostAdd);
 end
@@ -20197,6 +20260,33 @@ function onNPCPostAdd(tCustom)
 	end
 	DB.setValue(tCustom.nodeCT, 'maxWounds', 'number', DB.getValue(tCustom.nodeCT, 'wounds', 0));
 	DB.setValue(tCustom.nodeCT, 'wounds', 'number', 0);
+end
+
+-- Attributes: the key is the charsheet field; the name comes from the attribute_&lt;key&gt; string
+function getAttributeKeys()
+	return aAttributeKeys;
+end
+
+function getAttributeName(sKey)
+	return Interface.getString("attribute_" .. sKey);
+end
+
+-- Accepts a key, the English name or the name in the active language
+function getAttributeKey(sAttribute)
+	if (sAttribute or "") == "" then
+		return nil;
+	end
+	local sLower = sAttribute:lower();
+	for _,sKey in ipairs(aAttributeKeys) do
+		if sLower == sKey or sAttribute == getAttributeName(sKey) then
+			return sKey;
+		end
+	end
+	return nil;
+end
+
+function getAttributeRollDesc(sKey)
+	return string.format(Interface.getString("ROLL_ATTRIBUTE"), getAttributeName(sKey));
 end
 
 -- Stability: 1 Composed ... 10 Broken (empty also means Composed)
@@ -20254,11 +20344,12 @@ function resolveRoll(rSource, rTarget, rRoll)
 		end;
 
 		local nKeepItTogether, nDisadvantage, nSeeThrough = getStressModifiers(tonumber(DB.getValue(charNode, "stability", "")));
+		local sAttributeKey = getAttributeKey(rRoll["attribute"]);
 		local nStabilityMod = 0;
-		if rRoll["attribute"] == "Willpower" then
+		if sAttributeKey == "willpower" then
 			nStabilityMod = nStabilityMod + nKeepItTogether;
 		end
-		if rRoll["attribute"] == "Soul" then
+		if sAttributeKey == "soul" then
 			nStabilityMod = nStabilityMod + nSeeThrough;
 		end
 		if rRoll["disadvantage"] == "1" then
@@ -20537,6 +20628,19 @@ end</Script>
   &lt;string name="Influence Other"&gt;Influence Other&lt;/string&gt;
   &lt;string name="See Through the Illusion"&gt;See Through the Illusion&lt;/string&gt;
   &lt;string name="Helping or Hindering"&gt;Helping or Hindering&lt;/string&gt;
+
+  &lt;string name="attribute_willpower"&gt;Willpower&lt;/string&gt;
+  &lt;string name="attribute_fortitude"&gt;Fortitude&lt;/string&gt;
+  &lt;string name="attribute_reflexes"&gt;Reflexes&lt;/string&gt;
+  &lt;string name="attribute_reason"&gt;Reason&lt;/string&gt;
+  &lt;string name="attribute_intuition"&gt;Intuition&lt;/string&gt;
+  &lt;string name="attribute_perception"&gt;Perception&lt;/string&gt;
+  &lt;string name="attribute_coolness"&gt;Coolness&lt;/string&gt;
+  &lt;string name="attribute_violence"&gt;Violence&lt;/string&gt;
+  &lt;string name="attribute_charisma"&gt;Charisma&lt;/string&gt;
+  &lt;string name="attribute_soul"&gt;Soul&lt;/string&gt;
+  &lt;string name="ROLL_ATTRIBUTE"&gt;%s Check&lt;/string&gt;
+  &lt;string name="ROLL_MOVE"&gt;MOVE&lt;/string&gt;
     
   &lt;string name="COMPLETE SUCCESS"&gt;COMPLETE SUCCESS&lt;/string&gt;
   &lt;string name="SUCCESS WITH COMPLICATIONS"&gt;SUCCESS WITH COMPLICATIONS&lt;/string&gt;

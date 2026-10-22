@@ -54,9 +54,13 @@ Kult</RulesetList>
 	&lt;string name="advantagedisadvantage_lblRollable_LabelCaption"&gt;Lanzable&lt;/string&gt;
 	&lt;string name="advantagedisadvantage_lblIsDisadvantage_LabelCaption"&gt;Desventaja&lt;/string&gt;
 	&lt;string name="advantagedisadvantage_lblDescription_LabelCaption"&gt;Descripción&lt;/string&gt;
+	&lt;string name="move_name_EmptyText"&gt;Nuevo movimiento&lt;/string&gt;
+	&lt;string name="move_lblAttribute_LabelCaption"&gt;Atributo&lt;/string&gt;
+	&lt;string name="move_lblDescription_LabelCaption"&gt;Descripción&lt;/string&gt;
 	&lt;string name="archetype_name_EmptyText"&gt;Nuevo Arquetipo&lt;/string&gt;
 	&lt;string name="darksecret_name_EmptyText"&gt;Nuevo Secreto Inconfesable&lt;/string&gt;
-	&lt;string name="char_move_btnRoll_Tooltip"&gt;Chequeo&lt;/string&gt;
+	&lt;string name="char_move_btnRoll_Tooltip"&gt;Tirar&lt;/string&gt;
+	&lt;string name="char_advdis_btnRoll_Tooltip"&gt;Tirar&lt;/string&gt;
 	&lt;string name="charsheet_abilities_lblLog_LabelCaption"&gt;Ventajas y Desventajas&lt;/string&gt;
 	&lt;string name="charsheet_abilities_lblMoves_LabelCaption"&gt;Movimientos&lt;/string&gt;
 	&lt;string name="charsheet_inventory_lblNumber_LabelCaption"&gt;#&lt;/string&gt;
@@ -83,9 +87,10 @@ Kult</RulesetList>
 	&lt;string name="charsheet_main_lblCharisma_LabelCaption"&gt;Carisma&lt;/string&gt;
 	&lt;string name="charsheet_main_lblInfluenceOthers_LabelCaption"&gt;Influir en alguien&lt;/string&gt;
 	&lt;string name="charsheet_main_lblSoul_LabelCaption"&gt;Alma&lt;/string&gt;
-	&lt;string name="charsheet_main_lblSeeThroughTheIllusion_LabelCaption"&gt;Ver más allá de la ilusión&lt;/string&gt;
+	&lt;string name="charsheet_main_lblSeeThroughTheIllusion_LabelCaption"&gt;Ver más allá de la Ilusión&lt;/string&gt;
 	&lt;string name="charsheet_main_lblAttributes_LabelCaption"&gt;Atributos&lt;/string&gt;
 	&lt;string name="charsheet_main_lblArchetype_LabelCaption"&gt;Heridas&lt;/string&gt;
+	&lt;string name="charsheet_main_wounds_Tooltip"&gt;Heridas&lt;/string&gt;
 	&lt;string name="charsheet_main_wound1sta_Tooltip"&gt;Estabilizado&lt;/string&gt;
 	&lt;string name="charsheet_main_wound2sta_Tooltip"&gt;Estabilizado&lt;/string&gt;
 	&lt;string name="charsheet_main_wound3sta_Tooltip"&gt;Estabilizado&lt;/string&gt;
@@ -134,14 +139,13 @@ Kult</RulesetList>
 	&lt;string name="client_ct_entry_activateeffects_statetooltip_Effects"&gt;Efectos&lt;/string&gt;
 	&lt;string name="Window_combattracker_client_Title"&gt;Asistente de Combate&lt;/string&gt;
 	&lt;string name="combattracker_client_label_name_LabelCaption"&gt;Nombre&lt;/string&gt;
-	&lt;string name="combattracker_client_label_init_LabelCaption"&gt;Orden&lt;/string&gt;
 	&lt;string name="combattracker_client_turn_complete_Tooltip"&gt;Fin del turno&lt;/string&gt;
 	&lt;string name="combattracker_client_label_ct_host_rounds_LabelCaption"&gt;Ronda&lt;/string&gt;
 	&lt;string name="Window_combattracker_host_Title"&gt;Asistente de Combate&lt;/string&gt;
 	&lt;string name="combattracker_host_button_global_visibility_statetooltip_Show all NPCs"&gt;Mostrar todos los PNJ&lt;/string&gt;
 	&lt;string name="combattracker_host_button_global_visibility_statetooltip_Hide all NPCs"&gt;Ocultar todos los PNJ&lt;/string&gt;
 	&lt;string name="combattracker_host_label_name_LabelCaption"&gt;Nombre&lt;/string&gt;
-	&lt;string name="combattracker_host_label_init_LabelCaption"&gt;Orden&lt;/string&gt;
+	&lt;string name="combattracker_host_button_ct_menu_ButtonCaption"&gt;Menú&lt;/string&gt;
 	&lt;string name="combattracker_host_button_ct_nextactor_Tooltip"&gt;Siguiente actor&lt;/string&gt;
 	&lt;string name="combattracker_host_button_ct_faction_friend_Tooltip"&gt;Amistoso&lt;/string&gt;
 	&lt;string name="combattracker_host_button_ct_faction_neutral_Tooltip"&gt;Neutral&lt;/string&gt;
@@ -182,16 +186,29 @@ Kult</RulesetList>
     <XML>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;root&gt;
 	&lt;string name="Keep it Together"&gt;Mantener la calma&lt;/string&gt;
-	&lt;string name="Endure Injury"&gt;Soportar el dolor&lt;/string&gt;
+	&lt;string name="Endure Injury"&gt;Soportar las heridas&lt;/string&gt;
 	&lt;string name="Avoid Harm"&gt;Evitar el daño&lt;/string&gt;
 	&lt;string name="Investigate"&gt;Investigar&lt;/string&gt;
-	&lt;string name="Read a Person"&gt;Leer a una persona&lt;/string&gt;
+	&lt;string name="Read a Person"&gt;Calar a alguien&lt;/string&gt;
 	&lt;string name="Observe a situation"&gt;Observar una situación&lt;/string&gt;
 	&lt;string name="Act Under Pressure"&gt;Actuar bajo presión&lt;/string&gt;
-	&lt;string name="Engage in Combat"&gt;Combatir&lt;/string&gt;
-	&lt;string name="Influence Other"&gt;Influenciar&lt;/string&gt;
-	&lt;string name="See Through the Illusion"&gt;Ver a través de la ilusión&lt;/string&gt;
-	&lt;string name="Helping or Hindering"&gt;Ayudar o Interferir&lt;/string&gt;
+	&lt;string name="Engage in Combat"&gt;Entablar combate&lt;/string&gt;
+	&lt;string name="Influence Other"&gt;Influir en alguien&lt;/string&gt;
+	&lt;string name="See Through the Illusion"&gt;Ver más allá de la Ilusión&lt;/string&gt;
+	&lt;string name="Helping or Hindering"&gt;Ayudar o interferir&lt;/string&gt;
+
+	&lt;string name="attribute_willpower"&gt;Voluntad&lt;/string&gt;
+	&lt;string name="attribute_fortitude"&gt;Fortaleza&lt;/string&gt;
+	&lt;string name="attribute_reflexes"&gt;Reflejos&lt;/string&gt;
+	&lt;string name="attribute_reason"&gt;Razón&lt;/string&gt;
+	&lt;string name="attribute_intuition"&gt;Intuición&lt;/string&gt;
+	&lt;string name="attribute_perception"&gt;Percepción&lt;/string&gt;
+	&lt;string name="attribute_coolness"&gt;Entereza&lt;/string&gt;
+	&lt;string name="attribute_violence"&gt;Violencia&lt;/string&gt;
+	&lt;string name="attribute_charisma"&gt;Carisma&lt;/string&gt;
+	&lt;string name="attribute_soul"&gt;Alma&lt;/string&gt;
+	&lt;string name="ROLL_ATTRIBUTE"&gt;Tirada de %s&lt;/string&gt;
+	&lt;string name="ROLL_MOVE"&gt;Movimiento:&lt;/string&gt;
 
 	&lt;string name="COMPLETE SUCCESS"&gt;ÉXITO COMPLETO&lt;/string&gt;
 	&lt;string name="SUCCESS WITH COMPLICATIONS"&gt;ÉXITO CON COMPLICACIONES&lt;/string&gt;
@@ -207,7 +224,7 @@ Kult</RulesetList>
 	&lt;string name="CRITICAL_STRESS"&gt;Estrés crítico&lt;/string&gt;
 	&lt;string name="MODERATE_STRESS_HELP"&gt;−1 a las tiradas de Desventaja&lt;/string&gt;
 	&lt;string name="SERIOUS_STRESS_HELP"&gt;−1 a Mantener la calma / −2 a las tiradas de Desventaja&lt;/string&gt;
-	&lt;string name="CRITICAL_STRESS_HELP"&gt;−2 a Mantener la calma / −3 a las tiradas de Desventaja / +1 a Ver más allá de de la ilusión&lt;/string&gt;
+	&lt;string name="CRITICAL_STRESS_HELP"&gt;−2 a Mantener la calma / −3 a las tiradas de Desventaja / +1 a Ver más allá de la Ilusión&lt;/string&gt;
 	&lt;string name="BROKEN"&gt;Roto&lt;/string&gt;
 	&lt;string name="BROKEN_HELP"&gt;El director hace un movimiento de la lista de Roto&lt;/string&gt;
 

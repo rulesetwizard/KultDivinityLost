@@ -5,16 +5,29 @@
     <XML>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;root&gt;
 	&lt;string name="Keep it Together"&gt;Mantener la calma&lt;/string&gt;
-	&lt;string name="Endure Injury"&gt;Soportar el dolor&lt;/string&gt;
+	&lt;string name="Endure Injury"&gt;Soportar las heridas&lt;/string&gt;
 	&lt;string name="Avoid Harm"&gt;Evitar el daño&lt;/string&gt;
 	&lt;string name="Investigate"&gt;Investigar&lt;/string&gt;
-	&lt;string name="Read a Person"&gt;Leer a una persona&lt;/string&gt;
+	&lt;string name="Read a Person"&gt;Calar a alguien&lt;/string&gt;
 	&lt;string name="Observe a situation"&gt;Observar una situación&lt;/string&gt;
 	&lt;string name="Act Under Pressure"&gt;Actuar bajo presión&lt;/string&gt;
-	&lt;string name="Engage in Combat"&gt;Combatir&lt;/string&gt;
-	&lt;string name="Influence Other"&gt;Influenciar&lt;/string&gt;
-	&lt;string name="See Through the Illusion"&gt;Ver a través de la ilusión&lt;/string&gt;
-	&lt;string name="Helping or Hindering"&gt;Ayudar o Interferir&lt;/string&gt;
+	&lt;string name="Engage in Combat"&gt;Entablar combate&lt;/string&gt;
+	&lt;string name="Influence Other"&gt;Influir en alguien&lt;/string&gt;
+	&lt;string name="See Through the Illusion"&gt;Ver más allá de la Ilusión&lt;/string&gt;
+	&lt;string name="Helping or Hindering"&gt;Ayudar o interferir&lt;/string&gt;
+
+	&lt;string name="attribute_willpower"&gt;Voluntad&lt;/string&gt;
+	&lt;string name="attribute_fortitude"&gt;Fortaleza&lt;/string&gt;
+	&lt;string name="attribute_reflexes"&gt;Reflejos&lt;/string&gt;
+	&lt;string name="attribute_reason"&gt;Razón&lt;/string&gt;
+	&lt;string name="attribute_intuition"&gt;Intuición&lt;/string&gt;
+	&lt;string name="attribute_perception"&gt;Percepción&lt;/string&gt;
+	&lt;string name="attribute_coolness"&gt;Entereza&lt;/string&gt;
+	&lt;string name="attribute_violence"&gt;Violencia&lt;/string&gt;
+	&lt;string name="attribute_charisma"&gt;Carisma&lt;/string&gt;
+	&lt;string name="attribute_soul"&gt;Alma&lt;/string&gt;
+	&lt;string name="ROLL_ATTRIBUTE"&gt;Tirada de %s&lt;/string&gt;
+	&lt;string name="ROLL_MOVE"&gt;Movimiento:&lt;/string&gt;
 
 	&lt;string name="COMPLETE SUCCESS"&gt;ÉXITO COMPLETO&lt;/string&gt;
 	&lt;string name="SUCCESS WITH COMPLICATIONS"&gt;ÉXITO CON COMPLICACIONES&lt;/string&gt;
@@ -30,7 +43,7 @@
 	&lt;string name="CRITICAL_STRESS"&gt;Estrés crítico&lt;/string&gt;
 	&lt;string name="MODERATE_STRESS_HELP"&gt;−1 a las tiradas de Desventaja&lt;/string&gt;
 	&lt;string name="SERIOUS_STRESS_HELP"&gt;−1 a Mantener la calma / −2 a las tiradas de Desventaja&lt;/string&gt;
-	&lt;string name="CRITICAL_STRESS_HELP"&gt;−2 a Mantener la calma / −3 a las tiradas de Desventaja / +1 a Ver más allá de de la ilusión&lt;/string&gt;
+	&lt;string name="CRITICAL_STRESS_HELP"&gt;−2 a Mantener la calma / −3 a las tiradas de Desventaja / +1 a Ver más allá de la Ilusión&lt;/string&gt;
 	&lt;string name="BROKEN"&gt;Roto&lt;/string&gt;
 	&lt;string name="BROKEN_HELP"&gt;El director hace un movimiento de la lista de Roto&lt;/string&gt;
 

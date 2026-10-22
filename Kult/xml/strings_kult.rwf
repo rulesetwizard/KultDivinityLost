@@ -15,6 +15,19 @@
   &lt;string name="Influence Other"&gt;Influence Other&lt;/string&gt;
   &lt;string name="See Through the Illusion"&gt;See Through the Illusion&lt;/string&gt;
   &lt;string name="Helping or Hindering"&gt;Helping or Hindering&lt;/string&gt;
+
+  &lt;string name="attribute_willpower"&gt;Willpower&lt;/string&gt;
+  &lt;string name="attribute_fortitude"&gt;Fortitude&lt;/string&gt;
+  &lt;string name="attribute_reflexes"&gt;Reflexes&lt;/string&gt;
+  &lt;string name="attribute_reason"&gt;Reason&lt;/string&gt;
+  &lt;string name="attribute_intuition"&gt;Intuition&lt;/string&gt;
+  &lt;string name="attribute_perception"&gt;Perception&lt;/string&gt;
+  &lt;string name="attribute_coolness"&gt;Coolness&lt;/string&gt;
+  &lt;string name="attribute_violence"&gt;Violence&lt;/string&gt;
+  &lt;string name="attribute_charisma"&gt;Charisma&lt;/string&gt;
+  &lt;string name="attribute_soul"&gt;Soul&lt;/string&gt;
+  &lt;string name="ROLL_ATTRIBUTE"&gt;%s Check&lt;/string&gt;
+  &lt;string name="ROLL_MOVE"&gt;MOVE&lt;/string&gt;
     
   &lt;string name="COMPLETE SUCCESS"&gt;COMPLETE SUCCESS&lt;/string&gt;
   &lt;string name="SUCCESS WITH COMPLICATIONS"&gt;SUCCESS WITH COMPLICATIONS&lt;/string&gt;

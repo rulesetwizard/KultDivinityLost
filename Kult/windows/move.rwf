@@ -9,7 +9,7 @@
       {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"rsw_combobox_legacy"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonOffset"},
-      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":null,"Value":null},{"Label":"Willpower","Value":"willpower"},{"Label":"Fortitude","Value":"fortitude"},{"Label":"Reflexes","Value":"reflexes"},{"Label":"Reason","Value":"reason"},{"Label":"Intuition","Value":"intuition"},{"Label":"Perception","Value":"perception"},{"Label":"Coolness","Value":"coolness"},{"Label":"Violence","Value":"violence"},{"Label":"Charisma","Value":"charisma"},{"Label":"Soul","Value":"soul"}]}},
+      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"attribute"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
@@ -56,7 +56,23 @@
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"142"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"79"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onInit()
+	super.onInit();
+	add("", "");
+	for _,sKey in ipairs(manager_kult.getAttributeKeys()) do
+		add(sKey, manager_kult.getAttributeName(sKey));
+	end
+	-- Records saved in another language show the name in the active one
+	local sValue = getValue();
+	local sKey = manager_kult.getAttributeKey(sValue);
+	if sKey and sValue ~= manager_kult.getAttributeName(sKey) then
+		local node = getDatabaseNode();
+		if node and DB.isOwner(node) and not DB.isReadOnly(node) then
+			setListValue(manager_kult.getAttributeName(sKey));
+		end
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>

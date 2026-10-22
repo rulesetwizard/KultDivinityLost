@@ -296,12 +296,17 @@ end</LUACode>
         for k, v in pairs(data_kult.getMoves()) do
             local nodeMove = ListNode.createChild();
             local moveName = Interface.getString(k);
-            if moveName then
+            if moveName ~= "" then
 				DB.setValue(nodeMove, "name", "string", moveName);
             else
 				DB.setValue(nodeMove, "name", "string", k);
 			end
-            DB.setValue(nodeMove, "attribute", "string", v["attribute"]);
+			-- Attribute name in the active language
+			local sKey = manager_kult.getAttributeKey(v["attribute"]);
+			if sKey then
+	            DB.setValue(nodeMove, "attribute", "string", manager_kult.getAttributeName(sKey));
+	            DB.setValue(nodeMove, "attributevalue", "string", sKey);
+			end
         end
     end
 end
