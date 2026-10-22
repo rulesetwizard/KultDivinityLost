@@ -97,7 +97,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"35"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {@getAttributeValue()}","DiceRollDescription":"{@Interface.getString('ROLL_MOVE')} {name}","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"Targeting":"none","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"{attribute}"}}}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {@getAttributeValue()}","DiceRollDescription":"{@Interface.getString('ROLL_MOVE')} {name}","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"Targeting":"none","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":[{"Label":"attribute","Value":"{attribute}"},{"Label":"move","Value":"{name}"}]}}},
       {"Name":"Disabled"},
       {"Name":"DropTypes"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -143,6 +143,15 @@ function getAttributeValue()
 		return DB.getValue(window.windowlist.window.getDatabaseNode(), sKey, 0);
 	end
 	return 0;
+end
+
+-- Help or Hinder rolls the attribute of the other PC's move: it has to be chosen first
+function onBeforeDiceRoll(dragInfo)
+	if manager_kult.isHelpHinderMove(window.name.getValue()) and not manager_kult.getAttributeKey(window.attribute.getValue()) then
+		ChatManager.SystemMessage(Interface.getString("HELP_HINDER_NO_ATTRIBUTE"));
+		return false;
+	end
+	return true;
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />

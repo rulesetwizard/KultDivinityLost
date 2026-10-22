@@ -1972,7 +1972,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"35"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {@getAttributeValue()}","DiceRollDescription":"{@Interface.getString('ROLL_MOVE')} {name}","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"Targeting":"none","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":{"Label":"attribute","Value":"{attribute}"}}}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"2d10 + {@getAttributeValue()}","DiceRollDescription":"{@Interface.getString('ROLL_MOVE')} {name}","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"Targeting":"none","ResultHandlerFunction":"manager_kult.resolveRoll","AdditionalInfo":{"LabelValue":[{"Label":"attribute","Value":"{attribute}"},{"Label":"move","Value":"{name}"}]}}},
       {"Name":"Disabled"},
       {"Name":"DropTypes"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -2018,6 +2018,15 @@ function getAttributeValue()
 		return DB.getValue(window.windowlist.window.getDatabaseNode(), sKey, 0);
 	end
 	return 0;
+end
+
+-- Help or Hinder rolls the attribute of the other PC's move: it has to be chosen first
+function onBeforeDiceRoll(dragInfo)
+	if manager_kult.isHelpHinderMove(window.name.getValue()) and not manager_kult.getAttributeKey(window.attribute.getValue()) then
+		ChatManager.SystemMessage(Interface.getString("HELP_HINDER_NO_ATTRIBUTE"));
+		return false;
+	end
+	return true;
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -4397,17 +4406,13 @@ end
       {"Name":"Source"},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
-      {"Name":"Tooltip"},
+      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Added to the Endure Injury roll"}},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"361"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"203"}}
 ]}}</Definition>
-    <LUACode>
-function onDoubleClick(x, y)
-	ModifierStack.addSlot(Interface.getString("ARMOR"), getValue());
-end
-</LUACode>
+    <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -5072,6 +5077,72 @@ end
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"254"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"9"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>charsheet_main</WindowName>
+    <ControlName>harm</ControlName>
+    <ZIndex>64</ZIndex>
+    <ControlClass>FGNumberField</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"harm"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultValue"},
+      {"Name":"DelayKeyUpdate"},
+      {"Name":"DescriptionText"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"40"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"DisplaySign"},
+      {"Name":"DropTypes"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameHideReadonly"},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HideOnValue"},
+      {"Name":"HideRollWidget"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"MaxValue"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MinValue"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag"},
+      {"Name":"NoDrop"},
+      {"Name":"NoKeyEdit"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Harm to endure: subtracted from the Endure Injury roll, then reset to 0"}},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"452"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"203"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -5876,6 +5947,63 @@ end
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"19"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"137"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>charsheet_main</WindowName>
+    <ControlName>lblHarm</ControlName>
+    <ZIndex>63</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"Center","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"lblHarm"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"40"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"DropTypes"},
+      {"Name":"DynamicSize"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"sheetlabel"}},
+      {"Name":"FrameHideReadonly"},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Harm"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"414"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"208"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -20250,6 +20378,9 @@ end</Script>
     <Script>
 local aAttributeKeys = { "willpower", "fortitude", "reflexes", "reason", "intuition", "perception", "coolness", "violence", "charisma", "soul" };
 
+-- Help or Hinder move names, besides the one in the active language (older sheets kept these)
+local aHelpHinderNames = { "helping or hindering", "ayudar o interferir" };
+
 function onInit()
 	CombatRecordManager.setRecordTypePostAddCallback("npc", onNPCPostAdd);
 end
@@ -20289,6 +20420,22 @@ function getAttributeRollDesc(sKey)
 	return string.format(Interface.getString("ROLL_ATTRIBUTE"), getAttributeName(sKey));
 end
 
+function isHelpHinderMove(sName)
+	if (sName or "") == "" then
+		return false;
+	end
+	local sLower = trim(sName):lower();
+	if sLower == Interface.getString("Helping or Hindering"):lower() then
+		return true;
+	end
+	for _,sHelpHinder in ipairs(aHelpHinderNames) do
+		if sLower == sHelpHinder then
+			return true;
+		end
+	end
+	return false;
+end
+
 -- Stability: 1 Composed ... 10 Broken (empty also means Composed)
 function getStressLevel(nStability)
 	if not nStability then
@@ -20325,6 +20472,9 @@ function resolveRoll(rSource, rTarget, rRoll)
 
 	local msgstring = "";
 
+	-- Help or Hinder uses the attribute of the other PC's move, so the attribute's own rules do not apply
+	local bHelpHinder = isHelpHinderMove(rRoll["move"]);
+
 	if charNode then
 		local bSeriousWound = false;
 		for i = 1, 4 do
@@ -20343,8 +20493,29 @@ function resolveRoll(rSource, rTarget, rRoll)
 			msgstring = msgstring .. ' [' .. Interface.getString("CRITICAL") .. ' -1]';
 		end;
 
+		local sAttributeKey = nil;
+		if not bHelpHinder then
+			sAttributeKey = getAttributeKey(rRoll["attribute"]);
+		end
+
+		-- Endure Injury (the only Fortitude move): +armor -Harm; the Harm field resets after the roll
+		if sAttributeKey == "fortitude" then
+			local nArmor = DB.getValue(charNode, "armor", 0);
+			if nArmor ~= 0 then
+				rRoll.nMod = rRoll.nMod + nArmor;
+				msgstring = msgstring .. ' [' .. Interface.getString("ARMOR") .. ' +' .. nArmor .. ']';
+			end
+			local nHarm = DB.getValue(charNode, "harm", 0);
+			if nHarm ~= 0 then
+				rRoll.nMod = rRoll.nMod - nHarm;
+				msgstring = msgstring .. ' [' .. Interface.getString("HARM") .. ' -' .. nHarm .. ']';
+				if DB.isOwner(charNode) then
+					DB.setValue(charNode, "harm", "number", 0);
+				end
+			end
+		end
+
 		local nKeepItTogether, nDisadvantage, nSeeThrough = getStressModifiers(tonumber(DB.getValue(charNode, "stability", "")));
-		local sAttributeKey = getAttributeKey(rRoll["attribute"]);
 		local nStabilityMod = 0;
 		if sAttributeKey == "willpower" then
 			nStabilityMod = nStabilityMod + nKeepItTogether;
@@ -20369,14 +20540,20 @@ function resolveRoll(rSource, rTarget, rRoll)
     rMessage.text = rMessage.text .. msgstring;
     
 	local total = ActionsManager.total(rRoll); -- the total FG shows in chat (dice, fixed bonus and modifiers)
+	local sHelpHinder = "HELP_HINDER_MISS";
     if total &gt;= 15 then
 		rMessage.text = rMessage.text .. ' [' .. Interface.getString("COMPLETE SUCCESS") .. ']';
+		sHelpHinder = "HELP_HINDER_FULL";
     else
 		if total &gt;= 10 then
 			rMessage.text = rMessage.text .. ' [' .. Interface.getString("SUCCESS WITH COMPLICATIONS") .. ']';
+			sHelpHinder = "HELP_HINDER_PARTIAL";
 		else
 			rMessage.text = rMessage.text .. ' [' .. Interface.getString("FAILURE") .. ']';
 		end
+	end
+	if bHelpHinder then
+		rMessage.text = rMessage.text .. ' [' .. Interface.getString(sHelpHinder) .. ']';
 	end
 	
     Comm.deliverChatMessage(rMessage);    
@@ -20650,6 +20827,12 @@ end</Script>
   &lt;string name="CRITICAL"&gt;CRITICAL&lt;/string&gt;
   &lt;string name="STABILITY"&gt;STABILITY&lt;/string&gt;
   &lt;string name="ARMOR"&gt;Armor&lt;/string&gt;
+  &lt;string name="HARM"&gt;Harm&lt;/string&gt;
+
+  &lt;string name="HELP_HINDER_FULL"&gt;+2 or −2 to the other PC's roll&lt;/string&gt;
+  &lt;string name="HELP_HINDER_PARTIAL"&gt;+1 or −1 to the other PC's roll&lt;/string&gt;
+  &lt;string name="HELP_HINDER_MISS"&gt;Unintended consequences: the GM makes a move&lt;/string&gt;
+  &lt;string name="HELP_HINDER_NO_ATTRIBUTE"&gt;Helping or Hindering: choose the attribute the other PC is rolling&lt;/string&gt;
 
   &lt;string name="MODERATE_STRESS"&gt;Moderate stress&lt;/string&gt;
   &lt;string name="SERIOUS_STRESS"&gt;Serious stress&lt;/string&gt;

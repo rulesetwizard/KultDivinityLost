@@ -37,6 +37,12 @@
 	&lt;string name="CRITICAL"&gt;MALHERIDO&lt;/string&gt;
 	&lt;string name="STABILITY"&gt;ESTABILIDAD&lt;/string&gt;
 	&lt;string name="ARMOR"&gt;Armadura&lt;/string&gt;
+	&lt;string name="HARM"&gt;Daño&lt;/string&gt;
+
+	&lt;string name="HELP_HINDER_FULL"&gt;+2 o −2 a la tirada del otro PJ&lt;/string&gt;
+	&lt;string name="HELP_HINDER_PARTIAL"&gt;+1 o −1 a la tirada del otro PJ&lt;/string&gt;
+	&lt;string name="HELP_HINDER_MISS"&gt;Consecuencias no deseadas: el director hace un movimiento&lt;/string&gt;
+	&lt;string name="HELP_HINDER_NO_ATTRIBUTE"&gt;Ayudar o interferir: elige el atributo que usa el otro PJ en su tirada&lt;/string&gt;
 
 	&lt;string name="MODERATE_STRESS"&gt;Estrés moderado&lt;/string&gt;
 	&lt;string name="SERIOUS_STRESS"&gt;Estrés grave&lt;/string&gt;

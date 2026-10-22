@@ -46,6 +46,9 @@
 	&lt;string name="charsheet_main_lblAttributes_LabelCaption"&gt;Atributos&lt;/string&gt;
 	&lt;string name="charsheet_main_lblArchetype_LabelCaption"&gt;Heridas&lt;/string&gt;
 	&lt;string name="charsheet_main_wounds_Tooltip"&gt;Heridas&lt;/string&gt;
+	&lt;string name="charsheet_main_lblHarm_LabelCaption"&gt;Daño&lt;/string&gt;
+	&lt;string name="charsheet_main_harm_Tooltip"&gt;Daño que vas a soportar: se resta en la tirada de Soportar las heridas y vuelve a 0&lt;/string&gt;
+	&lt;string name="charsheet_main_armor_Tooltip"&gt;Se suma a la tirada de Soportar las heridas&lt;/string&gt;
 	&lt;string name="charsheet_main_wound1sta_Tooltip"&gt;Estabilizado&lt;/string&gt;
 	&lt;string name="charsheet_main_wound2sta_Tooltip"&gt;Estabilizado&lt;/string&gt;
 	&lt;string name="charsheet_main_wound3sta_Tooltip"&gt;Estabilizado&lt;/string&gt;
