@@ -21,7 +21,7 @@
       {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"HostControl"},
       {"Name":"HoverCursor"},
-      {"Name":"InheritedTabs","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"InheritedTabs","Value":{"@xsi:type":"xsd:int","#text":"1"}},
       {"Name":"InheritSizePosition"},
       {"Name":"Invisible"},
       {"Name":"Locked"},
@@ -50,7 +50,9 @@
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"WindowClassCopy"},
       {"Name":"WindowMargins","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"WindowTabs","Value":{"@xsi:type":"ArrayOfWindowTabDefinition"}},
+      {"Name":"WindowTabs","Value":{"@xsi:type":"ArrayOfWindowTabDefinition","WindowTabDefinition":[
+      {"Name":"log","Label":"{tab_log}","Icon":null,"ClassName":"charsheet_log","Framed":"false","Scroll":"false","Mode":"All","Activate":"false","InsertBefore":null},
+      {"Name":"xp","Label":"{tab_xp}","Icon":null,"ClassName":"charsheet_xp","Framed":"false","Scroll":"false","Mode":"All","Activate":"false","InsertBefore":null}]}},
       {"Name":"WindowTitle"},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
