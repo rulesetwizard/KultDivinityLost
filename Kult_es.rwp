@@ -212,6 +212,7 @@ Kult</RulesetList>
 	&lt;string name="attribute_soul"&gt;Alma&lt;/string&gt;
 	&lt;string name="ROLL_ATTRIBUTE"&gt;Tirada de %s&lt;/string&gt;
 	&lt;string name="ROLL_MOVE"&gt;Movimiento:&lt;/string&gt;
+	&lt;string name="advantagedisadvantage_name_EmptyText_Disadvantage"&gt;Nueva Desventaja&lt;/string&gt;
 
 	&lt;string name="tab_main"&gt;Principal&lt;/string&gt;
 	&lt;string name="tab_abilities"&gt;Habilidades&lt;/string&gt;

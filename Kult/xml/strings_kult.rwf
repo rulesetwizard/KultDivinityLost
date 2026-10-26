@@ -28,6 +28,8 @@
   &lt;string name="attribute_soul"&gt;Soul&lt;/string&gt;
   &lt;string name="ROLL_ATTRIBUTE"&gt;%s Check&lt;/string&gt;
   &lt;string name="ROLL_MOVE"&gt;MOVE&lt;/string&gt;
+
+  &lt;string name="advantagedisadvantage_name_EmptyText_Disadvantage"&gt;New Disadvantage&lt;/string&gt;
     
   &lt;string name="COMPLETE SUCCESS"&gt;COMPLETE SUCCESS&lt;/string&gt;
   &lt;string name="SUCCESS WITH COMPLICATIONS"&gt;SUCCESS WITH COMPLICATIONS&lt;/string&gt;

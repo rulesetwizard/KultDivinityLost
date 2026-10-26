@@ -65,6 +65,7 @@ function onInit()
 		end
 	end
 	update();
+	updateEmptyText();
 end
 
 function onLockChanged()
@@ -79,6 +80,14 @@ function update()
 	rollable.setReadOnly(bReadOnly);
 	isdisadvantage.setReadOnly(bReadOnly);
 	description.setReadOnly(bReadOnly);
+end
+
+function updateEmptyText()
+	if isdisadvantage.getValue() == 1 then
+		name.setEmptyText(Interface.getString("advantagedisadvantage_name_EmptyText_Disadvantage"));
+	else
+		name.setEmptyText(Interface.getString("advantagedisadvantage_name_EmptyText"));
+	end
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -330,7 +339,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"247"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"106"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onValueChanged()
+	window.updateEmptyText();
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
