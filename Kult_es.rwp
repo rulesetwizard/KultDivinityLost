@@ -213,6 +213,15 @@ Kult</RulesetList>
 	&lt;string name="ROLL_ATTRIBUTE"&gt;Tirada de %s&lt;/string&gt;
 	&lt;string name="ROLL_MOVE"&gt;Movimiento:&lt;/string&gt;
 
+	&lt;string name="tab_main"&gt;Principal&lt;/string&gt;
+	&lt;string name="tab_abilities"&gt;Habilidades&lt;/string&gt;
+	&lt;string name="tab_notes"&gt;Notas&lt;/string&gt;
+	&lt;string name="tab_inventory"&gt;Inventario&lt;/string&gt;
+	&lt;string name="tab_log"&gt;Diario&lt;/string&gt;
+	&lt;string name="tab_xp"&gt;Experiencia&lt;/string&gt;
+	&lt;string name="tab_pictures"&gt;Imágenes&lt;/string&gt;
+	&lt;string name="ct_emptylist"&gt;Suelta aquí enlaces de PJ, PNJ o encuentros para añadirlos.&lt;/string&gt;
+
 	&lt;string name="COMPLETE SUCCESS"&gt;ÉXITO COMPLETO&lt;/string&gt;
 	&lt;string name="SUCCESS WITH COMPLICATIONS"&gt;ÉXITO CON COMPLICACIONES&lt;/string&gt;
 	&lt;string name="FAILURE"&gt;FRACASO&lt;/string&gt;

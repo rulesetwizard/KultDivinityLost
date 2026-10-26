@@ -10,6 +10,14 @@ local aHelpHinderNames = { "helping or hindering", "ayudar o interferir" };
 
 function onInit()
 	CombatRecordManager.setRecordTypePostAddCallback("npc", onNPCPostAdd);
+
+	-- CoreRPG builds the charsheet tabs from WindowTabManager; registered tabs replace its default ones
+	WindowTabManager.registerTab("charsheet", { sName = "main", sTabRes = "tab_main", sClass = "charsheet_main" });
+	WindowTabManager.registerTab("charsheet", { sName = "abilities", sTabRes = "tab_abilities", sClass = "charsheet_abilities" });
+	WindowTabManager.registerTab("charsheet", { sName = "notes", sTabRes = "tab_notes", sClass = "charsheet_notes" });
+	WindowTabManager.registerTab("charsheet", { sName = "inventory", sTabRes = "tab_inventory", sClass = "charsheet_inventory" });
+	WindowTabManager.registerTab("charsheet", { sName = "log", sTabRes = "tab_log", sClass = "charsheet_log" });
+	WindowTabManager.registerTab("charsheet", { sName = "xp", sTabRes = "tab_xp", sClass = "charsheet_xp" });
 end
 
 function onNPCPostAdd(tCustom)
