@@ -143,6 +143,65 @@ end
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
+    <ControlName>btnEditAttributes</ControlName>
+    <ZIndex>67</ZIndex>
+    <ControlClass>FGCustomControl</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"btnEditAttributes"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomClassName","Value":{"@xsi:type":"xsd:string","#text":"button_text_sm"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty","CustomProperty":{"PropertyName":"textres","PropertyValue":"ATTRIBUTES_EDIT","PropertyAttributes":null,"ParentElement":null,"XMLCode":null}}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"52"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"DropTypes"},
+      {"Name":"DynamicSize"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameHideReadonly"},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Unlock the attributes to change their values"}},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XMLCode"},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"14"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"32"}}
+]}}</Definition>
+    <LUACode>function onButtonPress()
+	window.toggleAttributesEditable();
+end
+</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>charsheet_main</WindowName>
     <ControlName>btnHealStability</ControlName>
     <ZIndex>55</ZIndex>
     <ControlClass>FGButton</ControlClass>
@@ -343,20 +402,35 @@ end
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
     <LUACode>local aWoundFields = { "wound1", "wound2", "wound3", "wound4", "criticalwound" };
+local aWoundStateFields = { "wound1sta", "wound2sta", "wound3sta", "wound4sta", "CriticalWoundStabilized" };
+local bEditAttributes = false;
 
 function onInit()
 	local node = getDatabaseNode();
 	for _,sField in ipairs(aWoundFields) do
-		DB.addHandler(DB.getPath(node, sField), "onUpdate", calcWounds);
+		DB.addHandler(DB.getPath(node, sField), "onUpdate", onWoundsChanged);
 	end
-	calcWounds();
+	for _,sField in ipairs(aWoundStateFields) do
+		DB.addHandler(DB.getPath(node, sField), "onUpdate", onWoundsChanged);
+	end
+	onWoundsChanged();
+	btnEditAttributes.setVisible(DB.isOwner(node));
+	setAttributesEditable(false);
 end
 
 function onClose()
 	local node = getDatabaseNode();
 	for _,sField in ipairs(aWoundFields) do
-		DB.removeHandler(DB.getPath(node, sField), "onUpdate", calcWounds);
+		DB.removeHandler(DB.getPath(node, sField), "onUpdate", onWoundsChanged);
 	end
+	for _,sField in ipairs(aWoundStateFields) do
+		DB.removeHandler(DB.getPath(node, sField), "onUpdate", onWoundsChanged);
+	end
+end
+
+function onWoundsChanged()
+	calcWounds();
+	updateWoundControls();
 end
 
 -- Serious wounds plus the critical wound (shown in the CT against a maximum of 5)
@@ -372,6 +446,48 @@ function calcWounds()
 		end
 	end
 	wounds.setValue(nWounds);
+end
+
+-- A wound can only be stabilized once it is written; the penalty is the one the rolls apply
+function updateWoundControls()
+	local node = getDatabaseNode();
+	local bOwner = DB.isOwner(node);
+	for i = 1, 4 do
+		self["wound" .. i .. "sta"].setReadOnly(not bOwner or manager_kult.trim(DB.getValue(node, "wound" .. i, '')) == "");
+	end
+	CriticalWoundStabilized.setReadOnly(not bOwner or manager_kult.trim(DB.getValue(node, "criticalwound", '')) == "");
+
+	local aMods = manager_kult.getRollModifiers(node, "", false, false);
+	local nPenalty = 0;
+	local aParts = {};
+	for _,rMod in ipairs(aMods) do
+		nPenalty = nPenalty + rMod.nValue;
+		table.insert(aParts, rMod.sLabel .. " " .. manager_kult.signed(rMod.nValue));
+	end
+	if nPenalty == 0 then
+		lblWoundPenalty.setValue("");
+		lblWoundPenalty.setTooltipText("");
+	else
+		lblWoundPenalty.setValue(manager_kult.signed(nPenalty));
+		lblWoundPenalty.setTooltipText(string.format(Interface.getString("WOUND_PENALTY"), manager_kult.signed(nPenalty)) .. "\n" .. table.concat(aParts, "; "));
+	end
+end
+
+-- Attributes are read-only until Edit is pressed, so a click or the mouse wheel cannot change them
+function setAttributesEditable(bEdit)
+	bEditAttributes = bEdit and DB.isOwner(getDatabaseNode());
+	for _,sKey in ipairs(manager_kult.getAttributeKeys()) do
+		self[sKey].setReadOnly(not bEditAttributes);
+	end
+	if bEditAttributes then
+		btnEditAttributes.setText(Interface.getString("ATTRIBUTES_DONE"));
+	else
+		btnEditAttributes.setText(Interface.getString("ATTRIBUTES_EDIT"));
+	end
+end
+
+function toggleAttributesEditable()
+	setAttributesEditable(not bEditAttributes);
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -662,7 +778,7 @@ end
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"groupStability"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"83"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"115"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"246"}},
       {"Name":"DevelopmentComments"},
@@ -2311,20 +2427,20 @@ end
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
-    <ControlName>lblStabilityHelp</ControlName>
-    <ZIndex>52</ZIndex>
+    <ControlName>lblStabilityEffects</ControlName>
+    <ZIndex>65</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"Center","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"lblStabilityHelp"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"lblStabilityEffects"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"15"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"32"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"18"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"230"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"DropTypes"},
@@ -2340,13 +2456,13 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
-      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"?"}},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"MaximumHeight"},
       {"Name":"MaximumWidth"},
       {"Name":"Merge"},
       {"Name":"MinimumHeight"},
       {"Name":"MinimumWidth"},
-      {"Name":"MultilineSpacing"},
+      {"Name":"MultilineSpacing","Value":{"@xsi:type":"xsd:int","#text":"14"}},
       {"Name":"NextTabTarget"},
       {"Name":"NoDrag"},
       {"Name":"PrevTabTarget"},
@@ -2359,8 +2475,8 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"468"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"302"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"262"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"318"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -2531,7 +2647,7 @@ end
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"436"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"353"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"385"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -2588,7 +2704,7 @@ end
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"402"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"353"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"385"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -2645,7 +2761,7 @@ end
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"266"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"353"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"385"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -2702,7 +2818,7 @@ end
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"268"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"334"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"366"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -2760,6 +2876,63 @@ end
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"99"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"87"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>charsheet_main</WindowName>
+    <ControlName>lblWoundPenalty</ControlName>
+    <ZIndex>66</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"Center","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"lblWoundPenalty"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"30"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"DropTypes"},
+      {"Name":"DynamicSize"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"sheetlabel"}},
+      {"Name":"FrameHideReadonly"},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"410"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"27"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -3109,6 +3282,12 @@ end
 ]}}</Definition>
     <LUACode>function onInit()
 	super.onInit();
+	-- An empty Stability means Composed: show it as such on sheets that can be edited
+	-- (the field may not exist yet, so it is written through the character node)
+	local nodeChar = window.getDatabaseNode();
+	if nodeChar and DB.isOwner(nodeChar) and DB.getValue(nodeChar, "stability", "") == "" then
+		DB.setValue(nodeChar, "stability", "string", "1");
+	end
 	setStability();
 end
 
@@ -3116,20 +3295,20 @@ function onValueChanged()
 	setStability();
 end
 
+-- Level, effects and the limits of the heal/damage buttons
 function setStability()
-	local stabilityDesc = "";
-	local stabilityHelp = "";
-	local node = getDatabaseNode();
-	if node then
-		local sLevel = manager_kult.getStressLevel(tonumber(node.getValue()));
-		if sLevel ~= "" then
-			stabilityDesc = Interface.getString(sLevel);
-			stabilityHelp = Interface.getString(sLevel .. "_HELP");
-		end
-
-		window.lblStabilityDesc.setValue(stabilityDesc);
-		window.lblStabilityHelp.setTooltipText(stabilityHelp);
+	local nStability = tonumber(getStringValue()) or 1;
+	local sLevel = manager_kult.getStressLevel(nStability);
+	local sDesc = "";
+	local sEffects = "";
+	if sLevel ~= "" then
+		sDesc = Interface.getString(sLevel);
+		sEffects = Interface.getString(sLevel .. "_HELP");
 	end
+	window.lblStabilityDesc.setValue(sDesc);
+	window.lblStabilityEffects.setValue(sEffects);
+	window.btnHealStability.setEnabled(nStability &gt; 1);
+	window.btnDamageStability.setEnabled(nStability &lt; 10);
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -3224,7 +3403,7 @@ end
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DataSource","Value":{"@xsi:type":"xsd:string","#text":".weapons"}},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"156"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"124"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"246"}},
       {"Name":"DevelopmentComments"},
@@ -3271,7 +3450,7 @@ end
       {"Name":"WindowListFilterBy","Value":{"@xsi:type":"FilterByDefinition","CaseSensitive":{"@xsi:nil":"true"},"FilterSourceType":"Control","FilterOnSourceType":"Control"}},
       {"Name":"WindowListSortBy","Value":{"@xsi:type":"ArrayOfSortByDefinition"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"254"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"325"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"357"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>

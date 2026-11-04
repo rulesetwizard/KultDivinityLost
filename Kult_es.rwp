@@ -214,6 +214,10 @@ Kult</RulesetList>
 	&lt;string name="ROLL_SETUP_ROLL"&gt;Tirar&lt;/string&gt;
 	&lt;string name="ROLL_SETUP_CANCEL"&gt;Cancelar&lt;/string&gt;
 	&lt;string name="ROLL_SETUP_CHOOSE_ATTRIBUTE"&gt;Elige el atributo del movimiento&lt;/string&gt;
+	&lt;string name="ATTRIBUTES_EDIT"&gt;Editar&lt;/string&gt;
+	&lt;string name="ATTRIBUTES_DONE"&gt;Hecho&lt;/string&gt;
+	&lt;string name="WOUND_PENALTY"&gt;Penalización por heridas a todas las tiradas: %s&lt;/string&gt;
+	&lt;string name="charsheet_main_btnEditAttributes_Tooltip"&gt;Desbloquea los atributos para cambiar sus valores&lt;/string&gt;
 	&lt;string name="kult_roll_setup_lblAttribute_LabelCaption"&gt;Atributo&lt;/string&gt;
 	&lt;string name="kult_roll_setup_lblHarm_LabelCaption"&gt;Daño&lt;/string&gt;
 	&lt;string name="kult_roll_setup_lblArmor_LabelCaption"&gt;Armadura&lt;/string&gt;
