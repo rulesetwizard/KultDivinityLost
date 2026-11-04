@@ -30,6 +30,10 @@
   &lt;string name="ROLL_MOVE"&gt;MOVE&lt;/string&gt;
   &lt;string name="ROLL_PREVIEW_MODSTACK"&gt;+ modifier stack&lt;/string&gt;
 
+  &lt;string name="ROLL_SETUP_ROLL"&gt;Roll&lt;/string&gt;
+  &lt;string name="ROLL_SETUP_CANCEL"&gt;Cancel&lt;/string&gt;
+  &lt;string name="ROLL_SETUP_CHOOSE_ATTRIBUTE"&gt;Choose the attribute of the move&lt;/string&gt;
+
   &lt;string name="advantagedisadvantage_name_EmptyText_Disadvantage"&gt;New Disadvantage&lt;/string&gt;
     
   &lt;string name="COMPLETE SUCCESS"&gt;COMPLETE SUCCESS&lt;/string&gt;

@@ -145,10 +145,20 @@ function getAttributeValue()
 	return 0;
 end
 
--- Help or Hinder rolls the attribute of the other PC's move: it has to be chosen first
+-- Endure Injury, Help or Hinder and moves without attribute open the roll setup window instead of rolling
 function onBeforeDiceRoll(dragInfo)
-	if manager_kult.isHelpHinderMove(window.name.getValue()) and not manager_kult.getAttributeKey(window.attribute.getValue()) then
-		ChatManager.SystemMessage(Interface.getString("HELP_HINDER_NO_ATTRIBUTE"));
+	local sName = window.name.getValue();
+	local sAttribute = window.attribute.getValue();
+	local sKey = manager_kult.getAttributeKey(sAttribute);
+	local nodeChar = window.windowlist.window.getDatabaseNode();
+	if manager_kult.isHelpHinderMove(sName) then
+		manager_kult.openRollSetup(nodeChar, sName, "help", sAttribute);
+		return false;
+	elseif sKey == "fortitude" then
+		manager_kult.openRollSetup(nodeChar, sName, "endure", sAttribute);
+		return false;
+	elseif not sKey then
+		manager_kult.openRollSetup(nodeChar, sName, "", "");
 		return false;
 	end
 	return true;

@@ -100,11 +100,11 @@ function getStressModifiers(nStability)
 	return 0, 0, 0;
 end
 
--- Kult modifiers of a roll: a list of { sLabel, nValue }, and the Harm included in it.
+-- Kult modifiers of a roll: a list of { sLabel, nValue }.
 -- Help or Hinder uses the attribute of the other PC's move, so the attribute's own rules do not apply.
-function getRollModifiers(charNode, sAttribute, bDisadvantage, bHelpHinder)
+-- nHarm and nArmor come from the roll setup window; without them Endure Injury uses the sheet armor and no Harm.
+function getRollModifiers(charNode, sAttribute, bDisadvantage, bHelpHinder, nHarm, nArmor)
 	local aMods = {};
-	local nHarm = 0;
 
 	local bSeriousWound = false;
 	for i = 1, 4 do
@@ -128,12 +128,11 @@ function getRollModifiers(charNode, sAttribute, bDisadvantage, bHelpHinder)
 
 	-- Endure Injury (the only Fortitude move): +armor -Harm
 	if sAttributeKey == "fortitude" then
-		local nArmor = DB.getValue(charNode, "armor", 0);
-		if nArmor ~= 0 then
-			table.insert(aMods, { sLabel = Interface.getString("ARMOR"), nValue = nArmor });
+		local nArmorValue = nArmor or DB.getValue(charNode, "armor", 0);
+		if nArmorValue ~= 0 then
+			table.insert(aMods, { sLabel = Interface.getString("ARMOR"), nValue = nArmorValue });
 		end
-		nHarm = DB.getValue(charNode, "harm", 0);
-		if nHarm ~= 0 then
+		if (nHarm or 0) ~= 0 then
 			table.insert(aMods, { sLabel = Interface.getString("HARM"), nValue = -nHarm });
 		end
 	end
@@ -153,7 +152,7 @@ function getRollModifiers(charNode, sAttribute, bDisadvantage, bHelpHinder)
 		table.insert(aMods, { sLabel = Interface.getString("STABILITY"), nValue = nStabilityMod });
 	end
 
-	return aMods, nHarm;
+	return aMods;
 end
 
 function signed(n)
@@ -163,8 +162,8 @@ function signed(n)
 	return tostring(n);
 end
 
--- Tooltip of a roll button: the total modifier before rolling and its parts
-function getRollPreview(charNode, sAttribute, bDisadvantage, bHelpHinder)
+-- The total modifier before rolling and its parts, for tooltips and the roll setup window
+function getRollPreview(charNode, sAttribute, bDisadvantage, bHelpHinder, nHarm, nArmor)
 	if not charNode then
 		return "";
 	end
@@ -178,7 +177,7 @@ function getRollPreview(charNode, sAttribute, bDisadvantage, bHelpHinder)
 		nTotal = DB.getValue(charNode, sKey, 0);
 		table.insert(aParts, getAttributeName(sKey) .. " " .. signed(nTotal));
 	end
-	local aMods = getRollModifiers(charNode, sAttribute, bDisadvantage, bHelpHinder);
+	local aMods = getRollModifiers(charNode, sAttribute, bDisadvantage, bHelpHinder, nHarm, nArmor);
 	for _,rMod in ipairs(aMods) do
 		nTotal = nTotal + rMod.nValue;
 		table.insert(aParts, rMod.sLabel .. " " .. signed(rMod.nValue));
@@ -194,7 +193,8 @@ end
 function modRoll(rSource, rTarget, rRoll)
 	local charNode = ActorManager.getCreatureNode(rSource);
 	if charNode then
-		local aMods, nHarm = getRollModifiers(charNode, rRoll["attribute"], rRoll["disadvantage"] == "1", isHelpHinderMove(rRoll["move"]));
+		local aMods = getRollModifiers(charNode, rRoll["attribute"], rRoll["disadvantage"] == "1", isHelpHinderMove(rRoll["move"]),
+			tonumber(rRoll["kultharm"]), tonumber(rRoll["kultarmor"]));
 		local nTotal = 0;
 		local sMods = "";
 		for _,rMod in ipairs(aMods) do
@@ -206,10 +206,28 @@ function modRoll(rSource, rTarget, rRoll)
 		rRoll.sKultApplied = tostring(nTotal);
 		rRoll.sKultDesc = rRoll.sKultDesc or rRoll.sDesc;
 		rRoll.sDesc = rRoll.sKultDesc .. sMods;
-		rRoll.sKultHarm = tostring(nHarm);
 	end
 	-- true keeps the dice expression of Ruleset Wizard rolls ("2d10+attribute")
 	return true;
+end
+
+-- Endure Injury, Help or Hinder and moves without attribute need data the sheet does not have
+function openRollSetup(nodeChar, sName, sMove, sAttribute)
+	local w = Interface.openWindow("kult_roll_setup", "");
+	if w then
+		w.configure(nodeChar, { sName = sName, sMove = sMove, sAttribute = sAttribute });
+	end
+end
+
+-- The roll prepared in the setup window; modRoll adds the Kult modifiers as in any other roll
+function performSetupRoll(nodeChar, sName, sAttributeKey, nHarm, nArmor)
+	local rRoll = { sType = "btnRollRollAction", sDesc = Interface.getString("ROLL_MOVE") .. " " .. sName,
+		aDice = { "d10", "d10" }, nMod = DB.getValue(nodeChar, sAttributeKey, 0), attribute = sAttributeKey, move = sName };
+	if nHarm then
+		rRoll.kultharm = tostring(nHarm);
+		rRoll.kultarmor = tostring(nArmor or 0);
+	end
+	ActionsManager.performAction(nil, ActorManager.resolveActor(nodeChar), rRoll);
 end
 
 function resolveRoll(rSource, rTarget, rRoll)
@@ -234,14 +252,6 @@ function resolveRoll(rSource, rTarget, rRoll)
 	end
 	
     Comm.deliverChatMessage(rMessage);    
-
-	-- Endure Injury: the Harm entered on the sheet has been used
-	if (tonumber(rRoll.sKultHarm) or 0) ~= 0 then
-		local charNode = ActorManager.getCreatureNode(rSource);
-		if charNode and DB.isOwner(charNode) then
-			DB.setValue(charNode, "harm", "number", 0);
-		end
-	end
 end
 
 function trim(s)

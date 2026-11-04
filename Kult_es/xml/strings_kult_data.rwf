@@ -29,6 +29,12 @@
 	&lt;string name="ROLL_ATTRIBUTE"&gt;Tirada de %s&lt;/string&gt;
 	&lt;string name="ROLL_MOVE"&gt;Movimiento:&lt;/string&gt;
 	&lt;string name="ROLL_PREVIEW_MODSTACK"&gt;+ pila de modificadores&lt;/string&gt;
+	&lt;string name="ROLL_SETUP_ROLL"&gt;Tirar&lt;/string&gt;
+	&lt;string name="ROLL_SETUP_CANCEL"&gt;Cancelar&lt;/string&gt;
+	&lt;string name="ROLL_SETUP_CHOOSE_ATTRIBUTE"&gt;Elige el atributo del movimiento&lt;/string&gt;
+	&lt;string name="kult_roll_setup_lblAttribute_LabelCaption"&gt;Atributo&lt;/string&gt;
+	&lt;string name="kult_roll_setup_lblHarm_LabelCaption"&gt;Daño&lt;/string&gt;
+	&lt;string name="kult_roll_setup_lblArmor_LabelCaption"&gt;Armadura&lt;/string&gt;
 	&lt;string name="advantagedisadvantage_name_EmptyText_Disadvantage"&gt;Nueva Desventaja&lt;/string&gt;
 
 	&lt;string name="tab_main"&gt;Principal&lt;/string&gt;

@@ -91,9 +91,7 @@ Kult</RulesetList>
 	&lt;string name="charsheet_main_lblAttributes_LabelCaption"&gt;Atributos&lt;/string&gt;
 	&lt;string name="charsheet_main_lblArchetype_LabelCaption"&gt;Heridas&lt;/string&gt;
 	&lt;string name="charsheet_main_wounds_Tooltip"&gt;Heridas&lt;/string&gt;
-	&lt;string name="charsheet_main_lblHarm_LabelCaption"&gt;Daño&lt;/string&gt;
-	&lt;string name="charsheet_main_harm_Tooltip"&gt;Daño que vas a soportar: se resta en la tirada de Soportar las heridas y vuelve a 0&lt;/string&gt;
-	&lt;string name="charsheet_main_armor_Tooltip"&gt;Se suma a la tirada de Soportar las heridas&lt;/string&gt;
+	&lt;string name="charsheet_main_armor_Tooltip"&gt;Armadura por defecto para Soportar las heridas (se puede cambiar en cada tirada)&lt;/string&gt;
 	&lt;string name="charsheet_main_wound1sta_Tooltip"&gt;Estabilizado&lt;/string&gt;
 	&lt;string name="charsheet_main_wound2sta_Tooltip"&gt;Estabilizado&lt;/string&gt;
 	&lt;string name="charsheet_main_wound3sta_Tooltip"&gt;Estabilizado&lt;/string&gt;
@@ -213,6 +211,12 @@ Kult</RulesetList>
 	&lt;string name="ROLL_ATTRIBUTE"&gt;Tirada de %s&lt;/string&gt;
 	&lt;string name="ROLL_MOVE"&gt;Movimiento:&lt;/string&gt;
 	&lt;string name="ROLL_PREVIEW_MODSTACK"&gt;+ pila de modificadores&lt;/string&gt;
+	&lt;string name="ROLL_SETUP_ROLL"&gt;Tirar&lt;/string&gt;
+	&lt;string name="ROLL_SETUP_CANCEL"&gt;Cancelar&lt;/string&gt;
+	&lt;string name="ROLL_SETUP_CHOOSE_ATTRIBUTE"&gt;Elige el atributo del movimiento&lt;/string&gt;
+	&lt;string name="kult_roll_setup_lblAttribute_LabelCaption"&gt;Atributo&lt;/string&gt;
+	&lt;string name="kult_roll_setup_lblHarm_LabelCaption"&gt;Daño&lt;/string&gt;
+	&lt;string name="kult_roll_setup_lblArmor_LabelCaption"&gt;Armadura&lt;/string&gt;
 	&lt;string name="advantagedisadvantage_name_EmptyText_Disadvantage"&gt;Nueva Desventaja&lt;/string&gt;
 
 	&lt;string name="tab_main"&gt;Principal&lt;/string&gt;
