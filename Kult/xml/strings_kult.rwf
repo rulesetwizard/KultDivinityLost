@@ -38,6 +38,36 @@
   &lt;string name="ATTRIBUTES_DONE"&gt;Done&lt;/string&gt;
   &lt;string name="WOUND_PENALTY"&gt;Wound penalty to all rolls: %s&lt;/string&gt;
 
+  &lt;string name="XP_CHOOSE"&gt;Choose&lt;/string&gt;
+  &lt;string name="XP_APPLY"&gt;Apply&lt;/string&gt;
+  &lt;string name="XP_UNDO"&gt;Undo last advancement&lt;/string&gt;
+  &lt;string name="XP_EDIT_BOXES"&gt;Edit boxes&lt;/string&gt;
+  &lt;string name="XP_TOTAL"&gt;Advancements taken: %d&lt;/string&gt;
+  &lt;string name="XP_UNLOCKED"&gt;Unlocked&lt;/string&gt;
+  &lt;string name="XP_REMAINING"&gt;%d advancements to go&lt;/string&gt;
+  &lt;string name="XP_COST"&gt;Cost: %d XP.&lt;/string&gt;
+  &lt;string name="XP_NOT_OWNER"&gt;Only who can edit the character can choose advancements.&lt;/string&gt;
+  &lt;string name="XP_EXHAUSTED"&gt;All the boxes of this option are used.&lt;/string&gt;
+  &lt;string name="XP_LOCKED"&gt;Available after %d advancements.&lt;/string&gt;
+  &lt;string name="XP_INSUFFICIENT"&gt;You need %d XP.&lt;/string&gt;
+  &lt;string name="XP_CHOOSE_ATTRIBUTE"&gt;Choose the attribute to increase.&lt;/string&gt;
+  &lt;string name="XP_AT_CAP"&gt;That attribute is already at the maximum of this option (%s).&lt;/string&gt;
+  &lt;string name="XP_ATTRIBUTE_CHANGE"&gt;%s %s → %s&lt;/string&gt;
+  &lt;string name="XP_CANNOT_UNDO"&gt;There is no advancement to undo, or its box or attribute changed afterwards.&lt;/string&gt;
+  &lt;string name="XP_CHAT_ADVANCE"&gt;Advancement (−%d XP): %s&lt;/string&gt;
+  &lt;string name="XP_CHAT_UNDO"&gt;Advancement undone (+%d XP): %s&lt;/string&gt;
+  &lt;string name="XP_NOTE"&gt;Each advancement costs %d XP: choose it with its button. Boxes marked before are kept and count as advancements.&lt;/string&gt;
+  &lt;string name="XP_NOTE_EDIT"&gt;Manual correction: the boxes change without spending or returning XP or changing attributes. Press Done when finished.&lt;/string&gt;
+  &lt;string name="XP_HINT_1"&gt;Raise any attribute, active or passive, by +1, up to +4.&lt;/string&gt;
+  &lt;string name="XP_HINT_2"&gt;Raise an active attribute (Reason, Intuition, Perception, Coolness, Violence, Charisma or Soul) by +1, up to +3.&lt;/string&gt;
+  &lt;string name="XP_HINT_3"&gt;Raise a passive attribute (Willpower, Fortitude or Reflexes) by +1, up to +3.&lt;/string&gt;
+  &lt;string name="XP_HINT_4"&gt;Take a new Advantage of your archetype: drag it to the Abilities tab. Here you record the advancement and pay its XP.&lt;/string&gt;
+  &lt;string name="XP_HINT_5"&gt;Raise any attribute, active or passive, by +1, up to +4.&lt;/string&gt;
+  &lt;string name="XP_HINT_6"&gt;Take a new Advantage of any Aware archetype: drag it to the Abilities tab. Here you record the advancement and pay its XP.&lt;/string&gt;
+  &lt;string name="XP_HINT_7"&gt;End your character's story as you wish and create a new Aware character, who starts with 2 advancements. Talk it over with the GM.&lt;/string&gt;
+  &lt;string name="XP_HINT_8"&gt;Change to another Aware archetype: erase one of your 3 starting Advantages and take 3 of the new archetype. Talk it over with the GM.&lt;/string&gt;
+  &lt;string name="XP_HINT_9"&gt;Become an Enlightened archetype: keep your attributes and Advantages and choose 3 abilities and a Limitation. Talk it over with the GM.&lt;/string&gt;
+
   &lt;string name="advantagedisadvantage_name_EmptyText_Disadvantage"&gt;New Disadvantage&lt;/string&gt;
     
   &lt;string name="COMPLETE SUCCESS"&gt;COMPLETE SUCCESS&lt;/string&gt;

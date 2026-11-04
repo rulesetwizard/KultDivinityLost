@@ -1,0 +1,276 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>kult_xp</ScriptName>
+    <FolderID>7</FolderID>
+    <Script>-- Advancements of the Aware archetypes (rulebook, Experience and character development).
+-- Each one costs 5 XP and crosses out a box of the XP tab; options of the second and third groups
+-- unlock after 5 and 10 advancements. Options with sGroup raise an attribute up to nCap.
+-- Boxes marked by hand before this existed are kept and count as advancements, without charging XP again.
+
+XP_COST = 5;
+
+local aOptions = {
+	{ nId = 1, nLimit = 1, nThreshold = 0, sGroup = "any", nCap = 4 },
+	{ nId = 2, nLimit = 6, nThreshold = 0, sGroup = "active", nCap = 3 },
+	{ nId = 3, nLimit = 2, nThreshold = 0, sGroup = "passive", nCap = 3 },
+	{ nId = 4, nLimit = 3, nThreshold = 0 },
+	{ nId = 5, nLimit = 2, nThreshold = 5, sGroup = "any", nCap = 4 },
+	{ nId = 6, nLimit = 2, nThreshold = 5 },
+	{ nId = 7, nLimit = 1, nThreshold = 5 },
+	{ nId = 8, nLimit = 1, nThreshold = 5 },
+	{ nId = 9, nLimit = 1, nThreshold = 10 },
+};
+local aPassive = { willpower = true, fortitude = true, reflexes = true };
+
+-- Applied advancements, newest has the highest "order"; used to undo the last one
+local HISTORY = "advancementhistory";
+
+function getOptions()
+	return aOptions;
+end
+
+function getOption(nId)
+	nId = tonumber(nId);
+	for _,rOption in ipairs(aOptions) do
+		if rOption.nId == nId then
+			return rOption;
+		end
+	end
+	return nil;
+end
+
+function getOptionName(rOption)
+	return Interface.getString("charsheet_xp_lblAdv" .. rOption.nId .. "_LabelCaption");
+end
+
+-- Single options are a checkbox (advN), the others a counter (advN_current / advN_max)
+function getCountField(rOption)
+	if rOption.nLimit &gt; 1 then
+		return "adv" .. rOption.nId .. "_current";
+	end
+	return "adv" .. rOption.nId;
+end
+
+function getUsed(node, rOption)
+	return math.max(0, math.floor(tonumber(DB.getValue(node, getCountField(rOption), 0)) or 0));
+end
+
+function getLimit(node, rOption)
+	if rOption.nLimit &gt; 1 then
+		return math.max(DB.getValue(node, "adv" .. rOption.nId .. "_max", rOption.nLimit), 1);
+	end
+	return 1;
+end
+
+function getTotal(node)
+	local nTotal = 0;
+	for _,rOption in ipairs(aOptions) do
+		nTotal = nTotal + getUsed(node, rOption);
+	end
+	return nTotal;
+end
+
+-- sKey must be an attribute key (willpower...soul) of the option's group
+function isAttributeAllowed(rOption, sKey)
+	if not rOption or not rOption.sGroup or not sKey or manager_kult.getAttributeKey(sKey) ~= sKey then
+		return false;
+	end
+	if rOption.sGroup == "any" then
+		return true;
+	end
+	if rOption.sGroup == "passive" then
+		return aPassive[sKey] == true;
+	end
+	return not aPassive[sKey];
+end
+
+function getAllowedAttributes(rOption)
+	local aKeys = {};
+	for _,sKey in ipairs(manager_kult.getAttributeKeys()) do
+		if isAttributeAllowed(rOption, sKey) then
+			table.insert(aKeys, sKey);
+		end
+	end
+	return aKeys;
+end
+
+-- Whether the option can be chosen now, and the text explaining it (tooltip of its button)
+function getAvailability(node, nId)
+	local rOption = getOption(nId);
+	if not rOption or not node or not DB.isOwner(node) then
+		return false, Interface.getString("XP_NOT_OWNER");
+	end
+	if getUsed(node, rOption) &gt;= getLimit(node, rOption) then
+		return false, Interface.getString("XP_EXHAUSTED");
+	end
+	if getTotal(node) &lt; rOption.nThreshold then
+		return false, string.format(Interface.getString("XP_LOCKED"), rOption.nThreshold);
+	end
+	if DB.getValue(node, "experiencePoints", 0) &lt; XP_COST then
+		return false, string.format(Interface.getString("XP_INSUFFICIENT"), XP_COST);
+	end
+	return true, string.format(Interface.getString("XP_COST"), XP_COST);
+end
+
+-- Checks an attribute for an option: returns the new value, or nil and the reason
+function checkAttribute(node, rOption, sKey)
+	if not isAttributeAllowed(rOption, sKey) then
+		return nil, Interface.getString("XP_CHOOSE_ATTRIBUTE");
+	end
+	local nValue = DB.getValue(node, sKey, 0);
+	if nValue &gt;= rOption.nCap then
+		return nil, string.format(Interface.getString("XP_AT_CAP"), manager_kult.signed(rOption.nCap));
+	end
+	return nValue + 1, nil;
+end
+
+function openAdvancement(node, nId)
+	local bOk, sMessage = getAvailability(node, nId);
+	if not bOk then
+		ChatManager.SystemMessage(sMessage);
+		return;
+	end
+	local w = Interface.openWindow("kult_advancement", "");
+	if w then
+		w.configure(node, nId);
+		w.bringToFront();
+	end
+end
+
+function getAttributeChange(sKey, nBefore, nAfter)
+	return string.format(Interface.getString("XP_ATTRIBUTE_CHANGE"), manager_kult.getAttributeName(sKey), manager_kult.signed(nBefore), manager_kult.signed(nAfter));
+end
+
+-- Pays the advancement, crosses out its box and raises the attribute; returns true or false and the reason
+function applyAdvance(node, nId, sKey)
+	local bOk, sMessage = getAvailability(node, nId);
+	if not bOk then
+		return false, sMessage;
+	end
+	local rOption = getOption(nId);
+	local nBefore, nAfter = nil, nil;
+	if rOption.sGroup then
+		local sError;
+		nAfter, sError = checkAttribute(node, rOption, sKey);
+		if not nAfter then
+			return false, sError;
+		end
+		nBefore = DB.getValue(node, sKey, 0);
+	else
+		sKey = "";
+	end
+
+	local nUsed = getUsed(node, rOption);
+	local nOrder = 1;
+	local nodeLast = getLastAdvance(node);
+	if nodeLast then
+		nOrder = DB.getValue(nodeLast, "order", 0) + 1;
+	end
+	local nodeEntry = DB.createChild(DB.createChild(node, HISTORY));
+	DB.setValue(nodeEntry, "order", "number", nOrder);
+	DB.setValue(nodeEntry, "option", "number", rOption.nId);
+	DB.setValue(nodeEntry, "count_before", "number", nUsed);
+	DB.setValue(nodeEntry, "attribute", "string", sKey);
+	if nAfter then
+		DB.setValue(nodeEntry, "value_before", "number", nBefore);
+		DB.setValue(node, sKey, "number", nAfter);
+	end
+	DB.setValue(node, "experiencePoints", "number", DB.getValue(node, "experiencePoints", 0) - XP_COST);
+	DB.setValue(node, getCountField(rOption), "number", nUsed + 1);
+
+	local sText = getOptionName(rOption);
+	if nAfter then
+		sText = getAttributeChange(sKey, nBefore, nAfter);
+	end
+	sendChat(node, string.format(Interface.getString("XP_CHAT_ADVANCE"), XP_COST, sText));
+	return true;
+end
+
+function getLastAdvance(node)
+	local nodeLast, nLast = nil, -1;
+	for _,nodeEntry in pairs(DB.getChildren(node, HISTORY)) do
+		local nOrder = DB.getValue(nodeEntry, "order", 0);
+		if nOrder &gt; nLast then
+			nodeLast, nLast = nodeEntry, nOrder;
+		end
+	end
+	return nodeLast;
+end
+
+-- The last advancement can be undone only if its box and attribute are still as it left them
+function canUndo(node)
+	if not node or not DB.isOwner(node) then
+		return false;
+	end
+	local nodeEntry = getLastAdvance(node);
+	if not nodeEntry then
+		return false;
+	end
+	local rOption = getOption(DB.getValue(nodeEntry, "option", 0));
+	if not rOption or getUsed(node, rOption) ~= DB.getValue(nodeEntry, "count_before", 0) + 1 then
+		return false;
+	end
+	local sKey = DB.getValue(nodeEntry, "attribute", "");
+	return sKey == "" or DB.getValue(node, sKey, 0) == DB.getValue(nodeEntry, "value_before", 0) + 1;
+end
+
+-- Text of the last advancement (tooltip of the undo button)
+function getLastAdvanceText(node)
+	local nodeEntry = getLastAdvance(node);
+	if not nodeEntry then
+		return "";
+	end
+	local rOption = getOption(DB.getValue(nodeEntry, "option", 0));
+	if not rOption then
+		return "";
+	end
+	local sKey = DB.getValue(nodeEntry, "attribute", "");
+	if sKey ~= "" then
+		local nBefore = DB.getValue(nodeEntry, "value_before", 0);
+		return getAttributeChange(sKey, nBefore, nBefore + 1);
+	end
+	return getOptionName(rOption);
+end
+
+function undoLastAdvance(node)
+	if not canUndo(node) then
+		ChatManager.SystemMessage(Interface.getString("XP_CANNOT_UNDO"));
+		return false;
+	end
+	local sText = getLastAdvanceText(node);
+	local nodeEntry = getLastAdvance(node);
+	local rOption = getOption(DB.getValue(nodeEntry, "option", 0));
+	local sKey = DB.getValue(nodeEntry, "attribute", "");
+	-- The entry goes first, so the sheet refreshes against the remaining history
+	local nCountBefore = DB.getValue(nodeEntry, "count_before", 0);
+	local nValueBefore = DB.getValue(nodeEntry, "value_before", 0);
+	DB.deleteNode(nodeEntry);
+	if sKey ~= "" then
+		DB.setValue(node, sKey, "number", nValueBefore);
+	end
+	DB.setValue(node, "experiencePoints", "number", DB.getValue(node, "experiencePoints", 0) + XP_COST);
+	DB.setValue(node, getCountField(rOption), "number", nCountBefore);
+	sendChat(node, string.format(Interface.getString("XP_CHAT_UNDO"), XP_COST, sText));
+	return true;
+end
+
+-- Manual corrections of the boxes break the link with the history: it is cleared so nothing old can be undone
+function clearHistory(node)
+	if node and DB.isOwner(node) then
+		local nodeHistory = DB.getChild(node, HISTORY);
+		if nodeHistory then
+			DB.deleteNode(nodeHistory);
+		end
+	end
+end
+
+function sendChat(node, sText)
+	local rMessage = ChatManager.createBaseMessage(ActorManager.resolveActor(node), User.getUsername());
+	rMessage.text = sText;
+	Comm.deliverChatMessage(rMessage);
+end
+</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>
