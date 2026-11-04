@@ -211,23 +211,76 @@ function modRoll(rSource, rTarget, rRoll)
 	return true;
 end
 
--- Endure Injury, Help or Hinder and moves without attribute need data the sheet does not have
-function openRollSetup(nodeChar, sName, sMove, sAttribute)
+-- Opens the roll setup window. rData: sName, sDesc, sMove ("endure", "help" or ""), sAttribute,
+-- sRecord (move or trait of the sheet), aGroups (labels of a trait with several rolls), bTrait, bDisadvantage
+function openRollSetup(nodeChar, rData)
 	local w = Interface.openWindow("kult_roll_setup", "");
 	if w then
-		w.configure(nodeChar, { sName = sName, sMove = sMove, sAttribute = sAttribute });
+		w.configure(nodeChar, rData);
+		-- Opened from a double click on the sheet, which gets the focus back afterwards
+		w.bringToFront();
 	end
 end
 
 -- The roll prepared in the setup window; modRoll adds the Kult modifiers as in any other roll
-function performSetupRoll(nodeChar, sName, sAttributeKey, nHarm, nArmor)
-	local rRoll = { sType = "btnRollRollAction", sDesc = Interface.getString("ROLL_MOVE") .. " " .. sName,
-		aDice = { "d10", "d10" }, nMod = DB.getValue(nodeChar, sAttributeKey, 0), attribute = sAttributeKey, move = sName };
+function performSetupRoll(nodeChar, rData, sAttributeKey, nHarm, nArmor, nGroup)
+	local rRoll = { sType = "btnRollRollAction", sDesc = rData.sDesc or (Interface.getString("ROLL_MOVE") .. " " .. rData.sName),
+		aDice = { "d10", "d10" }, nMod = 0, attribute = sAttributeKey or "" };
+	if sAttributeKey then
+		rRoll.nMod = DB.getValue(nodeChar, sAttributeKey, 0);
+	end
+	if not rData.bTrait then
+		rRoll.move = rData.sName;
+	end
+	if rData.sRecord then
+		rRoll.kultrecord = rData.sRecord;
+	end
+	if nGroup then
+		rRoll.kultresult = tostring(nGroup);
+	end
+	if rData.bDisadvantage then
+		rRoll.disadvantage = "1";
+	end
 	if nHarm then
 		rRoll.kultharm = tostring(nHarm);
 		rRoll.kultarmor = tostring(nArmor or 0);
 	end
 	ActionsManager.performAction(nil, ActorManager.resolveActor(nodeChar), rRoll);
+end
+
+function findMove(charNode, sName)
+	for _,node in pairs(DB.getChildren(charNode, "moveslist")) do
+		if trim(DB.getValue(node, "name", "")) == trim(sName) then
+			return node;
+		end
+	end
+	return nil;
+end
+
+-- The move or trait of the sheet whose description holds the results of the roll
+function getRollRecord(charNode, rRoll)
+	local sRecord = rRoll["kultrecord"] or "";
+	if sRecord ~= "" then
+		-- Only records of the character that rolls
+		local sPrefix = DB.getPath(charNode) .. ".";
+		if sRecord:sub(1, #sPrefix) == sPrefix then
+			return DB.findNode(sRecord);
+		end
+		return nil;
+	end
+	if (rRoll["move"] or "") ~= "" then
+		return findMove(charNode, rRoll["move"]);
+	end
+	-- An attribute roll of the sheet is the basic move of that attribute
+	if rRoll.sType ~= "btnRollRollAction" then
+		local sKey = getAttributeKey(rRoll["attribute"]);
+		for sName, rMove in pairs(data_kult.getMoves()) do
+			if sKey and getAttributeKey(rMove.attribute) == sKey then
+				return findMove(charNode, Interface.getString(sName)) or findMove(charNode, sName);
+			end
+		end
+	end
+	return nil;
 end
 
 function resolveRoll(rSource, rTarget, rRoll)
@@ -249,6 +302,18 @@ function resolveRoll(rSource, rTarget, rRoll)
 	end
 	if isHelpHinderMove(rRoll["move"]) then
 		rMessage.text = rMessage.text .. ' [' .. Interface.getString(sHelpHinder) .. ']';
+	end
+
+	-- The result text of the move or trait, taken from its description
+	local charNode = ActorManager.getCreatureNode(rSource);
+	if charNode then
+		local sResult, sContext = kult_results.getResult(getRollRecord(charNode, rRoll), total, tonumber(rRoll["kultresult"]));
+		if sResult then
+			if sContext then
+				rMessage.text = rMessage.text .. "\n" .. sContext;
+			end
+			rMessage.text = rMessage.text .. "\n" .. sResult;
+		end
 	end
 	
     Comm.deliverChatMessage(rMessage);    

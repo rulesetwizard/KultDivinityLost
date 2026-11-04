@@ -754,10 +754,20 @@ function onHover(bOnControl)
 	end
 end
 
+-- The generated double click returns nil when the roll is cancelled to open the setup window,
+-- and FG then raises the sheet (read-only field) over that window: report it as handled
+function onInit()
+	local fGeneratedDoubleClick = onDoubleClick;
+	onDoubleClick = function(x, y)
+		fGeneratedDoubleClick(x, y);
+		return true;
+	end
+end
+
 -- Fortitude is only used to Endure Injury: double click asks for the Harm first (dragging rolls with the sheet armor)
 function onBeforeDiceRoll(dragInfo)
 	if not dragInfo then
-		manager_kult.openRollSetup(window.getDatabaseNode(), Interface.getString("Endure Injury"), "endure", "fortitude");
+		manager_kult.openRollSetup(window.getDatabaseNode(), { sName = Interface.getString("Endure Injury"), sMove = "endure", sAttribute = "fortitude" });
 		return false;
 	end
 	return true;

@@ -75,6 +75,12 @@ Source code available at https://github.com/rulesetwizard/KultDivinityLost</Anno
   <Folders>
     <ID>7</ID>
     <ParentFolderID>0</ParentFolderID>
+    <Folder>scripts</Folder>
+    <Exclude>false</Exclude>
+  </Folders>
+  <Folders>
+    <ID>8</ID>
+    <ParentFolderID>0</ParentFolderID>
     <Folder>SideBar</Folder>
     <Exclude>false</Exclude>
   </Folders>
@@ -1375,6 +1381,21 @@ function getAttributeSuffix()
 	return "";
 end
 
+-- The roll carries this trait, whose description gives the result text.
+-- A trait with several rolls asks which one first.
+function onBeforeDiceRoll(dragInfo)
+	local node = window.getDatabaseNode();
+	local aLabels = kult_results.getGroupLabels(node);
+	if #aLabels &gt; 1 then
+		manager_kult.openRollSetup(window.windowlist.window.getDatabaseNode(), { sName = DB.getValue(node, "name", ""),
+			sDesc = DB.getValue(node, "name", "") .. getAttributeSuffix(), sAttribute = DB.getValue(node, "attribute", ""),
+			sRecord = DB.getPath(node), aGroups = aLabels, bTrait = true, bDisadvantage = (DB.getValue(node, "isdisadvantage", 0) == 1) });
+		return false;
+	end
+	DiceRollAdditionalInfo["kultrecord"] = DB.getPath(node);
+	return true;
+end
+
 -- Tooltip with the modifier the roll will have
 function onHover(bOnControl)
 	if bOnControl then
@@ -2044,22 +2065,27 @@ function getAttributeValue()
 	return 0;
 end
 
--- Endure Injury, Help or Hinder and moves without attribute open the roll setup window instead of rolling
+-- Endure Injury, Help or Hinder and moves without attribute open the roll setup window instead of rolling.
+-- The roll carries this move, whose description gives the result text.
 function onBeforeDiceRoll(dragInfo)
 	local sName = window.name.getValue();
 	local sAttribute = window.attribute.getValue();
 	local sKey = manager_kult.getAttributeKey(sAttribute);
 	local nodeChar = window.windowlist.window.getDatabaseNode();
+	local sRecord = DB.getPath(window.getDatabaseNode());
+	local sMove = nil;
 	if manager_kult.isHelpHinderMove(sName) then
-		manager_kult.openRollSetup(nodeChar, sName, "help", sAttribute);
-		return false;
+		sMove = "help";
 	elseif sKey == "fortitude" then
-		manager_kult.openRollSetup(nodeChar, sName, "endure", sAttribute);
-		return false;
+		sMove = "endure";
 	elseif not sKey then
-		manager_kult.openRollSetup(nodeChar, sName, "", "");
+		sMove = "";
+	end
+	if sMove then
+		manager_kult.openRollSetup(nodeChar, { sName = sName, sMove = sMove, sAttribute = sAttribute, sRecord = sRecord });
 		return false;
 	end
+	DiceRollAdditionalInfo["kultrecord"] = sRecord;
 	return true;
 end
 
@@ -2128,7 +2154,26 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onInit()
+	local node = getDatabaseNode();
+	if not DB.isOwner(node) or DB.isReadOnly(node) then
+		return;
+	end
+	-- The link opens this row in the move window, with its description
+	local _, sRecord = DB.getValue(node, "shortcut", "", "");
+	if (sRecord or "") == "" then
+		DB.setValue(node, "shortcut", "windowreference", "move", DB.getPath(node));
+	end
+	-- The basic moves are added without description: take it from the loaded modules
+	if manager_kult.trim(DB.getValue(node, "description", "")) == "" then
+		local sDescription = kult_results.getModuleMoveDescription(DB.getValue(node, "name", ""));
+		if sDescription ~= "" then
+			DB.setValue(node, "description", "string", sDescription);
+		end
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -4979,10 +5024,20 @@ function onHover(bOnControl)
 	end
 end
 
+-- The generated double click returns nil when the roll is cancelled to open the setup window,
+-- and FG then raises the sheet (read-only field) over that window: report it as handled
+function onInit()
+	local fGeneratedDoubleClick = onDoubleClick;
+	onDoubleClick = function(x, y)
+		fGeneratedDoubleClick(x, y);
+		return true;
+	end
+end
+
 -- Fortitude is only used to Endure Injury: double click asks for the Harm first (dragging rolls with the sheet armor)
 function onBeforeDiceRoll(dragInfo)
 	if not dragInfo then
-		manager_kult.openRollSetup(window.getDatabaseNode(), Interface.getString("Endure Injury"), "endure", "fortitude");
+		manager_kult.openRollSetup(window.getDatabaseNode(), { sName = Interface.getString("Endure Injury"), sMove = "endure", sAttribute = "fortitude" });
 		return false;
 	end
 	return true;
@@ -18479,7 +18534,7 @@ end
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XMLCode"},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"178"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"238"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"250"}}
 ]}}</Definition>
     <LUACode>function onButtonPress()
 	window.close();
@@ -18538,7 +18593,7 @@ end
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XMLCode"},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"284"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"238"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"250"}}
 ]}}</Definition>
     <LUACode>function onButtonPress()
 	window.perform();
@@ -18619,7 +18674,7 @@ end
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"kult_roll_setup"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DataSource"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"285"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"300"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"400"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
@@ -18662,8 +18717,9 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode>-- Prepares a roll that needs data the sheet does not have: the Harm of Endure Injury or the attribute of Help or Hinder.
--- The controls are sourceless: nothing typed here is stored on the character.
+    <LUACode>-- Prepares a roll that needs data the sheet does not have: the Harm of Endure Injury, the attribute of Help or Hinder
+-- and of moves without one, or which roll of a trait with several. The controls are sourceless: nothing typed here is
+-- stored on the character. rData is described in manager_kult.openRollSetup.
 local sCharPath = "";
 local rSetup = nil;
 
@@ -18673,24 +18729,51 @@ function configure(nodeChar, rData)
 	title.setValue(rData.sName);
 
 	local bEndure = (rData.sMove == "endure");
-	lblAttribute.setVisible(not bEndure);
-	attribute.setVisible(not bEndure);
+	local bGroups = (rData.aGroups ~= nil) and (#rData.aGroups &gt; 1);
+	-- A trait rolls its own attribute
+	local bChooseAttribute = not bEndure and not rData.bTrait;
+	lblAttribute.setVisible(bChooseAttribute);
+	attribute.setVisible(bChooseAttribute);
 	lblHarm.setVisible(bEndure);
 	harm.setVisible(bEndure);
 	lblArmor.setVisible(bEndure);
 	armor.setVisible(bEndure);
+	lblResult.setVisible(bGroups);
+	result.setVisible(bGroups);
 
 	attribute.setValue(manager_kult.getAttributeKey(rData.sAttribute) or "");
 	harm.setValue(0);
 	armor.setValue(DB.getValue(nodeChar, "armor", 0));
+	result.clear(true);
+	if bGroups then
+		local aItems = {};
+		for k,sLabel in ipairs(rData.aGroups) do
+			table.insert(aItems, { sValue = tostring(k), sText = sLabel });
+		end
+		result.addItems(aItems);
+		result.setValue("1");
+	end
 	refresh();
 end
 
 function getAttribute()
-	if rSetup and rSetup.sMove == "endure" then
+	if not rSetup then
+		return "";
+	end
+	if rSetup.sMove == "endure" then
 		return "fortitude";
 	end
+	if rSetup.bTrait then
+		return rSetup.sAttribute or "";
+	end
 	return attribute.getValue();
+end
+
+function getEndureValues()
+	if rSetup and rSetup.sMove == "endure" then
+		return harm.getValue(), armor.getValue();
+	end
+	return nil, nil;
 end
 
 function refresh()
@@ -18698,31 +18781,32 @@ function refresh()
 		return;
 	end
 	local sKey = manager_kult.getAttributeKey(getAttribute());
-	local nHarm, nArmor = nil, nil;
-	if rSetup.sMove == "endure" then
-		nHarm = harm.getValue();
-		nArmor = armor.getValue();
-	end
-	if sKey then
-		preview.setValue(manager_kult.getRollPreview(DB.findNode(sCharPath), sKey, false, rSetup.sMove == "help", nHarm, nArmor));
+	local nHarm, nArmor = getEndureValues();
+	-- Traits can roll +0; moves need an attribute
+	local bCanRoll = (sKey ~= nil) or rSetup.bTrait;
+	if bCanRoll then
+		preview.setValue(manager_kult.getRollPreview(DB.findNode(sCharPath), sKey or "", rSetup.bDisadvantage, rSetup.sMove == "help", nHarm, nArmor));
 	else
 		preview.setValue(Interface.getString("ROLL_SETUP_CHOOSE_ATTRIBUTE"));
 	end
-	btnRoll.setVisible(sKey ~= nil);
+	btnRoll.setVisible(bCanRoll);
 end
 
 function perform()
 	local nodeChar = DB.findNode(sCharPath);
-	local sKey = manager_kult.getAttributeKey(getAttribute());
-	if not rSetup or not nodeChar or not sKey then
+	if not rSetup or not nodeChar then
 		return;
 	end
-	local nHarm, nArmor = nil, nil;
-	if rSetup.sMove == "endure" then
-		nHarm = harm.getValue();
-		nArmor = armor.getValue();
+	local sKey = manager_kult.getAttributeKey(getAttribute());
+	if not sKey and not rSetup.bTrait then
+		return;
 	end
-	manager_kult.performSetupRoll(nodeChar, rSetup.sName, sKey, nHarm, nArmor);
+	local nHarm, nArmor = getEndureValues();
+	local nGroup = nil;
+	if rSetup.aGroups and #rSetup.aGroups &gt; 1 then
+		nGroup = tonumber(result.getValue()) or 1;
+	end
+	manager_kult.performSetupRoll(nodeChar, rSetup, sKey, nHarm, nArmor, nGroup);
 	close();
 end
 </LUACode>
@@ -18902,6 +18986,63 @@ end
   </WindowControls>
   <WindowControls>
     <WindowName>kult_roll_setup</WindowName>
+    <ControlName>lblResult</ControlName>
+    <ZIndex>12</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"lblResult"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"352"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"DropTypes"},
+      {"Name":"DynamicSize"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"sheetlabel"}},
+      {"Name":"FrameHideReadonly"},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Which roll?"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"24"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"74"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>kult_roll_setup</WindowName>
     <ControlName>menu</ControlName>
     <ZIndex>1</ZIndex>
     <ControlClass>FGCustomControl</ControlClass>
@@ -18969,7 +19110,7 @@ end
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"preview"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"100"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"90"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"352"}},
       {"Name":"DevelopmentComments"},
@@ -19007,9 +19148,68 @@ end
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"24"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"112"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"134"}}
 ]}}</Definition>
     <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>kult_roll_setup</WindowName>
+    <ControlName>result</ControlName>
+    <ZIndex>13</ZIndex>
+    <ControlClass>FGCustomControl</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"result"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomClassName","Value":{"@xsi:type":"xsd:string","#text":"comboboxc"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty","CustomProperty":[{"PropertyName":"unsorted","PropertyValue":null,"PropertyAttributes":null,"ParentElement":null,"XMLCode":null},{"PropertyName":"listmaxsize","PropertyValue":"6","PropertyAttributes":null,"ParentElement":null,"XMLCode":null}]}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"26"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"352"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"DropTypes"},
+      {"Name":"DynamicSize"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameHideReadonly"},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XMLCode"},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"24"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"98"}}
+]}}</Definition>
+    <LUACode>function onSelect()
+	window.refresh();
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -21181,6 +21381,228 @@ end</Script>
     <Encoding />
   </Scripts>
   <Scripts>
+    <ScriptName>kult_results</ScriptName>
+    <FolderID>7</FolderID>
+    <Script>-- Reads the results (15+, 10-14, -9) printed in the description of moves, advantages and disadvantages.
+-- A description can hold several rolls ("When you build a bomb... / When you disarm a bomb..."): each one is a group.
+
+-- Typographic characters of the module texts, as UTF-8 bytes (this script is not saved as UTF-8)
+local EN_DASH = "\226\128\147";
+local MINUS = "\226\136\146";
+local EM_DASH = "\226\128\148";
+local LESS_EQUAL = "\226\137\164";
+local BULLET = "\226\128\162";
+
+-- Text after the -9 result that belongs to every result: options, questions, hold...
+local aSharedStarts = { "[Oo]pciones[^\n:]*:", "[Oo]ptions[^\n:]*:", "[Pp]reguntas%s*:", "[Qq]uestions%s*:",
+	"[Bb]azas%s*:", "[Hh]old%s*:", "\n%s*El director puede gastar", "\n%s*Puedes gastar", "\n%s*Los puntos pueden" };
+
+-- Book references and pointers to the manual are not part of any result
+local aTrailers = { "\n%s*Referencia al libro original", "\n%s*Para explicaciones y ejemplos", "\n%s*Reference" };
+
+-- Where a trigger starts inside a longer context
+local aTriggerStarts = { "[Ss]iempre que", "[Cc]uando", "[Ww]hen" };
+
+local function trim(s)
+	return (s or ""):match("^%s*(.-)%s*$");
+end
+
+-- Trims and removes a bullet left alone at the end
+local function clean(s)
+	s = trim(s);
+	while s:sub(-#BULLET) == BULLET do
+		s = trim(s:sub(1, -#BULLET - 1));
+	end
+	return s;
+end
+
+local function normalize(s)
+	s = s:gsub("\r", ""):gsub(EN_DASH, "-"):gsub(MINUS, "-"):gsub(EM_DASH, "-"):gsub(LESS_EQUAL, "&lt;=");
+	for _,sPattern in ipairs(aTrailers) do
+		local nStart = s:find(sPattern);
+		if nStart then
+			s = s:sub(1, nStart - 1);
+		end
+	end
+	return s;
+end
+
+local function getBand(sMark)
+	local s = sMark:gsub("%s", "");
+	if s == "15+" then
+		return "high";
+	elseif s == "10-14" then
+		return "middle";
+	elseif s == "-9" or s == "9-" or s == "&lt;=9" then
+		return "low";
+	end
+	return nil;
+end
+
+-- Groups of { sContext, nContextStart, tResults = { high, middle, low }, sShared }
+function parse(sText)
+	local s = normalize(sText or "");
+
+	local aMarks = {};
+	for nStart, sBody, nFinish in s:gmatch("()%(([^()]*)%)()") do
+		local sBand = getBand(sBody);
+		if sBand then
+			if s:sub(nStart - 1, nStart - 1) == "[" then
+				nStart = nStart - 1;
+			end
+			if s:sub(nFinish, nFinish) == "]" then
+				nFinish = nFinish + 1;
+			end
+			table.insert(aMarks, { sBand = sBand, nStart = nStart, nFinish = nFinish });
+		end
+	end
+
+	-- A group is a 15+ mark followed by a 10-14 and a -9 one
+	local aGroups = {};
+	local i = 1;
+	while i &lt;= #aMarks - 2 do
+		if aMarks[i].sBand == "high" and aMarks[i + 1].sBand == "middle" and aMarks[i + 2].sBand == "low" then
+			table.insert(aGroups, { rHigh = aMarks[i], rMiddle = aMarks[i + 1], rLow = aMarks[i + 2] });
+			i = i + 3;
+		else
+			i = i + 1;
+		end
+	end
+
+	-- The trigger of a group is the last line before its 15+ mark
+	for k,rGroup in ipairs(aGroups) do
+		local nPrior = 1;
+		if k &gt; 1 then
+			nPrior = aGroups[k - 1].rLow.nFinish;
+		end
+		local sBefore = s:sub(nPrior, rGroup.rHigh.nStart - 1):gsub("%s+$", "");
+		local nLastNewline = 0;
+		for nPos in sBefore:gmatch("()\n") do
+			nLastNewline = nPos;
+		end
+		rGroup.nContextStart = nPrior + nLastNewline;
+		rGroup.sContext = clean(sBefore:sub(nLastNewline + 1));
+	end
+
+	for k,rGroup in ipairs(aGroups) do
+		local nEnd = #s;
+		if aGroups[k + 1] then
+			nEnd = aGroups[k + 1].nContextStart - 1;
+		end
+		local sLow = s:sub(rGroup.rLow.nFinish, nEnd);
+		local nShared = nil;
+		for _,sPattern in ipairs(aSharedStarts) do
+			local nPos = sLow:find(sPattern);
+			if nPos and (not nShared or nPos &lt; nShared) then
+				nShared = nPos;
+			end
+		end
+		rGroup.sShared = "";
+		if nShared then
+			rGroup.sShared = clean(sLow:sub(nShared));
+			sLow = sLow:sub(1, nShared - 1);
+		end
+		rGroup.tResults = {
+			high = clean(s:sub(rGroup.rHigh.nFinish, rGroup.rMiddle.nStart - 1)),
+			middle = clean(s:sub(rGroup.rMiddle.nFinish, rGroup.rLow.nStart - 1)),
+			low = clean(sLow),
+		};
+	end
+
+	return aGroups;
+end
+
+-- Description of a move of the loaded modules, for the basic moves added to the sheet without one
+function getModuleMoveDescription(sName)
+	sName = trim(sName);
+	if sName == "" then
+		return "";
+	end
+	for _,node in ipairs(DB.getChildrenGlobal("reference.moves")) do
+		if trim(DB.getValue(node, "name", "")) == sName then
+			return DB.getValue(node, "description", "");
+		end
+	end
+	return "";
+end
+
+function getDescription(node)
+	local sDescription = DB.getValue(node, "description", "");
+	if trim(sDescription) == "" and DB.getPath(node):find("%.moveslist%.") then
+		sDescription = getModuleMoveDescription(DB.getValue(node, "name", ""));
+	end
+	return sDescription;
+end
+
+function getGroups(node)
+	if not node then
+		return {};
+	end
+	return parse(getDescription(node));
+end
+
+-- Labels for choosing the roll of a description with several groups
+function getGroupLabels(node)
+	local aLabels = {};
+	for k,rGroup in ipairs(getGroups(node)) do
+		local sLabel = rGroup.sContext;
+		local nTrigger = nil;
+		for _,sPattern in ipairs(aTriggerStarts) do
+			local nPos = sLabel:find(sPattern);
+			if nPos and (not nTrigger or nPos &lt; nTrigger) then
+				nTrigger = nPos;
+			end
+		end
+		if nTrigger then
+			sLabel = sLabel:sub(nTrigger);
+		end
+		if #sLabel &gt; 60 then
+			-- Cut between characters, not inside a UTF-8 one
+			local nCut = 57;
+			while nCut &gt; 1 and (sLabel:byte(nCut + 1) or 0) &gt;= 128 and (sLabel:byte(nCut + 1) or 0) &lt; 192 do
+				nCut = nCut - 1;
+			end
+			sLabel = sLabel:sub(1, nCut) .. "...";
+		end
+		table.insert(aLabels, k .. ". " .. sLabel);
+	end
+	return aLabels;
+end
+
+-- The result text for a roll total, and the trigger when the description has several rolls
+function getResult(node, nTotal, nGroup)
+	local aGroups = getGroups(node);
+	if #aGroups == 0 or (#aGroups &gt; 1 and not nGroup) then
+		return nil;
+	end
+	local rGroup = aGroups[nGroup or 1];
+	if not rGroup then
+		return nil;
+	end
+	local sKey = "low";
+	if nTotal &gt;= 15 then
+		sKey = "high";
+	elseif nTotal &gt;= 10 then
+		sKey = "middle";
+	end
+	local sResult = rGroup.tResults[sKey];
+	if sResult == "" then
+		return nil;
+	end
+	if rGroup.sShared ~= "" then
+		sResult = sResult .. "\n" .. rGroup.sShared;
+	end
+	local sContext = nil;
+	if #aGroups &gt; 1 then
+		sContext = rGroup.sContext;
+	end
+	return sResult, sContext;
+end
+</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+  <Scripts>
     <ScriptName>manager_kult</ScriptName>
     <FolderID>0</FolderID>
     <Script>
@@ -21392,23 +21814,76 @@ function modRoll(rSource, rTarget, rRoll)
 	return true;
 end
 
--- Endure Injury, Help or Hinder and moves without attribute need data the sheet does not have
-function openRollSetup(nodeChar, sName, sMove, sAttribute)
+-- Opens the roll setup window. rData: sName, sDesc, sMove ("endure", "help" or ""), sAttribute,
+-- sRecord (move or trait of the sheet), aGroups (labels of a trait with several rolls), bTrait, bDisadvantage
+function openRollSetup(nodeChar, rData)
 	local w = Interface.openWindow("kult_roll_setup", "");
 	if w then
-		w.configure(nodeChar, { sName = sName, sMove = sMove, sAttribute = sAttribute });
+		w.configure(nodeChar, rData);
+		-- Opened from a double click on the sheet, which gets the focus back afterwards
+		w.bringToFront();
 	end
 end
 
 -- The roll prepared in the setup window; modRoll adds the Kult modifiers as in any other roll
-function performSetupRoll(nodeChar, sName, sAttributeKey, nHarm, nArmor)
-	local rRoll = { sType = "btnRollRollAction", sDesc = Interface.getString("ROLL_MOVE") .. " " .. sName,
-		aDice = { "d10", "d10" }, nMod = DB.getValue(nodeChar, sAttributeKey, 0), attribute = sAttributeKey, move = sName };
+function performSetupRoll(nodeChar, rData, sAttributeKey, nHarm, nArmor, nGroup)
+	local rRoll = { sType = "btnRollRollAction", sDesc = rData.sDesc or (Interface.getString("ROLL_MOVE") .. " " .. rData.sName),
+		aDice = { "d10", "d10" }, nMod = 0, attribute = sAttributeKey or "" };
+	if sAttributeKey then
+		rRoll.nMod = DB.getValue(nodeChar, sAttributeKey, 0);
+	end
+	if not rData.bTrait then
+		rRoll.move = rData.sName;
+	end
+	if rData.sRecord then
+		rRoll.kultrecord = rData.sRecord;
+	end
+	if nGroup then
+		rRoll.kultresult = tostring(nGroup);
+	end
+	if rData.bDisadvantage then
+		rRoll.disadvantage = "1";
+	end
 	if nHarm then
 		rRoll.kultharm = tostring(nHarm);
 		rRoll.kultarmor = tostring(nArmor or 0);
 	end
 	ActionsManager.performAction(nil, ActorManager.resolveActor(nodeChar), rRoll);
+end
+
+function findMove(charNode, sName)
+	for _,node in pairs(DB.getChildren(charNode, "moveslist")) do
+		if trim(DB.getValue(node, "name", "")) == trim(sName) then
+			return node;
+		end
+	end
+	return nil;
+end
+
+-- The move or trait of the sheet whose description holds the results of the roll
+function getRollRecord(charNode, rRoll)
+	local sRecord = rRoll["kultrecord"] or "";
+	if sRecord ~= "" then
+		-- Only records of the character that rolls
+		local sPrefix = DB.getPath(charNode) .. ".";
+		if sRecord:sub(1, #sPrefix) == sPrefix then
+			return DB.findNode(sRecord);
+		end
+		return nil;
+	end
+	if (rRoll["move"] or "") ~= "" then
+		return findMove(charNode, rRoll["move"]);
+	end
+	-- An attribute roll of the sheet is the basic move of that attribute
+	if rRoll.sType ~= "btnRollRollAction" then
+		local sKey = getAttributeKey(rRoll["attribute"]);
+		for sName, rMove in pairs(data_kult.getMoves()) do
+			if sKey and getAttributeKey(rMove.attribute) == sKey then
+				return findMove(charNode, Interface.getString(sName)) or findMove(charNode, sName);
+			end
+		end
+	end
+	return nil;
 end
 
 function resolveRoll(rSource, rTarget, rRoll)
@@ -21430,6 +21905,18 @@ function resolveRoll(rSource, rTarget, rRoll)
 	end
 	if isHelpHinderMove(rRoll["move"]) then
 		rMessage.text = rMessage.text .. ' [' .. Interface.getString(sHelpHinder) .. ']';
+	end
+
+	-- The result text of the move or trait, taken from its description
+	local charNode = ActorManager.getCreatureNode(rSource);
+	if charNode then
+		local sResult, sContext = kult_results.getResult(getRollRecord(charNode, rRoll), total, tonumber(rRoll["kultresult"]));
+		if sResult then
+			if sContext then
+				rMessage.text = rMessage.text .. "\n" .. sContext;
+			end
+			rMessage.text = rMessage.text .. "\n" .. sResult;
+		end
 	end
 	
     Comm.deliverChatMessage(rMessage);    
@@ -21585,7 +22072,7 @@ end
   </Scripts>
   <Scripts>
     <ScriptName>SideBarData</ScriptName>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
     <Script>function onInit()
 
 	aRecordOverrides = {
@@ -21654,7 +22141,7 @@ end</Script>
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <XMLFiles>
     <XmlName>SidebarStrings</XmlName>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
     <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
 &lt;root&gt;
 	&lt;string name="library_recordtype_label_move"&gt;Moves&lt;/string&gt;	

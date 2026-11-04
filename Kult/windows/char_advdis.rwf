@@ -81,6 +81,21 @@ function getAttributeSuffix()
 	return "";
 end
 
+-- The roll carries this trait, whose description gives the result text.
+-- A trait with several rolls asks which one first.
+function onBeforeDiceRoll(dragInfo)
+	local node = window.getDatabaseNode();
+	local aLabels = kult_results.getGroupLabels(node);
+	if #aLabels &gt; 1 then
+		manager_kult.openRollSetup(window.windowlist.window.getDatabaseNode(), { sName = DB.getValue(node, "name", ""),
+			sDesc = DB.getValue(node, "name", "") .. getAttributeSuffix(), sAttribute = DB.getValue(node, "attribute", ""),
+			sRecord = DB.getPath(node), aGroups = aLabels, bTrait = true, bDisadvantage = (DB.getValue(node, "isdisadvantage", 0) == 1) });
+		return false;
+	end
+	DiceRollAdditionalInfo["kultrecord"] = DB.getPath(node);
+	return true;
+end
+
 -- Tooltip with the modifier the roll will have
 function onHover(bOnControl)
 	if bOnControl then

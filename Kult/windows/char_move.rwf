@@ -145,22 +145,27 @@ function getAttributeValue()
 	return 0;
 end
 
--- Endure Injury, Help or Hinder and moves without attribute open the roll setup window instead of rolling
+-- Endure Injury, Help or Hinder and moves without attribute open the roll setup window instead of rolling.
+-- The roll carries this move, whose description gives the result text.
 function onBeforeDiceRoll(dragInfo)
 	local sName = window.name.getValue();
 	local sAttribute = window.attribute.getValue();
 	local sKey = manager_kult.getAttributeKey(sAttribute);
 	local nodeChar = window.windowlist.window.getDatabaseNode();
+	local sRecord = DB.getPath(window.getDatabaseNode());
+	local sMove = nil;
 	if manager_kult.isHelpHinderMove(sName) then
-		manager_kult.openRollSetup(nodeChar, sName, "help", sAttribute);
-		return false;
+		sMove = "help";
 	elseif sKey == "fortitude" then
-		manager_kult.openRollSetup(nodeChar, sName, "endure", sAttribute);
-		return false;
+		sMove = "endure";
 	elseif not sKey then
-		manager_kult.openRollSetup(nodeChar, sName, "", "");
+		sMove = "";
+	end
+	if sMove then
+		manager_kult.openRollSetup(nodeChar, { sName = sName, sMove = sMove, sAttribute = sAttribute, sRecord = sRecord });
 		return false;
 	end
+	DiceRollAdditionalInfo["kultrecord"] = sRecord;
 	return true;
 end
 
@@ -229,7 +234,26 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onInit()
+	local node = getDatabaseNode();
+	if not DB.isOwner(node) or DB.isReadOnly(node) then
+		return;
+	end
+	-- The link opens this row in the move window, with its description
+	local _, sRecord = DB.getValue(node, "shortcut", "", "");
+	if (sRecord or "") == "" then
+		DB.setValue(node, "shortcut", "windowreference", "move", DB.getPath(node));
+	end
+	-- The basic moves are added without description: take it from the loaded modules
+	if manager_kult.trim(DB.getValue(node, "description", "")) == "" then
+		local sDescription = kult_results.getModuleMoveDescription(DB.getValue(node, "name", ""));
+		if sDescription ~= "" then
+			DB.setValue(node, "description", "string", sDescription);
+		end
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>

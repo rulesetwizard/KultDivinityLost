@@ -221,6 +221,7 @@ Kult</RulesetList>
 	&lt;string name="kult_roll_setup_lblAttribute_LabelCaption"&gt;Atributo&lt;/string&gt;
 	&lt;string name="kult_roll_setup_lblHarm_LabelCaption"&gt;Daño&lt;/string&gt;
 	&lt;string name="kult_roll_setup_lblArmor_LabelCaption"&gt;Armadura&lt;/string&gt;
+	&lt;string name="kult_roll_setup_lblResult_LabelCaption"&gt;¿Qué tirada?&lt;/string&gt;
 	&lt;string name="advantagedisadvantage_name_EmptyText_Disadvantage"&gt;Nueva Desventaja&lt;/string&gt;
 
 	&lt;string name="tab_main"&gt;Principal&lt;/string&gt;

@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>SideBarData</ScriptName>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
     <Script>function onInit()
 
 	aRecordOverrides = {

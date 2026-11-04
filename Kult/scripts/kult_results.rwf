@@ -1,0 +1,224 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>kult_results</ScriptName>
+    <FolderID>7</FolderID>
+    <Script>-- Reads the results (15+, 10-14, -9) printed in the description of moves, advantages and disadvantages.
+-- A description can hold several rolls ("When you build a bomb... / When you disarm a bomb..."): each one is a group.
+
+-- Typographic characters of the module texts, as UTF-8 bytes (this script is not saved as UTF-8)
+local EN_DASH = "\226\128\147";
+local MINUS = "\226\136\146";
+local EM_DASH = "\226\128\148";
+local LESS_EQUAL = "\226\137\164";
+local BULLET = "\226\128\162";
+
+-- Text after the -9 result that belongs to every result: options, questions, hold...
+local aSharedStarts = { "[Oo]pciones[^\n:]*:", "[Oo]ptions[^\n:]*:", "[Pp]reguntas%s*:", "[Qq]uestions%s*:",
+	"[Bb]azas%s*:", "[Hh]old%s*:", "\n%s*El director puede gastar", "\n%s*Puedes gastar", "\n%s*Los puntos pueden" };
+
+-- Book references and pointers to the manual are not part of any result
+local aTrailers = { "\n%s*Referencia al libro original", "\n%s*Para explicaciones y ejemplos", "\n%s*Reference" };
+
+-- Where a trigger starts inside a longer context
+local aTriggerStarts = { "[Ss]iempre que", "[Cc]uando", "[Ww]hen" };
+
+local function trim(s)
+	return (s or ""):match("^%s*(.-)%s*$");
+end
+
+-- Trims and removes a bullet left alone at the end
+local function clean(s)
+	s = trim(s);
+	while s:sub(-#BULLET) == BULLET do
+		s = trim(s:sub(1, -#BULLET - 1));
+	end
+	return s;
+end
+
+local function normalize(s)
+	s = s:gsub("\r", ""):gsub(EN_DASH, "-"):gsub(MINUS, "-"):gsub(EM_DASH, "-"):gsub(LESS_EQUAL, "&lt;=");
+	for _,sPattern in ipairs(aTrailers) do
+		local nStart = s:find(sPattern);
+		if nStart then
+			s = s:sub(1, nStart - 1);
+		end
+	end
+	return s;
+end
+
+local function getBand(sMark)
+	local s = sMark:gsub("%s", "");
+	if s == "15+" then
+		return "high";
+	elseif s == "10-14" then
+		return "middle";
+	elseif s == "-9" or s == "9-" or s == "&lt;=9" then
+		return "low";
+	end
+	return nil;
+end
+
+-- Groups of { sContext, nContextStart, tResults = { high, middle, low }, sShared }
+function parse(sText)
+	local s = normalize(sText or "");
+
+	local aMarks = {};
+	for nStart, sBody, nFinish in s:gmatch("()%(([^()]*)%)()") do
+		local sBand = getBand(sBody);
+		if sBand then
+			if s:sub(nStart - 1, nStart - 1) == "[" then
+				nStart = nStart - 1;
+			end
+			if s:sub(nFinish, nFinish) == "]" then
+				nFinish = nFinish + 1;
+			end
+			table.insert(aMarks, { sBand = sBand, nStart = nStart, nFinish = nFinish });
+		end
+	end
+
+	-- A group is a 15+ mark followed by a 10-14 and a -9 one
+	local aGroups = {};
+	local i = 1;
+	while i &lt;= #aMarks - 2 do
+		if aMarks[i].sBand == "high" and aMarks[i + 1].sBand == "middle" and aMarks[i + 2].sBand == "low" then
+			table.insert(aGroups, { rHigh = aMarks[i], rMiddle = aMarks[i + 1], rLow = aMarks[i + 2] });
+			i = i + 3;
+		else
+			i = i + 1;
+		end
+	end
+
+	-- The trigger of a group is the last line before its 15+ mark
+	for k,rGroup in ipairs(aGroups) do
+		local nPrior = 1;
+		if k &gt; 1 then
+			nPrior = aGroups[k - 1].rLow.nFinish;
+		end
+		local sBefore = s:sub(nPrior, rGroup.rHigh.nStart - 1):gsub("%s+$", "");
+		local nLastNewline = 0;
+		for nPos in sBefore:gmatch("()\n") do
+			nLastNewline = nPos;
+		end
+		rGroup.nContextStart = nPrior + nLastNewline;
+		rGroup.sContext = clean(sBefore:sub(nLastNewline + 1));
+	end
+
+	for k,rGroup in ipairs(aGroups) do
+		local nEnd = #s;
+		if aGroups[k + 1] then
+			nEnd = aGroups[k + 1].nContextStart - 1;
+		end
+		local sLow = s:sub(rGroup.rLow.nFinish, nEnd);
+		local nShared = nil;
+		for _,sPattern in ipairs(aSharedStarts) do
+			local nPos = sLow:find(sPattern);
+			if nPos and (not nShared or nPos &lt; nShared) then
+				nShared = nPos;
+			end
+		end
+		rGroup.sShared = "";
+		if nShared then
+			rGroup.sShared = clean(sLow:sub(nShared));
+			sLow = sLow:sub(1, nShared - 1);
+		end
+		rGroup.tResults = {
+			high = clean(s:sub(rGroup.rHigh.nFinish, rGroup.rMiddle.nStart - 1)),
+			middle = clean(s:sub(rGroup.rMiddle.nFinish, rGroup.rLow.nStart - 1)),
+			low = clean(sLow),
+		};
+	end
+
+	return aGroups;
+end
+
+-- Description of a move of the loaded modules, for the basic moves added to the sheet without one
+function getModuleMoveDescription(sName)
+	sName = trim(sName);
+	if sName == "" then
+		return "";
+	end
+	for _,node in ipairs(DB.getChildrenGlobal("reference.moves")) do
+		if trim(DB.getValue(node, "name", "")) == sName then
+			return DB.getValue(node, "description", "");
+		end
+	end
+	return "";
+end
+
+function getDescription(node)
+	local sDescription = DB.getValue(node, "description", "");
+	if trim(sDescription) == "" and DB.getPath(node):find("%.moveslist%.") then
+		sDescription = getModuleMoveDescription(DB.getValue(node, "name", ""));
+	end
+	return sDescription;
+end
+
+function getGroups(node)
+	if not node then
+		return {};
+	end
+	return parse(getDescription(node));
+end
+
+-- Labels for choosing the roll of a description with several groups
+function getGroupLabels(node)
+	local aLabels = {};
+	for k,rGroup in ipairs(getGroups(node)) do
+		local sLabel = rGroup.sContext;
+		local nTrigger = nil;
+		for _,sPattern in ipairs(aTriggerStarts) do
+			local nPos = sLabel:find(sPattern);
+			if nPos and (not nTrigger or nPos &lt; nTrigger) then
+				nTrigger = nPos;
+			end
+		end
+		if nTrigger then
+			sLabel = sLabel:sub(nTrigger);
+		end
+		if #sLabel &gt; 60 then
+			-- Cut between characters, not inside a UTF-8 one
+			local nCut = 57;
+			while nCut &gt; 1 and (sLabel:byte(nCut + 1) or 0) &gt;= 128 and (sLabel:byte(nCut + 1) or 0) &lt; 192 do
+				nCut = nCut - 1;
+			end
+			sLabel = sLabel:sub(1, nCut) .. "...";
+		end
+		table.insert(aLabels, k .. ". " .. sLabel);
+	end
+	return aLabels;
+end
+
+-- The result text for a roll total, and the trigger when the description has several rolls
+function getResult(node, nTotal, nGroup)
+	local aGroups = getGroups(node);
+	if #aGroups == 0 or (#aGroups &gt; 1 and not nGroup) then
+		return nil;
+	end
+	local rGroup = aGroups[nGroup or 1];
+	if not rGroup then
+		return nil;
+	end
+	local sKey = "low";
+	if nTotal &gt;= 15 then
+		sKey = "high";
+	elseif nTotal &gt;= 10 then
+		sKey = "middle";
+	end
+	local sResult = rGroup.tResults[sKey];
+	if sResult == "" then
+		return nil;
+	end
+	if rGroup.sShared ~= "" then
+		sResult = sResult .. "\n" .. rGroup.sShared;
+	end
+	local sContext = nil;
+	if #aGroups &gt; 1 then
+		sContext = rGroup.sContext;
+	end
+	return sResult, sContext;
+end
+</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

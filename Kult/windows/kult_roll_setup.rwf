@@ -167,7 +167,7 @@ end
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XMLCode"},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"178"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"238"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"250"}}
 ]}}</Definition>
     <LUACode>function onButtonPress()
 	window.close();
@@ -226,7 +226,7 @@ end
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XMLCode"},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"284"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"238"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"250"}}
 ]}}</Definition>
     <LUACode>function onButtonPress()
 	window.perform();
@@ -307,7 +307,7 @@ end
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"kult_roll_setup"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DataSource"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"285"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"300"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"400"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
@@ -350,8 +350,9 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode>-- Prepares a roll that needs data the sheet does not have: the Harm of Endure Injury or the attribute of Help or Hinder.
--- The controls are sourceless: nothing typed here is stored on the character.
+    <LUACode>-- Prepares a roll that needs data the sheet does not have: the Harm of Endure Injury, the attribute of Help or Hinder
+-- and of moves without one, or which roll of a trait with several. The controls are sourceless: nothing typed here is
+-- stored on the character. rData is described in manager_kult.openRollSetup.
 local sCharPath = "";
 local rSetup = nil;
 
@@ -361,24 +362,51 @@ function configure(nodeChar, rData)
 	title.setValue(rData.sName);
 
 	local bEndure = (rData.sMove == "endure");
-	lblAttribute.setVisible(not bEndure);
-	attribute.setVisible(not bEndure);
+	local bGroups = (rData.aGroups ~= nil) and (#rData.aGroups &gt; 1);
+	-- A trait rolls its own attribute
+	local bChooseAttribute = not bEndure and not rData.bTrait;
+	lblAttribute.setVisible(bChooseAttribute);
+	attribute.setVisible(bChooseAttribute);
 	lblHarm.setVisible(bEndure);
 	harm.setVisible(bEndure);
 	lblArmor.setVisible(bEndure);
 	armor.setVisible(bEndure);
+	lblResult.setVisible(bGroups);
+	result.setVisible(bGroups);
 
 	attribute.setValue(manager_kult.getAttributeKey(rData.sAttribute) or "");
 	harm.setValue(0);
 	armor.setValue(DB.getValue(nodeChar, "armor", 0));
+	result.clear(true);
+	if bGroups then
+		local aItems = {};
+		for k,sLabel in ipairs(rData.aGroups) do
+			table.insert(aItems, { sValue = tostring(k), sText = sLabel });
+		end
+		result.addItems(aItems);
+		result.setValue("1");
+	end
 	refresh();
 end
 
 function getAttribute()
-	if rSetup and rSetup.sMove == "endure" then
+	if not rSetup then
+		return "";
+	end
+	if rSetup.sMove == "endure" then
 		return "fortitude";
 	end
+	if rSetup.bTrait then
+		return rSetup.sAttribute or "";
+	end
 	return attribute.getValue();
+end
+
+function getEndureValues()
+	if rSetup and rSetup.sMove == "endure" then
+		return harm.getValue(), armor.getValue();
+	end
+	return nil, nil;
 end
 
 function refresh()
@@ -386,31 +414,32 @@ function refresh()
 		return;
 	end
 	local sKey = manager_kult.getAttributeKey(getAttribute());
-	local nHarm, nArmor = nil, nil;
-	if rSetup.sMove == "endure" then
-		nHarm = harm.getValue();
-		nArmor = armor.getValue();
-	end
-	if sKey then
-		preview.setValue(manager_kult.getRollPreview(DB.findNode(sCharPath), sKey, false, rSetup.sMove == "help", nHarm, nArmor));
+	local nHarm, nArmor = getEndureValues();
+	-- Traits can roll +0; moves need an attribute
+	local bCanRoll = (sKey ~= nil) or rSetup.bTrait;
+	if bCanRoll then
+		preview.setValue(manager_kult.getRollPreview(DB.findNode(sCharPath), sKey or "", rSetup.bDisadvantage, rSetup.sMove == "help", nHarm, nArmor));
 	else
 		preview.setValue(Interface.getString("ROLL_SETUP_CHOOSE_ATTRIBUTE"));
 	end
-	btnRoll.setVisible(sKey ~= nil);
+	btnRoll.setVisible(bCanRoll);
 end
 
 function perform()
 	local nodeChar = DB.findNode(sCharPath);
-	local sKey = manager_kult.getAttributeKey(getAttribute());
-	if not rSetup or not nodeChar or not sKey then
+	if not rSetup or not nodeChar then
 		return;
 	end
-	local nHarm, nArmor = nil, nil;
-	if rSetup.sMove == "endure" then
-		nHarm = harm.getValue();
-		nArmor = armor.getValue();
+	local sKey = manager_kult.getAttributeKey(getAttribute());
+	if not sKey and not rSetup.bTrait then
+		return;
 	end
-	manager_kult.performSetupRoll(nodeChar, rSetup.sName, sKey, nHarm, nArmor);
+	local nHarm, nArmor = getEndureValues();
+	local nGroup = nil;
+	if rSetup.aGroups and #rSetup.aGroups &gt; 1 then
+		nGroup = tonumber(result.getValue()) or 1;
+	end
+	manager_kult.performSetupRoll(nodeChar, rSetup, sKey, nHarm, nArmor, nGroup);
 	close();
 end
 </LUACode>
@@ -590,6 +619,63 @@ end
   </WindowControls>
   <WindowControls>
     <WindowName>kult_roll_setup</WindowName>
+    <ControlName>lblResult</ControlName>
+    <ZIndex>12</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"lblResult"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"352"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"DropTypes"},
+      {"Name":"DynamicSize"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"sheetlabel"}},
+      {"Name":"FrameHideReadonly"},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Which roll?"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"24"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"74"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>kult_roll_setup</WindowName>
     <ControlName>menu</ControlName>
     <ZIndex>1</ZIndex>
     <ControlClass>FGCustomControl</ControlClass>
@@ -657,7 +743,7 @@ end
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"preview"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"100"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"90"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"352"}},
       {"Name":"DevelopmentComments"},
@@ -695,9 +781,68 @@ end
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"24"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"112"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"134"}}
 ]}}</Definition>
     <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>kult_roll_setup</WindowName>
+    <ControlName>result</ControlName>
+    <ZIndex>13</ZIndex>
+    <ControlClass>FGCustomControl</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"result"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomClassName","Value":{"@xsi:type":"xsd:string","#text":"comboboxc"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty","CustomProperty":[{"PropertyName":"unsorted","PropertyValue":null,"PropertyAttributes":null,"ParentElement":null,"XMLCode":null},{"PropertyName":"listmaxsize","PropertyValue":"6","PropertyAttributes":null,"ParentElement":null,"XMLCode":null}]}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"26"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"352"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"DropTypes"},
+      {"Name":"DynamicSize"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameHideReadonly"},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XMLCode"},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"24"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"98"}}
+]}}</Definition>
+    <LUACode>function onSelect()
+	window.refresh();
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
