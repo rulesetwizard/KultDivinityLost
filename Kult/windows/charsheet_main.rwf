@@ -276,7 +276,13 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"118"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"325"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>-- Tooltip with the modifier the roll will have
+function onHover(bOnControl)
+	if bOnControl then
+		setTooltipText(manager_kult.getRollPreview(window.getDatabaseNode(), "charisma"));
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -433,7 +439,13 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"37"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"281"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>-- Tooltip with the modifier the roll will have
+function onHover(bOnControl)
+	if bOnControl then
+		setTooltipText(manager_kult.getRollPreview(window.getDatabaseNode(), "coolness"));
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -619,7 +631,13 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"37"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"97"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>-- Tooltip with the modifier the roll will have
+function onHover(bOnControl)
+	if bOnControl then
+		setTooltipText(manager_kult.getRollPreview(window.getDatabaseNode(), "fortitude"));
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -913,7 +931,13 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"199"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"190"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>-- Tooltip with the modifier the roll will have
+function onHover(bOnControl)
+	if bOnControl then
+		setTooltipText(manager_kult.getRollPreview(window.getDatabaseNode(), "intuition"));
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -2917,7 +2941,13 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"118"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"235"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>-- Tooltip with the modifier the roll will have
+function onHover(bOnControl)
+	if bOnControl then
+		setTooltipText(manager_kult.getRollPreview(window.getDatabaseNode(), "perception"));
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -2983,7 +3013,13 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"37"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"189"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>-- Tooltip with the modifier the roll will have
+function onHover(bOnControl)
+	if bOnControl then
+		setTooltipText(manager_kult.getRollPreview(window.getDatabaseNode(), "reason"));
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -3049,7 +3085,13 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"198"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"96"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>-- Tooltip with the modifier the roll will have
+function onHover(bOnControl)
+	if bOnControl then
+		setTooltipText(manager_kult.getRollPreview(window.getDatabaseNode(), "reflexes"));
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -3115,7 +3157,13 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"118"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"414"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>-- Tooltip with the modifier the roll will have
+function onHover(bOnControl)
+	if bOnControl then
+		setTooltipText(manager_kult.getRollPreview(window.getDatabaseNode(), "soul"));
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -3263,7 +3311,13 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"198"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"281"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>-- Tooltip with the modifier the roll will have
+function onHover(bOnControl)
+	if bOnControl then
+		setTooltipText(manager_kult.getRollPreview(window.getDatabaseNode(), "violence"));
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -3399,7 +3453,13 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"117"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"47"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>-- Tooltip with the modifier the roll will have
+function onHover(bOnControl)
+	if bOnControl then
+		setTooltipText(manager_kult.getRollPreview(window.getDatabaseNode(), "willpower"));
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>

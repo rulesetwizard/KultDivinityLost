@@ -152,6 +152,13 @@ function onBeforeDiceRoll(dragInfo)
 		return false;
 	end
 	return true;
+end
+
+-- Tooltip with the modifier the roll will have
+function onHover(bOnControl)
+	if bOnControl then
+		setTooltipText(manager_kult.getRollPreview(window.windowlist.window.getDatabaseNode(), window.attribute.getValue(), false, manager_kult.isHelpHinderMove(window.name.getValue())));
+	end
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />

@@ -79,6 +79,14 @@ function getAttributeSuffix()
 		return " (" .. manager_kult.getAttributeName(sKey) .. ")";
 	end
 	return "";
+end
+
+-- Tooltip with the modifier the roll will have
+function onHover(bOnControl)
+	if bOnControl then
+		local node = window.getDatabaseNode();
+		setTooltipText(manager_kult.getRollPreview(window.windowlist.window.getDatabaseNode(), DB.getValue(node, "attribute", ""), DB.getValue(node, "isdisadvantage", 0) == 1));
+	end
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
