@@ -1,0 +1,329 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>kult_weapons</ScriptName>
+    <FolderID>7</FolderID>
+    <Script>-- Weapons are inventory items (type Arma / Weapon); the equipped ones (carried = 2) are listed on the main tab.
+-- Attacks are read from the item text, as the rulebook writes them after "Ataques:" / "Attacks:":
+--   Name [Damage] [effect] [-N ammo]
+-- Ammo: "ammo" is the number of boxes and "ammoused" the boxes crossed out (as on the paper sheet).
+-- "kultweapon" = 1 marks an item whose damage and ammo were filled from its text.
+
+local aWeaponTypes = { ["arma"] = true, ["armas"] = true, ["weapon"] = true, ["weapons"] = true };
+
+-- Ammo of the rulebook firearms, used when the text gives none
+local aKnownCapacity = {
+	["pistola"] = 4, ["pistola magnum"] = 3, ["subfusil"] = 3, ["fusil de asalto"] = 4, ["ametralladora"] = 6,
+	["fusil"] = 3, ["escopeta de combate"] = 3, ["explosivos"] = 1,
+	["handgun"] = 4, ["pistol"] = 4, ["magnum"] = 3, ["magnum handgun"] = 3, ["magnum pistol"] = 3,
+	["submachine gun"] = 3, ["assault rifle"] = 4, ["machine gun"] = 6, ["rifle"] = 3,
+	["combat shotgun"] = 3, ["shotgun"] = 3, ["explosives"] = 1,
+};
+
+-- UTF-8 accented letters of Spanish, to compare names without accents
+local aAccents = { ["\195\161"] = "a", ["\195\169"] = "e", ["\195\173"] = "i", ["\195\179"] = "o", ["\195\186"] = "u",
+	["\195\188"] = "u", ["\195\177"] = "n", ["\195\129"] = "a", ["\195\137"] = "e", ["\195\141"] = "i", ["\195\147"] = "o",
+	["\195\154"] = "u", ["\195\145"] = "n" };
+
+-- Marks of the ammo boxes: white and black circles, squares, and the symbol-font circle of the module (U+F0A1)
+local aAmmoMarks = { "\226\151\139", "\226\151\175", "\226\151\143", "\226\150\161", "\226\151\187", "\239\130\161" };
+
+function trim(s)
+	return (s or ""):match("^%s*(.-)%s*$");
+end
+
+function normalize(s)
+	s = trim(s);
+	for sFrom, sTo in pairs(aAccents) do
+		s = s:gsub(sFrom, sTo);
+	end
+	return s:lower();
+end
+
+-- Code point to UTF-8 (FG's Lua 5.1 has no utf8 library)
+local function utf8Char(n)
+	if not n or n &lt; 1 then
+		return "";
+	elseif n &lt; 128 then
+		return string.char(n);
+	elseif n &lt; 2048 then
+		return string.char(192 + math.floor(n / 64), 128 + n % 64);
+	elseif n &lt; 65536 then
+		return string.char(224 + math.floor(n / 4096), 128 + math.floor(n / 64) % 64, 128 + n % 64);
+	end
+	return string.char(240 + math.floor(n / 262144), 128 + math.floor(n / 4096) % 64, 128 + math.floor(n / 64) % 64, 128 + n % 64);
+end
+
+-- Formatted text to plain text (FG keeps the non-ASCII characters of formatted text as numeric entities)
+function plain(s)
+	s = (s or ""):gsub("&lt;[^&gt;]*&gt;", " ");
+	s = s:gsub("&amp;#[xX](%x+);", function(sHex) return utf8Char(tonumber(sHex, 16)); end);
+	s = s:gsub("&amp;#(%d+);", function(sDec) return utf8Char(tonumber(sDec)); end);
+	s = s:gsub("&amp;lt;", "&lt;"):gsub("&amp;gt;", "&gt;"):gsub("&amp;quot;", "\""):gsub("&amp;apos;", "'"):gsub("&amp;amp;", "&amp;");
+	return trim(s:gsub("%s+", " "));
+end
+
+function isWeapon(node)
+	if not node then
+		return false;
+	end
+	if DB.getValue(node, "kultweapon", 0) == 1 then
+		return true;
+	end
+	return aWeaponTypes[normalize(DB.getValue(node, "type", ""))] == true;
+end
+
+function isEquippedWeapon(node)
+	return isWeapon(node) and DB.getValue(node, "carried", 1) == 2;
+end
+
+function getText(node)
+	for _,sField in ipairs({ "notes", "description", "text" }) do
+		local sText = DB.getValue(node, sField, "");
+		if type(sText) == "string" and trim(sText) ~= "" then
+			return sText;
+		end
+	end
+	return "";
+end
+
+-- Paragraphs (or lines) of a formatted text, as plain text
+local function getParagraphs(sText)
+	local aParagraphs = {};
+	for sParagraph in sText:gmatch("&lt;p[^&gt;]*&gt;(.-)&lt;/p&gt;") do
+		table.insert(aParagraphs, plain(sParagraph));
+	end
+	if #aParagraphs == 0 then
+		for sLine in sText:gmatch("[^\r\n]+") do
+			table.insert(aParagraphs, plain(sLine));
+		end
+	end
+	return aParagraphs;
+end
+
+function getRange(node)
+	for _,sParagraph in ipairs(getParagraphs(getText(node))) do
+		local sRange = sParagraph:match("^[Aa]lcance%s*:%s*(.+)$") or sParagraph:match("^[Rr]ange%s*:%s*(.+)$");
+		if sRange then
+			return sRange;
+		end
+	end
+	return "";
+end
+
+-- Ammo boxes written in the text ("Municion: 3" or box marks); nil if the text gives none
+function getTextCapacity(node)
+	for _,sParagraph in ipairs(getParagraphs(getText(node))) do
+		local sAmount = normalize(sParagraph):match("^municion%s*:%s*(.*)$") or normalize(sParagraph):match("^ammo%s*:%s*(.*)$")
+			or normalize(sParagraph):match("^ammunition%s*:%s*(.*)$");
+		if sAmount then
+			local nAmount = tonumber(sAmount:match("^(%d+)"));
+			if nAmount then
+				return nAmount;
+			end
+			local nCount = 0;
+			for _,sMark in ipairs(aAmmoMarks) do
+				local _, n = sAmount:gsub(sMark, "");
+				nCount = nCount + n;
+			end
+			if nCount &gt; 0 then
+				return nCount;
+			end
+		end
+	end
+	return nil;
+end
+
+-- Attacks of the item: { sName, sDamage, nCost, sEffect }
+function getAttacks(node)
+	local aAttacks = {};
+	local sText = getText(node);
+	local nStart = sText:find("[Aa]taques%s*:") or sText:find("[Aa]ttacks%s*:");
+	if not nStart then
+		return aAttacks;
+	end
+	local sList = sText:sub(nStart):match("&lt;list[^&gt;]*&gt;(.-)&lt;/list&gt;");
+	if not sList then
+		return aAttacks;
+	end
+	for sItem in sList:gmatch("&lt;li[^&gt;]*&gt;(.-)&lt;/li&gt;") do
+		local sName, sDamage, sTail = plain(sItem):match("^(.-)%s*%[([^%]]*)%]%s*(.*)$");
+		if sName and trim(sName) ~= "" then
+			local nCost = 0;
+			local aEffects = {};
+			for sBlock in sTail:gmatch("%[([^%]]*)%]") do
+				local sCost = normalize(sBlock):match("(%d+)%s*municion") or normalize(sBlock):match("(%d+)%s*ammo");
+				if sCost then
+					nCost = tonumber(sCost) or 0;
+				else
+					table.insert(aEffects, trim(sBlock));
+				end
+			end
+			table.insert(aAttacks, { sName = trim(sName), sDamage = trim(sDamage), nCost = nCost, sEffect = table.concat(aEffects, "; ") });
+		end
+	end
+	return aAttacks;
+end
+
+-- The attacks to choose from when rolling: those of the text, or one with the damage of the sheet
+function getRollAttacks(node)
+	local aAttacks = getAttacks(node);
+	if #aAttacks == 0 then
+		local nCost = 0;
+		if getCapacity(node) &gt; 0 then
+			nCost = 1;
+		end
+		table.insert(aAttacks, { sName = "", sDamage = tostring(DB.getValue(node, "weapondamage", 0)), nCost = nCost, sEffect = "" });
+	end
+	return aAttacks;
+end
+
+function getCapacity(node)
+	return math.max(0, DB.getValue(node, "ammo", 0));
+end
+
+function getRemaining(node)
+	return math.max(0, getCapacity(node) - DB.getValue(node, "ammoused", 0));
+end
+
+-- Fills damage and ammo from the text the first time the item is seen as a weapon; later edits are kept
+function prepare(node)
+	if not isWeapon(node) or not DB.isOwner(node) or DB.isReadOnly(node) or DB.getValue(node, "kultweapon", 0) == 1 then
+		return;
+	end
+	local aAttacks = getAttacks(node);
+	if DB.getValue(node, "weapondamage", 0) == 0 and aAttacks[1] then
+		local nDamage = tonumber(aAttacks[1].sDamage:match("^(%d+)"));
+		if nDamage then
+			DB.setValue(node, "weapondamage", "number", nDamage);
+		end
+	end
+	if getCapacity(node) == 0 then
+		local nCapacity = getTextCapacity(node) or aKnownCapacity[normalize(DB.getValue(node, "name", ""))];
+		if nCapacity and nCapacity &gt; 0 then
+			DB.setValue(node, "ammo", "number", nCapacity);
+		end
+	end
+	DB.setValue(node, "kultweapon", "number", 1);
+end
+
+function prepareInventory(nodeChar)
+	for _,node in pairs(DB.getChildren(nodeChar, "inventorylist")) do
+		prepare(node);
+	end
+end
+
+-- Crosses out the ammo of an attack; false if there is not enough
+function spendAmmo(node, nCost)
+	nCost = nCost or 0;
+	if nCost &lt;= 0 then
+		return true;
+	end
+	if getRemaining(node) &lt; nCost then
+		return false;
+	end
+	DB.setValue(node, "ammoused", "number", DB.getValue(node, "ammoused", 0) + nCost);
+	return true;
+end
+
+function reload(node)
+	if not node or not DB.isOwner(node) then
+		return;
+	end
+	DB.setValue(node, "ammoused", "number", 0);
+	kult_xp.sendChat(DB.getChild(node, "..."), string.format(Interface.getString("WEAPON_RELOADED"), DB.getValue(node, "name", "")));
+end
+
+-- Text of an attack for the roll: "Name [Harm 3] [effect]"
+function getAttackText(rAttack)
+	local sText = "";
+	if rAttack.sName ~= "" then
+		sText = rAttack.sName .. " ";
+	end
+	sText = sText .. "[" .. string.format(Interface.getString("WEAPON_DAMAGE"), rAttack.sDamage) .. "]";
+	if rAttack.sEffect ~= "" then
+		sText = sText .. " [" .. rAttack.sEffect .. "]";
+	end
+	return sText;
+end
+
+-- Label of an attack in the roll setup window
+function getAttackLabel(rAttack)
+	local sLabel = getAttackText(rAttack);
+	if rAttack.nCost &gt; 0 then
+		sLabel = sLabel .. " [" .. string.format(Interface.getString("WEAPON_AMMO_COST"), rAttack.nCost) .. "]";
+	end
+	return sLabel;
+end
+
+-- The weapon rows the sheet had before weapons were inventory items become equipped inventory weapons.
+-- The old row is kept (marked) so it is never migrated twice.
+function migrateLegacyWeapons(nodeChar)
+	if not nodeChar or not DB.isOwner(nodeChar) or DB.isReadOnly(nodeChar) then
+		return;
+	end
+	for _,nodeOld in pairs(DB.getChildren(nodeChar, "weapons")) do
+		if DB.getValue(nodeOld, "kultmigrated", 0) == 0 then
+			local nodeItem = DB.createChild(DB.createChild(nodeChar, "inventorylist"));
+			local _, sRecord = DB.getValue(nodeOld, "link", "", "");
+			local nodeSource = nil;
+			if (sRecord or "") ~= "" then
+				nodeSource = DB.findNode(sRecord);
+			end
+			if nodeSource then
+				DB.copyNode(nodeSource, nodeItem);
+			end
+			local sName = trim(DB.getValue(nodeOld, "name", ""));
+			if sName == "" then
+				sName = Interface.getString("WEAPON_TYPE");
+			end
+			DB.setValue(nodeItem, "name", "string", sName);
+			DB.setValue(nodeItem, "type", "string", Interface.getString("WEAPON_TYPE"));
+			DB.setValue(nodeItem, "count", "number", 1);
+			DB.setValue(nodeItem, "carried", "number", 2);
+			DB.setValue(nodeItem, "isidentified", "number", 1);
+			DB.setValue(nodeItem, "weapondamage", "number", DB.getValue(nodeOld, "weapondamage", 0));
+			DB.setValue(nodeItem, "ammo", "number", DB.getValue(nodeOld, "ammo", 0));
+			DB.setValue(nodeItem, "ammoused", "number", DB.getValue(nodeOld, "currentAmmo", 0));
+			-- The sheet values win over the text
+			DB.setValue(nodeItem, "kultweapon", "number", 1);
+			DB.setValue(nodeOld, "kultmigrated", "number", 1);
+		end
+	end
+end
+
+-- A weapon dropped on the weapon list goes to the inventory, equipped
+function addWeapon(nodeChar, nodeSource)
+	if not nodeChar or not nodeSource or not DB.isOwner(nodeChar) or not isWeapon(nodeSource) then
+		return false;
+	end
+	-- Already in this inventory: just equip it
+	local sPrefix = DB.getPath(nodeChar, "inventorylist") .. ".";
+	if DB.getPath(nodeSource):sub(1, #sPrefix) == sPrefix then
+		DB.setValue(nodeSource, "carried", "number", 2);
+		return true;
+	end
+	local nodeItem = DB.createChild(DB.createChild(nodeChar, "inventorylist"));
+	DB.copyNode(nodeSource, nodeItem);
+	DB.setValue(nodeItem, "count", "number", 1);
+	DB.setValue(nodeItem, "carried", "number", 2);
+	DB.setValue(nodeItem, "locked", "number", 1);
+	DB.setValue(nodeItem, "kultweapon", "number", 0);
+	DB.setValue(nodeItem, "ammoused", "number", 0);
+	prepare(nodeItem);
+	return true;
+end
+
+-- Engage in Combat with an equipped weapon: the roll setup window chooses the attack
+function openAttack(nodeChar, nodeWeapon)
+	if not nodeChar or not nodeWeapon then
+		return;
+	end
+	prepare(nodeWeapon);
+	manager_kult.openRollSetup(nodeChar, { sName = Interface.getString("Engage in Combat"), sAttribute = "violence",
+		sWeapon = DB.getPath(nodeWeapon), aAttacks = getRollAttacks(nodeWeapon) });
+end
+</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

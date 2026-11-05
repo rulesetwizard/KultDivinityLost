@@ -33,6 +33,17 @@
   &lt;string name="ROLL_SETUP_ROLL"&gt;Roll&lt;/string&gt;
   &lt;string name="ROLL_SETUP_CANCEL"&gt;Cancel&lt;/string&gt;
   &lt;string name="ROLL_SETUP_CHOOSE_ATTRIBUTE"&gt;Choose the attribute of the move&lt;/string&gt;
+  &lt;string name="ROLL_SETUP_ATTACK"&gt;Which attack?&lt;/string&gt;
+
+  &lt;string name="WEAPON_TYPE"&gt;Weapon&lt;/string&gt;
+  &lt;string name="WEAPON_ATTACK"&gt;Engage in Combat with this weapon&lt;/string&gt;
+  &lt;string name="WEAPON_DAMAGE"&gt;Harm %s&lt;/string&gt;
+  &lt;string name="WEAPON_AMMO"&gt;Ammo %d/%d&lt;/string&gt;
+  &lt;string name="WEAPON_AMMO_COST"&gt;−%d ammo&lt;/string&gt;
+  &lt;string name="WEAPON_NO_AMMO"&gt;Not enough ammo: %d left and the attack needs %d.&lt;/string&gt;
+  &lt;string name="WEAPON_RELOAD"&gt;Reload&lt;/string&gt;
+  &lt;string name="WEAPON_RELOADED"&gt;Reloads: %s&lt;/string&gt;
+  &lt;string name="WEAPON_RANGE"&gt;Range: %s&lt;/string&gt;
 
   &lt;string name="ATTRIBUTES_EDIT"&gt;Edit&lt;/string&gt;
   &lt;string name="ATTRIBUTES_DONE"&gt;Done&lt;/string&gt;

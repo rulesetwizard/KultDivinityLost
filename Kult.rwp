@@ -2390,6 +2390,7 @@ end
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
+      {"Name":"DropTypes"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameHideReadonly"},
@@ -2448,10 +2449,11 @@ end
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"12"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"258"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"150"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
-      {"Name":"FieldCurrent","Value":{"@xsi:type":"xsd:string","#text":"currentAmmo"}},
+      {"Name":"DropTypes"},
+      {"Name":"FieldCurrent","Value":{"@xsi:type":"xsd:string","#text":"ammoused"}},
       {"Name":"FieldMax","Value":{"@xsi:type":"xsd:string","#text":"ammo"}},
       {"Name":"FrameHideReadonly"},
       {"Name":"FrameName"},
@@ -2484,10 +2486,136 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"8"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"25"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"33"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"29"}}
 ]}}</Definition>
     <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>char_weapon</WindowName>
+    <ControlName>btnAttack</ControlName>
+    <ZIndex>7</ZIndex>
+    <ControlClass>FGButton</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"AllowDoubleClick"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ButtonCaption","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"ButtonField"},
+      {"Name":"ButtonStateList","Value":{"@xsi:type":"ArrayOfButtonStateDefinition"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"btnAttack"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultValue"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"24"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"28"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"DropTypes"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"button-white"}},
+      {"Name":"FrameHideReadonly"},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"buttonup"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"HoverIconName"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"dKult"}},
+      {"Name":"PressedIconName"},
+      {"Name":"PressedOffset"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"3"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"2"}}
+]}}</Definition>
+    <LUACode>function onButtonPress()
+	kult_weapons.openAttack(window.windowlist.window.getDatabaseNode(), window.getDatabaseNode());
+end
+</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>char_weapon</WindowName>
+    <ControlName>btnReload</ControlName>
+    <ZIndex>8</ZIndex>
+    <ControlClass>FGCustomControl</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"btnReload"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomClassName","Value":{"@xsi:type":"xsd:string","#text":"button_text_sm"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty","CustomProperty":{"PropertyName":"textres","PropertyValue":"WEAPON_RELOAD","PropertyAttributes":null,"ParentElement":null,"XMLCode":null}}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"16"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"60"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"DropTypes"},
+      {"Name":"DynamicSize"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameHideReadonly"},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XMLCode"},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"225"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"27"}}
+]}}</Definition>
+    <LUACode>function onButtonPress()
+	kult_weapons.reload(window.getDatabaseNode());
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -2504,7 +2632,7 @@ end
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"char_weapon"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DataSource"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"39"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"46"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"289"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
@@ -2513,6 +2641,7 @@ end
       {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"HostControl"},
       {"Name":"HoverCursor"},
+      {"Name":"InheritedTabs","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"InheritSizePosition"},
       {"Name":"Invisible"},
       {"Name":"Locked"},
@@ -2540,77 +2669,48 @@ end
       {"Name":"TooltipField"},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"WindowClassCopy"},
-      {"Name":"WindowMargins"},
+      {"Name":"WindowMargins","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"WindowTabs","Value":{"@xsi:type":"ArrayOfWindowTabDefinition"}},
       {"Name":"WindowTitle"},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode />
-    <GroupIndex>0</GroupIndex>
-    <Template />
-  </WindowControls>
-  <WindowControls>
-    <WindowName>char_weapon</WindowName>
-    <ControlName>currentAmmo</ControlName>
-    <ZIndex>6</ZIndex>
-    <ControlClass>FGNumberField</ControlClass>
-    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
-      {"Name":"AdvancedTemplate"},
-      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"currentAmmo"}},
-      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DefaultValue"},
-      {"Name":"DelayKeyUpdate"},
-      {"Name":"DescriptionText"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"28"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"38"}},
-      {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
-      {"Name":"Disabled"},
-      {"Name":"DisplaySign"},
-      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"FrameHideReadonly"},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
-      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"GMEditOnly"},
-      {"Name":"GMVisibleOnly"},
-      {"Name":"HideOnValue","Value":{"@xsi:type":"xsd:decimal","#text":"0"}},
-      {"Name":"HideRollWidget"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
-      {"Name":"HoverCursor"},
-      {"Name":"InheritSizePosition"},
-      {"Name":"InsertBefore"},
-      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"MaximumHeight"},
-      {"Name":"MaximumWidth"},
-      {"Name":"MaxValue"},
-      {"Name":"Merge"},
-      {"Name":"MinimumHeight"},
-      {"Name":"MinimumWidth"},
-      {"Name":"MinValue"},
-      {"Name":"NextTabTarget"},
-      {"Name":"NoDrag"},
-      {"Name":"NoDrop"},
-      {"Name":"NoKeyEdit"},
-      {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
-      {"Name":"RelativeMargin"},
-      {"Name":"RelativeStacking"},
-      {"Name":"ScriptFile"},
-      {"Name":"Source"},
-      {"Name":"StackVertWith"},
-      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
-      {"Name":"Tooltip"},
-      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"297"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
-]}}</Definition>
-    <LUACode />
+    <LUACode>-- A weapon of the inventory (kult_weapons), shown on the main tab while it is equipped.
+-- The windowlist creates a row for every inventory item and shows only the equipped weapons.
+local sPath = "";
+
+function onInit()
+	local node = getDatabaseNode();
+	sPath = DB.getPath(node);
+	if kult_weapons.isWeapon(node) and DB.isOwner(node) and not DB.isReadOnly(node) then
+		kult_weapons.prepare(node);
+		-- The link opens the item
+		local _, sRecord = DB.getValue(node, "link", "", "");
+		if (sRecord or "") == "" then
+			DB.setValue(node, "link", "windowreference", "item", sPath);
+		end
+	end
+	DB.addHandler(DB.getPath(node, "ammoused"), "onUpdate", updateAmmo);
+	DB.addHandler(DB.getPath(node, "ammo"), "onUpdate", updateAmmo);
+	updateAmmo();
+end
+
+function onClose()
+	DB.removeHandler(sPath .. ".ammoused", "onUpdate", updateAmmo);
+	DB.removeHandler(sPath .. ".ammo", "onUpdate", updateAmmo);
+end
+
+function updateAmmo()
+	local node = getDatabaseNode();
+	btnReload.setVisible(DB.isOwner(node) and DB.getValue(node, "ammoused", 0) &gt; 0);
+	local sTooltip = Interface.getString("WEAPON_ATTACK");
+	local sRange = kult_weapons.getRange(node);
+	if sRange ~= "" then
+		sTooltip = sTooltip .. "\n" .. string.format(Interface.getString("WEAPON_RANGE"), sRange);
+	end
+	btnAttack.setTooltipText(sTooltip);
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -2631,6 +2731,7 @@ end
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
+      {"Name":"DropTypes"},
       {"Name":"FrameHideReadonly"},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
@@ -2688,10 +2789,11 @@ end
       {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"183"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"157"}},
       {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
+      {"Name":"DropTypes"},
       {"Name":"DynamicSize"},
       {"Name":"EmptyText"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -2728,7 +2830,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"7"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"33"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"3"}}
 ]}}</Definition>
     <LUACode />
@@ -2757,6 +2859,7 @@ end
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
+      {"Name":"DropTypes"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameHideReadonly"},
@@ -4276,7 +4379,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>armor</ControlName>
-    <ZIndex>60</ZIndex>
+    <ZIndex>59</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -4342,7 +4445,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>btnDamageStability</ControlName>
-    <ZIndex>54</ZIndex>
+    <ZIndex>53</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -4418,7 +4521,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>btnEditAttributes</ControlName>
-    <ZIndex>67</ZIndex>
+    <ZIndex>64</ZIndex>
     <ControlClass>FGCustomControl</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -4477,7 +4580,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>btnHealStability</ControlName>
-    <ZIndex>55</ZIndex>
+    <ZIndex>54</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -4842,7 +4945,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>criticalwound</ControlName>
-    <ZIndex>57</ZIndex>
+    <ZIndex>56</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -4907,7 +5010,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>CriticalWoundStabilized</ControlName>
-    <ZIndex>58</ZIndex>
+    <ZIndex>57</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -5287,7 +5390,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>Label1</ControlName>
-    <ZIndex>61</ZIndex>
+    <ZIndex>60</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -5458,7 +5561,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>lblArmor</ControlName>
-    <ZIndex>59</ZIndex>
+    <ZIndex>58</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -5743,7 +5846,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>lblCriticalWound</ControlName>
-    <ZIndex>56</ZIndex>
+    <ZIndex>55</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -6712,7 +6815,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>lblStabilityEffects</ControlName>
-    <ZIndex>65</ZIndex>
+    <ZIndex>62</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -7044,7 +7147,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"266"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"288"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"385"}}
 ]}}</Definition>
     <LUACode />
@@ -7168,7 +7271,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>lblWoundPenalty</ControlName>
-    <ZIndex>66</ZIndex>
+    <ZIndex>63</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -7513,7 +7616,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>stability</ControlName>
-    <ZIndex>53</ZIndex>
+    <ZIndex>52</ZIndex>
     <ControlClass>FGStringCycler</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -7679,14 +7782,14 @@ end
       {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop"}},
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"AllowCreate","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"AllowDelete","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"AllowCreate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"AllowDelete","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"Columns","Value":{"@xsi:type":"PropertyColumns","ColumnWidth":{"@xsi:nil":"true"},"FillDown":{"@xsi:nil":"true"},"FillWidth":{"@xsi:nil":"true"}}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"weaponlist"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DataSource","Value":{"@xsi:type":"xsd:string","#text":".weapons"}},
+      {"Name":"DataSource","Value":{"@xsi:type":"xsd:string","#text":".inventorylist"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"124"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"246"}},
@@ -7736,7 +7839,50 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"254"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"357"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>-- Equipped weapons of the inventory (kult_weapons). Weapons dropped here go to the inventory, equipped.
+local aHandlerPaths = {};
+
+function onInit()
+	local nodeChar = window.getDatabaseNode();
+	kult_weapons.migrateLegacyWeapons(nodeChar);
+	if DB.isOwner(nodeChar) and not DB.isReadOnly(nodeChar) then
+		kult_weapons.prepareInventory(nodeChar);
+	end
+	for _,sField in ipairs({ "carried", "type", "kultweapon" }) do
+		local sPath = DB.getPath(nodeChar, "inventorylist.*." .. sField);
+		DB.addHandler(sPath, "onAdd", onItemChanged);
+		DB.addHandler(sPath, "onUpdate", onItemChanged);
+		table.insert(aHandlerPaths, sPath);
+	end
+	applyFilter();
+end
+
+function onClose()
+	for _,sPath in ipairs(aHandlerPaths) do
+		DB.removeHandler(sPath, "onAdd", onItemChanged);
+		DB.removeHandler(sPath, "onUpdate", onItemChanged);
+	end
+end
+
+function onItemChanged()
+	applyFilter();
+end
+
+function onFilter(w)
+	return kult_weapons.isEquippedWeapon(w.getDatabaseNode());
+end
+
+function onDrop(x, y, draginfo)
+	if draginfo.isType("shortcut") then
+		local _, sRecord = draginfo.getShortcutData();
+		local nodeSource = DB.findNode(sRecord or "");
+		if nodeSource and kult_weapons.addWeapon(window.getDatabaseNode(), nodeSource) then
+			applyFilter();
+			return true;
+		end
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -8295,7 +8441,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>wounds</ControlName>
-    <ZIndex>62</ZIndex>
+    <ZIndex>61</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -20283,15 +20429,16 @@ end
       {"Name":"TooltipField"},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"WindowClassCopy"},
-      {"Name":"WindowMargins"},
+      {"Name":"WindowMargins","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"WindowTabs","Value":{"@xsi:type":"ArrayOfWindowTabDefinition"}},
       {"Name":"WindowTitle"},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
     <LUACode>-- Prepares a roll that needs data the sheet does not have: the Harm of Endure Injury, the attribute of Help or Hinder
--- and of moves without one, or which roll of a trait with several. The controls are sourceless: nothing typed here is
--- stored on the character. rData is described in manager_kult.openRollSetup.
+-- and of moves without one, which roll of a trait with several, or the attack of a weapon (Engage in Combat).
+-- The controls are sourceless: nothing typed here is stored on the character. rData is described in
+-- manager_kult.openRollSetup.
 local sCharPath = "";
 local rSetup = nil;
 
@@ -20301,27 +20448,44 @@ function configure(nodeChar, rData)
 	title.setValue(rData.sName);
 
 	local bEndure = (rData.sMove == "endure");
+	local bWeapon = (rData.sWeapon ~= nil);
 	local bGroups = (rData.aGroups ~= nil) and (#rData.aGroups &gt; 1);
-	-- A trait rolls its own attribute
-	local bChooseAttribute = not bEndure and not rData.bTrait;
+	local bAttacks = bWeapon and (rData.aAttacks ~= nil) and (#rData.aAttacks &gt; 1);
+	if bWeapon then
+		title.setValue(rData.sName .. " \194\183 " .. DB.getValue(DB.findNode(rData.sWeapon), "name", ""));
+	end
+	-- A trait and a weapon roll their own attribute
+	local bChooseAttribute = not bEndure and not rData.bTrait and not bWeapon;
 	lblAttribute.setVisible(bChooseAttribute);
 	attribute.setVisible(bChooseAttribute);
 	lblHarm.setVisible(bEndure);
 	harm.setVisible(bEndure);
 	lblArmor.setVisible(bEndure);
 	armor.setVisible(bEndure);
-	lblResult.setVisible(bGroups);
-	result.setVisible(bGroups);
+	-- The same list chooses the roll of a trait or the attack of a weapon
+	lblResult.setVisible(bGroups or bAttacks);
+	result.setVisible(bGroups or bAttacks);
+	if bAttacks then
+		lblResult.setValue(Interface.getString("ROLL_SETUP_ATTACK"));
+	else
+		lblResult.setValue(Interface.getString("kult_roll_setup_lblResult_LabelCaption"));
+	end
 
 	attribute.setValue(manager_kult.getAttributeKey(rData.sAttribute) or "");
 	harm.setValue(0);
 	armor.setValue(DB.getValue(nodeChar, "armor", 0));
 	result.clear(true);
+	local aItems = {};
 	if bGroups then
-		local aItems = {};
 		for k,sLabel in ipairs(rData.aGroups) do
 			table.insert(aItems, { sValue = tostring(k), sText = sLabel });
 		end
+	elseif bAttacks then
+		for k,rAttack in ipairs(rData.aAttacks) do
+			table.insert(aItems, { sValue = tostring(k), sText = kult_weapons.getAttackLabel(rAttack) });
+		end
+	end
+	if #aItems &gt; 0 then
 		result.addItems(aItems);
 		result.setValue("1");
 	end
@@ -20335,7 +20499,7 @@ function getAttribute()
 	if rSetup.sMove == "endure" then
 		return "fortitude";
 	end
-	if rSetup.bTrait then
+	if rSetup.bTrait or rSetup.sWeapon then
 		return rSetup.sAttribute or "";
 	end
 	return attribute.getValue();
@@ -20348,6 +20512,37 @@ function getEndureValues()
 	return nil, nil;
 end
 
+-- The weapon and attack chosen, if this is a weapon roll
+function getAttack()
+	if not rSetup or not rSetup.sWeapon or not rSetup.aAttacks then
+		return nil, nil;
+	end
+	local nodeWeapon = DB.findNode(rSetup.sWeapon);
+	local rAttack = rSetup.aAttacks[tonumber(result.getValue()) or 1] or rSetup.aAttacks[1];
+	return nodeWeapon, rAttack;
+end
+
+-- Text about the attack and its ammo; false if there is not enough ammo
+function getAttackPreview()
+	local nodeWeapon, rAttack = getAttack();
+	if not nodeWeapon or not rAttack then
+		return "", true;
+	end
+	local sPreview = kult_weapons.getAttackText(rAttack);
+	local nCapacity = kult_weapons.getCapacity(nodeWeapon);
+	if rAttack.nCost &gt; 0 or nCapacity &gt; 0 then
+		local nRemaining = kult_weapons.getRemaining(nodeWeapon);
+		if nRemaining &lt; rAttack.nCost then
+			return sPreview .. "\n" .. string.format(Interface.getString("WEAPON_NO_AMMO"), nRemaining, rAttack.nCost), false;
+		end
+		sPreview = sPreview .. "\n" .. string.format(Interface.getString("WEAPON_AMMO"), nRemaining, nCapacity);
+		if rAttack.nCost &gt; 0 then
+			sPreview = sPreview .. " (" .. string.format(Interface.getString("WEAPON_AMMO_COST"), rAttack.nCost) .. ")";
+		end
+	end
+	return sPreview, true;
+end
+
 function refresh()
 	if not rSetup then
 		return;
@@ -20356,11 +20551,18 @@ function refresh()
 	local nHarm, nArmor = getEndureValues();
 	-- Traits can roll +0; moves need an attribute
 	local bCanRoll = (sKey ~= nil) or rSetup.bTrait;
+	local sPreview = "";
 	if bCanRoll then
-		preview.setValue(manager_kult.getRollPreview(DB.findNode(sCharPath), sKey or "", rSetup.bDisadvantage, rSetup.sMove == "help", nHarm, nArmor));
+		sPreview = manager_kult.getRollPreview(DB.findNode(sCharPath), sKey or "", rSetup.bDisadvantage, rSetup.sMove == "help", nHarm, nArmor);
 	else
-		preview.setValue(Interface.getString("ROLL_SETUP_CHOOSE_ATTRIBUTE"));
+		sPreview = Interface.getString("ROLL_SETUP_CHOOSE_ATTRIBUTE");
 	end
+	local sAttack, bAmmo = getAttackPreview();
+	if sAttack ~= "" then
+		sPreview = sAttack .. "\n" .. sPreview;
+	end
+	bCanRoll = bCanRoll and bAmmo;
+	preview.setValue(sPreview);
 	btnRoll.setVisible(bCanRoll);
 end
 
@@ -20378,7 +20580,22 @@ function perform()
 	if rSetup.aGroups and #rSetup.aGroups &gt; 1 then
 		nGroup = tonumber(result.getValue()) or 1;
 	end
-	manager_kult.performSetupRoll(nodeChar, rSetup, sKey, nHarm, nArmor, nGroup);
+
+	-- A weapon attack crosses out its ammo before rolling and goes in the roll description
+	local rRollData = rSetup;
+	local nodeWeapon, rAttack = getAttack();
+	if nodeWeapon and rAttack then
+		if not kult_weapons.spendAmmo(nodeWeapon, rAttack.nCost) then
+			refresh();
+			return;
+		end
+		local sDesc = Interface.getString("ROLL_MOVE") .. " " .. rSetup.sName .. " \194\183 " .. DB.getValue(nodeWeapon, "name", "") .. ": " .. kult_weapons.getAttackText(rAttack);
+		if rAttack.nCost &gt; 0 or kult_weapons.getCapacity(nodeWeapon) &gt; 0 then
+			sDesc = sDesc .. " [" .. string.format(Interface.getString("WEAPON_AMMO"), kult_weapons.getRemaining(nodeWeapon), kult_weapons.getCapacity(nodeWeapon)) .. "]";
+		end
+		rRollData = { sName = rSetup.sName, sDesc = sDesc, sAttribute = rSetup.sAttribute };
+	end
+	manager_kult.performSetupRoll(nodeChar, rRollData, sKey, nHarm, nArmor, nGroup);
 	close();
 end
 </LUACode>
@@ -20682,7 +20899,7 @@ end
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"preview"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"90"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"110"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"352"}},
       {"Name":"DevelopmentComments"},
@@ -23175,6 +23392,333 @@ end
     <Encoding />
   </Scripts>
   <Scripts>
+    <ScriptName>kult_weapons</ScriptName>
+    <FolderID>7</FolderID>
+    <Script>-- Weapons are inventory items (type Arma / Weapon); the equipped ones (carried = 2) are listed on the main tab.
+-- Attacks are read from the item text, as the rulebook writes them after "Ataques:" / "Attacks:":
+--   Name [Damage] [effect] [-N ammo]
+-- Ammo: "ammo" is the number of boxes and "ammoused" the boxes crossed out (as on the paper sheet).
+-- "kultweapon" = 1 marks an item whose damage and ammo were filled from its text.
+
+local aWeaponTypes = { ["arma"] = true, ["armas"] = true, ["weapon"] = true, ["weapons"] = true };
+
+-- Ammo of the rulebook firearms, used when the text gives none
+local aKnownCapacity = {
+	["pistola"] = 4, ["pistola magnum"] = 3, ["subfusil"] = 3, ["fusil de asalto"] = 4, ["ametralladora"] = 6,
+	["fusil"] = 3, ["escopeta de combate"] = 3, ["explosivos"] = 1,
+	["handgun"] = 4, ["pistol"] = 4, ["magnum"] = 3, ["magnum handgun"] = 3, ["magnum pistol"] = 3,
+	["submachine gun"] = 3, ["assault rifle"] = 4, ["machine gun"] = 6, ["rifle"] = 3,
+	["combat shotgun"] = 3, ["shotgun"] = 3, ["explosives"] = 1,
+};
+
+-- UTF-8 accented letters of Spanish, to compare names without accents
+local aAccents = { ["\195\161"] = "a", ["\195\169"] = "e", ["\195\173"] = "i", ["\195\179"] = "o", ["\195\186"] = "u",
+	["\195\188"] = "u", ["\195\177"] = "n", ["\195\129"] = "a", ["\195\137"] = "e", ["\195\141"] = "i", ["\195\147"] = "o",
+	["\195\154"] = "u", ["\195\145"] = "n" };
+
+-- Marks of the ammo boxes: white and black circles, squares, and the symbol-font circle of the module (U+F0A1)
+local aAmmoMarks = { "\226\151\139", "\226\151\175", "\226\151\143", "\226\150\161", "\226\151\187", "\239\130\161" };
+
+function trim(s)
+	return (s or ""):match("^%s*(.-)%s*$");
+end
+
+function normalize(s)
+	s = trim(s);
+	for sFrom, sTo in pairs(aAccents) do
+		s = s:gsub(sFrom, sTo);
+	end
+	return s:lower();
+end
+
+-- Code point to UTF-8 (FG's Lua 5.1 has no utf8 library)
+local function utf8Char(n)
+	if not n or n &lt; 1 then
+		return "";
+	elseif n &lt; 128 then
+		return string.char(n);
+	elseif n &lt; 2048 then
+		return string.char(192 + math.floor(n / 64), 128 + n % 64);
+	elseif n &lt; 65536 then
+		return string.char(224 + math.floor(n / 4096), 128 + math.floor(n / 64) % 64, 128 + n % 64);
+	end
+	return string.char(240 + math.floor(n / 262144), 128 + math.floor(n / 4096) % 64, 128 + math.floor(n / 64) % 64, 128 + n % 64);
+end
+
+-- Formatted text to plain text (FG keeps the non-ASCII characters of formatted text as numeric entities)
+function plain(s)
+	s = (s or ""):gsub("&lt;[^&gt;]*&gt;", " ");
+	s = s:gsub("&amp;#[xX](%x+);", function(sHex) return utf8Char(tonumber(sHex, 16)); end);
+	s = s:gsub("&amp;#(%d+);", function(sDec) return utf8Char(tonumber(sDec)); end);
+	s = s:gsub("&amp;lt;", "&lt;"):gsub("&amp;gt;", "&gt;"):gsub("&amp;quot;", "\""):gsub("&amp;apos;", "'"):gsub("&amp;amp;", "&amp;");
+	return trim(s:gsub("%s+", " "));
+end
+
+function isWeapon(node)
+	if not node then
+		return false;
+	end
+	if DB.getValue(node, "kultweapon", 0) == 1 then
+		return true;
+	end
+	return aWeaponTypes[normalize(DB.getValue(node, "type", ""))] == true;
+end
+
+function isEquippedWeapon(node)
+	return isWeapon(node) and DB.getValue(node, "carried", 1) == 2;
+end
+
+function getText(node)
+	for _,sField in ipairs({ "notes", "description", "text" }) do
+		local sText = DB.getValue(node, sField, "");
+		if type(sText) == "string" and trim(sText) ~= "" then
+			return sText;
+		end
+	end
+	return "";
+end
+
+-- Paragraphs (or lines) of a formatted text, as plain text
+local function getParagraphs(sText)
+	local aParagraphs = {};
+	for sParagraph in sText:gmatch("&lt;p[^&gt;]*&gt;(.-)&lt;/p&gt;") do
+		table.insert(aParagraphs, plain(sParagraph));
+	end
+	if #aParagraphs == 0 then
+		for sLine in sText:gmatch("[^\r\n]+") do
+			table.insert(aParagraphs, plain(sLine));
+		end
+	end
+	return aParagraphs;
+end
+
+function getRange(node)
+	for _,sParagraph in ipairs(getParagraphs(getText(node))) do
+		local sRange = sParagraph:match("^[Aa]lcance%s*:%s*(.+)$") or sParagraph:match("^[Rr]ange%s*:%s*(.+)$");
+		if sRange then
+			return sRange;
+		end
+	end
+	return "";
+end
+
+-- Ammo boxes written in the text ("Municion: 3" or box marks); nil if the text gives none
+function getTextCapacity(node)
+	for _,sParagraph in ipairs(getParagraphs(getText(node))) do
+		local sAmount = normalize(sParagraph):match("^municion%s*:%s*(.*)$") or normalize(sParagraph):match("^ammo%s*:%s*(.*)$")
+			or normalize(sParagraph):match("^ammunition%s*:%s*(.*)$");
+		if sAmount then
+			local nAmount = tonumber(sAmount:match("^(%d+)"));
+			if nAmount then
+				return nAmount;
+			end
+			local nCount = 0;
+			for _,sMark in ipairs(aAmmoMarks) do
+				local _, n = sAmount:gsub(sMark, "");
+				nCount = nCount + n;
+			end
+			if nCount &gt; 0 then
+				return nCount;
+			end
+		end
+	end
+	return nil;
+end
+
+-- Attacks of the item: { sName, sDamage, nCost, sEffect }
+function getAttacks(node)
+	local aAttacks = {};
+	local sText = getText(node);
+	local nStart = sText:find("[Aa]taques%s*:") or sText:find("[Aa]ttacks%s*:");
+	if not nStart then
+		return aAttacks;
+	end
+	local sList = sText:sub(nStart):match("&lt;list[^&gt;]*&gt;(.-)&lt;/list&gt;");
+	if not sList then
+		return aAttacks;
+	end
+	for sItem in sList:gmatch("&lt;li[^&gt;]*&gt;(.-)&lt;/li&gt;") do
+		local sName, sDamage, sTail = plain(sItem):match("^(.-)%s*%[([^%]]*)%]%s*(.*)$");
+		if sName and trim(sName) ~= "" then
+			local nCost = 0;
+			local aEffects = {};
+			for sBlock in sTail:gmatch("%[([^%]]*)%]") do
+				local sCost = normalize(sBlock):match("(%d+)%s*municion") or normalize(sBlock):match("(%d+)%s*ammo");
+				if sCost then
+					nCost = tonumber(sCost) or 0;
+				else
+					table.insert(aEffects, trim(sBlock));
+				end
+			end
+			table.insert(aAttacks, { sName = trim(sName), sDamage = trim(sDamage), nCost = nCost, sEffect = table.concat(aEffects, "; ") });
+		end
+	end
+	return aAttacks;
+end
+
+-- The attacks to choose from when rolling: those of the text, or one with the damage of the sheet
+function getRollAttacks(node)
+	local aAttacks = getAttacks(node);
+	if #aAttacks == 0 then
+		local nCost = 0;
+		if getCapacity(node) &gt; 0 then
+			nCost = 1;
+		end
+		table.insert(aAttacks, { sName = "", sDamage = tostring(DB.getValue(node, "weapondamage", 0)), nCost = nCost, sEffect = "" });
+	end
+	return aAttacks;
+end
+
+function getCapacity(node)
+	return math.max(0, DB.getValue(node, "ammo", 0));
+end
+
+function getRemaining(node)
+	return math.max(0, getCapacity(node) - DB.getValue(node, "ammoused", 0));
+end
+
+-- Fills damage and ammo from the text the first time the item is seen as a weapon; later edits are kept
+function prepare(node)
+	if not isWeapon(node) or not DB.isOwner(node) or DB.isReadOnly(node) or DB.getValue(node, "kultweapon", 0) == 1 then
+		return;
+	end
+	local aAttacks = getAttacks(node);
+	if DB.getValue(node, "weapondamage", 0) == 0 and aAttacks[1] then
+		local nDamage = tonumber(aAttacks[1].sDamage:match("^(%d+)"));
+		if nDamage then
+			DB.setValue(node, "weapondamage", "number", nDamage);
+		end
+	end
+	if getCapacity(node) == 0 then
+		local nCapacity = getTextCapacity(node) or aKnownCapacity[normalize(DB.getValue(node, "name", ""))];
+		if nCapacity and nCapacity &gt; 0 then
+			DB.setValue(node, "ammo", "number", nCapacity);
+		end
+	end
+	DB.setValue(node, "kultweapon", "number", 1);
+end
+
+function prepareInventory(nodeChar)
+	for _,node in pairs(DB.getChildren(nodeChar, "inventorylist")) do
+		prepare(node);
+	end
+end
+
+-- Crosses out the ammo of an attack; false if there is not enough
+function spendAmmo(node, nCost)
+	nCost = nCost or 0;
+	if nCost &lt;= 0 then
+		return true;
+	end
+	if getRemaining(node) &lt; nCost then
+		return false;
+	end
+	DB.setValue(node, "ammoused", "number", DB.getValue(node, "ammoused", 0) + nCost);
+	return true;
+end
+
+function reload(node)
+	if not node or not DB.isOwner(node) then
+		return;
+	end
+	DB.setValue(node, "ammoused", "number", 0);
+	kult_xp.sendChat(DB.getChild(node, "..."), string.format(Interface.getString("WEAPON_RELOADED"), DB.getValue(node, "name", "")));
+end
+
+-- Text of an attack for the roll: "Name [Harm 3] [effect]"
+function getAttackText(rAttack)
+	local sText = "";
+	if rAttack.sName ~= "" then
+		sText = rAttack.sName .. " ";
+	end
+	sText = sText .. "[" .. string.format(Interface.getString("WEAPON_DAMAGE"), rAttack.sDamage) .. "]";
+	if rAttack.sEffect ~= "" then
+		sText = sText .. " [" .. rAttack.sEffect .. "]";
+	end
+	return sText;
+end
+
+-- Label of an attack in the roll setup window
+function getAttackLabel(rAttack)
+	local sLabel = getAttackText(rAttack);
+	if rAttack.nCost &gt; 0 then
+		sLabel = sLabel .. " [" .. string.format(Interface.getString("WEAPON_AMMO_COST"), rAttack.nCost) .. "]";
+	end
+	return sLabel;
+end
+
+-- The weapon rows the sheet had before weapons were inventory items become equipped inventory weapons.
+-- The old row is kept (marked) so it is never migrated twice.
+function migrateLegacyWeapons(nodeChar)
+	if not nodeChar or not DB.isOwner(nodeChar) or DB.isReadOnly(nodeChar) then
+		return;
+	end
+	for _,nodeOld in pairs(DB.getChildren(nodeChar, "weapons")) do
+		if DB.getValue(nodeOld, "kultmigrated", 0) == 0 then
+			local nodeItem = DB.createChild(DB.createChild(nodeChar, "inventorylist"));
+			local _, sRecord = DB.getValue(nodeOld, "link", "", "");
+			local nodeSource = nil;
+			if (sRecord or "") ~= "" then
+				nodeSource = DB.findNode(sRecord);
+			end
+			if nodeSource then
+				DB.copyNode(nodeSource, nodeItem);
+			end
+			local sName = trim(DB.getValue(nodeOld, "name", ""));
+			if sName == "" then
+				sName = Interface.getString("WEAPON_TYPE");
+			end
+			DB.setValue(nodeItem, "name", "string", sName);
+			DB.setValue(nodeItem, "type", "string", Interface.getString("WEAPON_TYPE"));
+			DB.setValue(nodeItem, "count", "number", 1);
+			DB.setValue(nodeItem, "carried", "number", 2);
+			DB.setValue(nodeItem, "isidentified", "number", 1);
+			DB.setValue(nodeItem, "weapondamage", "number", DB.getValue(nodeOld, "weapondamage", 0));
+			DB.setValue(nodeItem, "ammo", "number", DB.getValue(nodeOld, "ammo", 0));
+			DB.setValue(nodeItem, "ammoused", "number", DB.getValue(nodeOld, "currentAmmo", 0));
+			-- The sheet values win over the text
+			DB.setValue(nodeItem, "kultweapon", "number", 1);
+			DB.setValue(nodeOld, "kultmigrated", "number", 1);
+		end
+	end
+end
+
+-- A weapon dropped on the weapon list goes to the inventory, equipped
+function addWeapon(nodeChar, nodeSource)
+	if not nodeChar or not nodeSource or not DB.isOwner(nodeChar) or not isWeapon(nodeSource) then
+		return false;
+	end
+	-- Already in this inventory: just equip it
+	local sPrefix = DB.getPath(nodeChar, "inventorylist") .. ".";
+	if DB.getPath(nodeSource):sub(1, #sPrefix) == sPrefix then
+		DB.setValue(nodeSource, "carried", "number", 2);
+		return true;
+	end
+	local nodeItem = DB.createChild(DB.createChild(nodeChar, "inventorylist"));
+	DB.copyNode(nodeSource, nodeItem);
+	DB.setValue(nodeItem, "count", "number", 1);
+	DB.setValue(nodeItem, "carried", "number", 2);
+	DB.setValue(nodeItem, "locked", "number", 1);
+	DB.setValue(nodeItem, "kultweapon", "number", 0);
+	DB.setValue(nodeItem, "ammoused", "number", 0);
+	prepare(nodeItem);
+	return true;
+end
+
+-- Engage in Combat with an equipped weapon: the roll setup window chooses the attack
+function openAttack(nodeChar, nodeWeapon)
+	if not nodeChar or not nodeWeapon then
+		return;
+	end
+	prepare(nodeWeapon);
+	manager_kult.openRollSetup(nodeChar, { sName = Interface.getString("Engage in Combat"), sAttribute = "violence",
+		sWeapon = DB.getPath(nodeWeapon), aAttacks = getRollAttacks(nodeWeapon) });
+end
+</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+  <Scripts>
     <ScriptName>kult_xp</ScriptName>
     <FolderID>7</FolderID>
     <Script>-- Advancements of the Aware archetypes (rulebook, Experience and character development).
@@ -24031,6 +24575,17 @@ end</Script>
   &lt;string name="ROLL_SETUP_ROLL"&gt;Roll&lt;/string&gt;
   &lt;string name="ROLL_SETUP_CANCEL"&gt;Cancel&lt;/string&gt;
   &lt;string name="ROLL_SETUP_CHOOSE_ATTRIBUTE"&gt;Choose the attribute of the move&lt;/string&gt;
+  &lt;string name="ROLL_SETUP_ATTACK"&gt;Which attack?&lt;/string&gt;
+
+  &lt;string name="WEAPON_TYPE"&gt;Weapon&lt;/string&gt;
+  &lt;string name="WEAPON_ATTACK"&gt;Engage in Combat with this weapon&lt;/string&gt;
+  &lt;string name="WEAPON_DAMAGE"&gt;Harm %s&lt;/string&gt;
+  &lt;string name="WEAPON_AMMO"&gt;Ammo %d/%d&lt;/string&gt;
+  &lt;string name="WEAPON_AMMO_COST"&gt;−%d ammo&lt;/string&gt;
+  &lt;string name="WEAPON_NO_AMMO"&gt;Not enough ammo: %d left and the attack needs %d.&lt;/string&gt;
+  &lt;string name="WEAPON_RELOAD"&gt;Reload&lt;/string&gt;
+  &lt;string name="WEAPON_RELOADED"&gt;Reloads: %s&lt;/string&gt;
+  &lt;string name="WEAPON_RANGE"&gt;Range: %s&lt;/string&gt;
 
   &lt;string name="ATTRIBUTES_EDIT"&gt;Edit&lt;/string&gt;
   &lt;string name="ATTRIBUTES_DONE"&gt;Done&lt;/string&gt;

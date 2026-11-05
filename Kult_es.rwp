@@ -217,6 +217,16 @@ Kult</RulesetList>
 	&lt;string name="ATTRIBUTES_EDIT"&gt;Editar&lt;/string&gt;
 	&lt;string name="ATTRIBUTES_DONE"&gt;Hecho&lt;/string&gt;
 	&lt;string name="WOUND_PENALTY"&gt;Penalización por heridas a todas las tiradas: %s&lt;/string&gt;
+	&lt;string name="ROLL_SETUP_ATTACK"&gt;¿Qué ataque?&lt;/string&gt;
+	&lt;string name="WEAPON_TYPE"&gt;Arma&lt;/string&gt;
+	&lt;string name="WEAPON_ATTACK"&gt;Entablar combate con esta arma&lt;/string&gt;
+	&lt;string name="WEAPON_DAMAGE"&gt;Daño %s&lt;/string&gt;
+	&lt;string name="WEAPON_AMMO"&gt;Munición %d/%d&lt;/string&gt;
+	&lt;string name="WEAPON_AMMO_COST"&gt;−%d munición&lt;/string&gt;
+	&lt;string name="WEAPON_NO_AMMO"&gt;Munición insuficiente: quedan %d y el ataque necesita %d.&lt;/string&gt;
+	&lt;string name="WEAPON_RELOAD"&gt;Recargar&lt;/string&gt;
+	&lt;string name="WEAPON_RELOADED"&gt;Recarga: %s&lt;/string&gt;
+	&lt;string name="WEAPON_RANGE"&gt;Alcance: %s&lt;/string&gt;
 	&lt;string name="kult_advancement_lblAttribute_LabelCaption"&gt;Atributo&lt;/string&gt;
 	&lt;string name="XP_CHOOSE"&gt;Elegir&lt;/string&gt;
 	&lt;string name="XP_APPLY"&gt;Aplicar&lt;/string&gt;

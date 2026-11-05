@@ -344,15 +344,16 @@ end
       {"Name":"TooltipField"},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"WindowClassCopy"},
-      {"Name":"WindowMargins"},
+      {"Name":"WindowMargins","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"WindowTabs","Value":{"@xsi:type":"ArrayOfWindowTabDefinition"}},
       {"Name":"WindowTitle"},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
     <LUACode>-- Prepares a roll that needs data the sheet does not have: the Harm of Endure Injury, the attribute of Help or Hinder
--- and of moves without one, or which roll of a trait with several. The controls are sourceless: nothing typed here is
--- stored on the character. rData is described in manager_kult.openRollSetup.
+-- and of moves without one, which roll of a trait with several, or the attack of a weapon (Engage in Combat).
+-- The controls are sourceless: nothing typed here is stored on the character. rData is described in
+-- manager_kult.openRollSetup.
 local sCharPath = "";
 local rSetup = nil;
 
@@ -362,27 +363,44 @@ function configure(nodeChar, rData)
 	title.setValue(rData.sName);
 
 	local bEndure = (rData.sMove == "endure");
+	local bWeapon = (rData.sWeapon ~= nil);
 	local bGroups = (rData.aGroups ~= nil) and (#rData.aGroups &gt; 1);
-	-- A trait rolls its own attribute
-	local bChooseAttribute = not bEndure and not rData.bTrait;
+	local bAttacks = bWeapon and (rData.aAttacks ~= nil) and (#rData.aAttacks &gt; 1);
+	if bWeapon then
+		title.setValue(rData.sName .. " \194\183 " .. DB.getValue(DB.findNode(rData.sWeapon), "name", ""));
+	end
+	-- A trait and a weapon roll their own attribute
+	local bChooseAttribute = not bEndure and not rData.bTrait and not bWeapon;
 	lblAttribute.setVisible(bChooseAttribute);
 	attribute.setVisible(bChooseAttribute);
 	lblHarm.setVisible(bEndure);
 	harm.setVisible(bEndure);
 	lblArmor.setVisible(bEndure);
 	armor.setVisible(bEndure);
-	lblResult.setVisible(bGroups);
-	result.setVisible(bGroups);
+	-- The same list chooses the roll of a trait or the attack of a weapon
+	lblResult.setVisible(bGroups or bAttacks);
+	result.setVisible(bGroups or bAttacks);
+	if bAttacks then
+		lblResult.setValue(Interface.getString("ROLL_SETUP_ATTACK"));
+	else
+		lblResult.setValue(Interface.getString("kult_roll_setup_lblResult_LabelCaption"));
+	end
 
 	attribute.setValue(manager_kult.getAttributeKey(rData.sAttribute) or "");
 	harm.setValue(0);
 	armor.setValue(DB.getValue(nodeChar, "armor", 0));
 	result.clear(true);
+	local aItems = {};
 	if bGroups then
-		local aItems = {};
 		for k,sLabel in ipairs(rData.aGroups) do
 			table.insert(aItems, { sValue = tostring(k), sText = sLabel });
 		end
+	elseif bAttacks then
+		for k,rAttack in ipairs(rData.aAttacks) do
+			table.insert(aItems, { sValue = tostring(k), sText = kult_weapons.getAttackLabel(rAttack) });
+		end
+	end
+	if #aItems &gt; 0 then
 		result.addItems(aItems);
 		result.setValue("1");
 	end
@@ -396,7 +414,7 @@ function getAttribute()
 	if rSetup.sMove == "endure" then
 		return "fortitude";
 	end
-	if rSetup.bTrait then
+	if rSetup.bTrait or rSetup.sWeapon then
 		return rSetup.sAttribute or "";
 	end
 	return attribute.getValue();
@@ -409,6 +427,37 @@ function getEndureValues()
 	return nil, nil;
 end
 
+-- The weapon and attack chosen, if this is a weapon roll
+function getAttack()
+	if not rSetup or not rSetup.sWeapon or not rSetup.aAttacks then
+		return nil, nil;
+	end
+	local nodeWeapon = DB.findNode(rSetup.sWeapon);
+	local rAttack = rSetup.aAttacks[tonumber(result.getValue()) or 1] or rSetup.aAttacks[1];
+	return nodeWeapon, rAttack;
+end
+
+-- Text about the attack and its ammo; false if there is not enough ammo
+function getAttackPreview()
+	local nodeWeapon, rAttack = getAttack();
+	if not nodeWeapon or not rAttack then
+		return "", true;
+	end
+	local sPreview = kult_weapons.getAttackText(rAttack);
+	local nCapacity = kult_weapons.getCapacity(nodeWeapon);
+	if rAttack.nCost &gt; 0 or nCapacity &gt; 0 then
+		local nRemaining = kult_weapons.getRemaining(nodeWeapon);
+		if nRemaining &lt; rAttack.nCost then
+			return sPreview .. "\n" .. string.format(Interface.getString("WEAPON_NO_AMMO"), nRemaining, rAttack.nCost), false;
+		end
+		sPreview = sPreview .. "\n" .. string.format(Interface.getString("WEAPON_AMMO"), nRemaining, nCapacity);
+		if rAttack.nCost &gt; 0 then
+			sPreview = sPreview .. " (" .. string.format(Interface.getString("WEAPON_AMMO_COST"), rAttack.nCost) .. ")";
+		end
+	end
+	return sPreview, true;
+end
+
 function refresh()
 	if not rSetup then
 		return;
@@ -417,11 +466,18 @@ function refresh()
 	local nHarm, nArmor = getEndureValues();
 	-- Traits can roll +0; moves need an attribute
 	local bCanRoll = (sKey ~= nil) or rSetup.bTrait;
+	local sPreview = "";
 	if bCanRoll then
-		preview.setValue(manager_kult.getRollPreview(DB.findNode(sCharPath), sKey or "", rSetup.bDisadvantage, rSetup.sMove == "help", nHarm, nArmor));
+		sPreview = manager_kult.getRollPreview(DB.findNode(sCharPath), sKey or "", rSetup.bDisadvantage, rSetup.sMove == "help", nHarm, nArmor);
 	else
-		preview.setValue(Interface.getString("ROLL_SETUP_CHOOSE_ATTRIBUTE"));
+		sPreview = Interface.getString("ROLL_SETUP_CHOOSE_ATTRIBUTE");
 	end
+	local sAttack, bAmmo = getAttackPreview();
+	if sAttack ~= "" then
+		sPreview = sAttack .. "\n" .. sPreview;
+	end
+	bCanRoll = bCanRoll and bAmmo;
+	preview.setValue(sPreview);
 	btnRoll.setVisible(bCanRoll);
 end
 
@@ -439,7 +495,22 @@ function perform()
 	if rSetup.aGroups and #rSetup.aGroups &gt; 1 then
 		nGroup = tonumber(result.getValue()) or 1;
 	end
-	manager_kult.performSetupRoll(nodeChar, rSetup, sKey, nHarm, nArmor, nGroup);
+
+	-- A weapon attack crosses out its ammo before rolling and goes in the roll description
+	local rRollData = rSetup;
+	local nodeWeapon, rAttack = getAttack();
+	if nodeWeapon and rAttack then
+		if not kult_weapons.spendAmmo(nodeWeapon, rAttack.nCost) then
+			refresh();
+			return;
+		end
+		local sDesc = Interface.getString("ROLL_MOVE") .. " " .. rSetup.sName .. " \194\183 " .. DB.getValue(nodeWeapon, "name", "") .. ": " .. kult_weapons.getAttackText(rAttack);
+		if rAttack.nCost &gt; 0 or kult_weapons.getCapacity(nodeWeapon) &gt; 0 then
+			sDesc = sDesc .. " [" .. string.format(Interface.getString("WEAPON_AMMO"), kult_weapons.getRemaining(nodeWeapon), kult_weapons.getCapacity(nodeWeapon)) .. "]";
+		end
+		rRollData = { sName = rSetup.sName, sDesc = sDesc, sAttribute = rSetup.sAttribute };
+	end
+	manager_kult.performSetupRoll(nodeChar, rRollData, sKey, nHarm, nArmor, nGroup);
 	close();
 end
 </LUACode>
@@ -743,7 +814,7 @@ end
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"preview"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"90"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"110"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"352"}},
       {"Name":"DevelopmentComments"},

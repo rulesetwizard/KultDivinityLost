@@ -2,7 +2,7 @@
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>armor</ControlName>
-    <ZIndex>60</ZIndex>
+    <ZIndex>59</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -68,7 +68,7 @@
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>btnDamageStability</ControlName>
-    <ZIndex>54</ZIndex>
+    <ZIndex>53</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -144,7 +144,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>btnEditAttributes</ControlName>
-    <ZIndex>67</ZIndex>
+    <ZIndex>64</ZIndex>
     <ControlClass>FGCustomControl</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -203,7 +203,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>btnHealStability</ControlName>
-    <ZIndex>55</ZIndex>
+    <ZIndex>54</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -568,7 +568,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>criticalwound</ControlName>
-    <ZIndex>57</ZIndex>
+    <ZIndex>56</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -633,7 +633,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>CriticalWoundStabilized</ControlName>
-    <ZIndex>58</ZIndex>
+    <ZIndex>57</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -1013,7 +1013,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>Label1</ControlName>
-    <ZIndex>61</ZIndex>
+    <ZIndex>60</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -1184,7 +1184,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>lblArmor</ControlName>
-    <ZIndex>59</ZIndex>
+    <ZIndex>58</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -1469,7 +1469,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>lblCriticalWound</ControlName>
-    <ZIndex>56</ZIndex>
+    <ZIndex>55</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -2438,7 +2438,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>lblStabilityEffects</ControlName>
-    <ZIndex>65</ZIndex>
+    <ZIndex>62</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -2770,7 +2770,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"266"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"288"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"385"}}
 ]}}</Definition>
     <LUACode />
@@ -2894,7 +2894,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>lblWoundPenalty</ControlName>
-    <ZIndex>66</ZIndex>
+    <ZIndex>63</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -3239,7 +3239,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>stability</ControlName>
-    <ZIndex>53</ZIndex>
+    <ZIndex>52</ZIndex>
     <ControlClass>FGStringCycler</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -3405,14 +3405,14 @@ end
       {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop"}},
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"AllowCreate","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"AllowDelete","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"AllowCreate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"AllowDelete","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"Columns","Value":{"@xsi:type":"PropertyColumns","ColumnWidth":{"@xsi:nil":"true"},"FillDown":{"@xsi:nil":"true"},"FillWidth":{"@xsi:nil":"true"}}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"weaponlist"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DataSource","Value":{"@xsi:type":"xsd:string","#text":".weapons"}},
+      {"Name":"DataSource","Value":{"@xsi:type":"xsd:string","#text":".inventorylist"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"124"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"246"}},
@@ -3462,7 +3462,50 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"254"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"357"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>-- Equipped weapons of the inventory (kult_weapons). Weapons dropped here go to the inventory, equipped.
+local aHandlerPaths = {};
+
+function onInit()
+	local nodeChar = window.getDatabaseNode();
+	kult_weapons.migrateLegacyWeapons(nodeChar);
+	if DB.isOwner(nodeChar) and not DB.isReadOnly(nodeChar) then
+		kult_weapons.prepareInventory(nodeChar);
+	end
+	for _,sField in ipairs({ "carried", "type", "kultweapon" }) do
+		local sPath = DB.getPath(nodeChar, "inventorylist.*." .. sField);
+		DB.addHandler(sPath, "onAdd", onItemChanged);
+		DB.addHandler(sPath, "onUpdate", onItemChanged);
+		table.insert(aHandlerPaths, sPath);
+	end
+	applyFilter();
+end
+
+function onClose()
+	for _,sPath in ipairs(aHandlerPaths) do
+		DB.removeHandler(sPath, "onAdd", onItemChanged);
+		DB.removeHandler(sPath, "onUpdate", onItemChanged);
+	end
+end
+
+function onItemChanged()
+	applyFilter();
+end
+
+function onFilter(w)
+	return kult_weapons.isEquippedWeapon(w.getDatabaseNode());
+end
+
+function onDrop(x, y, draginfo)
+	if draginfo.isType("shortcut") then
+		local _, sRecord = draginfo.getShortcutData();
+		local nodeSource = DB.findNode(sRecord or "");
+		if nodeSource and kult_weapons.addWeapon(window.getDatabaseNode(), nodeSource) then
+			applyFilter();
+			return true;
+		end
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -4021,7 +4064,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>wounds</ControlName>
-    <ZIndex>62</ZIndex>
+    <ZIndex>61</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
