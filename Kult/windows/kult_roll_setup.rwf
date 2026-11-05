@@ -206,7 +206,7 @@ end
       {"Name":"HoverCursor"},
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
-      {"Name":"Invisible"},
+      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"MaximumHeight"},
       {"Name":"MaximumWidth"},
       {"Name":"Merge"},
@@ -305,7 +305,7 @@ end
       {"Name":"BottomMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"Comments"},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"kult_roll_setup"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty","CustomProperty":{"PropertyName":"nosave","PropertyValue":null,"PropertyAttributes":null,"ParentElement":null,"XMLCode":null}}},
       {"Name":"DataSource"},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"300"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"400"}},
@@ -353,7 +353,7 @@ end
     <LUACode>-- Prepares a roll that needs data the sheet does not have: the Harm of Endure Injury, the attribute of Help or Hinder
 -- and of moves without one, which roll of a trait with several, or the attack of a weapon (Engage in Combat).
 -- The controls are sourceless: nothing typed here is stored on the character. rData is described in
--- manager_kult.openRollSetup.
+-- manager_kult.openRollSetup. Roll starts hidden: refresh shows it once the window is configured.
 local sCharPath = "";
 local rSetup = nil;
 

@@ -1,0 +1,369 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>kult_archetype</ScriptName>
+    <FolderID>0</FolderID>
+    <Script>-- Character creation from an archetype record (rulebook, Creating a character).
+-- The record text says how many traits to choose ("Elige tres ventajas", "Choose two disadvantages",
+-- "Elige uno o varios secretos"), which disadvantages come automatically, the occupation suggestions and the
+-- attribute modifiers to assign. Its link lists point to the advantage, disadvantage and dark secret records;
+-- an archetype without links has its suggestions resolved by name among the loaded records.
+-- The window kult_archetype_setup lets the player choose; apply() copies the records to the sheet.
+
+CATEGORIES = { "adv", "dis", "sec" };
+
+local aRecordPaths = { adv = "reference.advantages", dis = "reference.disadvantages", sec = "reference.darksecrets" };
+
+local aSectionTitles = {
+	["ocupacion"] = "occupation", ["occupation"] = "occupation",
+	["ventajas"] = "adv", ["advantages"] = "adv",
+	["desventajas"] = "dis", ["disadvantages"] = "dis",
+	["secretos inconfesables"] = "sec", ["dark secrets"] = "sec",
+	["atributos"] = "attr", ["attributes"] = "attr",
+};
+
+local aNumberWords = { ["un"] = 1, ["uno"] = 1, ["una"] = 1, ["dos"] = 2, ["tres"] = 3, ["cuatro"] = 4, ["cinco"] = 5,
+	["a"] = 1, ["an"] = 1, ["one"] = 1, ["two"] = 2, ["three"] = 3, ["four"] = 4, ["five"] = 5 };
+
+PASSIVE = { "fortitude", "reflexes", "willpower" };
+ACTIVE = { "soul", "charisma", "coolness", "intuition", "perception", "reason", "violence" };
+local aDefaultPassivePool = { 2, 1, 0 };
+local aDefaultActivePool = { 3, 2, 1, 1, 0, -1, -2 };
+
+local function trim(s)
+	return (s or ""):match("^%s*(.-)%s*$");
+end
+
+local function plain(s)
+	return kult_weapons.plain(s);
+end
+
+local function normalize(s)
+	return kult_weapons.normalize(plain(s));
+end
+
+-- Sections of a formatted text, by &lt;h&gt; title: { sKey, sTitle, sBody }
+local function getSections(sText)
+	local aSections = {};
+	local sTitle, nStart = nil, nil;
+	for nHStart, sHeading, nHEnd in sText:gmatch("()&lt;h&gt;(.-)&lt;/h&gt;()") do
+		if sTitle then
+			table.insert(aSections, { sTitle = sTitle, sBody = sText:sub(nStart, nHStart - 1) });
+		end
+		sTitle = normalize(sHeading);
+		nStart = nHEnd;
+	end
+	if sTitle then
+		table.insert(aSections, { sTitle = sTitle, sBody = sText:sub(nStart) });
+	end
+	for _,rSection in ipairs(aSections) do
+		rSection.sKey = aSectionTitles[rSection.sTitle];
+	end
+	return aSections;
+end
+
+-- How many to choose, from "Elige tres ventajas" / "Elige uno o varios" / "Elige una desventaja mas"
+local function getCount(sBody)
+	local sText = normalize(sBody);
+	local sWord, sRest = sText:match("elige%s+(%S+)%s*(.*)$");
+	if not sWord then
+		sWord, sRest = sText:match("choose%s+(%S+)%s*(.*)$");
+	end
+	if not sWord then
+		return nil, nil, false;
+	end
+	local n = aNumberWords[sWord] or tonumber(sWord);
+	if not n then
+		return nil, nil, false;
+	end
+	local sNext = sRest:sub(1, 40);
+	if sNext:match("^o varios") or sNext:match("^or more") then
+		return n, nil, false;
+	end
+	-- "una desventaja mas" / "one more disadvantage": besides the automatic ones
+	local bMore = (sNext:match("^%S+%s+mas[%s%.]") ~= nil) or (sNext:match("^more%s") ~= nil);
+	return n, n, bMore;
+end
+
+-- Plain names of the list items and table cells of a section (skipping table headers in bold)
+local function getSectionNames(sBody)
+	local aNames = {};
+	for sItem in sBody:gmatch("&lt;li&gt;(.-)&lt;/li&gt;") do
+		table.insert(aNames, trim(plain(sItem)));
+	end
+	for sCell in sBody:gmatch("&lt;td&gt;(.-)&lt;/td&gt;") do
+		if not sCell:find("&lt;b&gt;", 1, true) then
+			table.insert(aNames, trim(plain(sCell)));
+		end
+	end
+	return aNames;
+end
+
+-- Names given automatically: the first list after "Recibes automaticamente" / "automatically"
+local function getFixedNames(sBody)
+	local aNames = {};
+	local nAuto = sBody:find("[Aa]utom");
+	if nAuto then
+		local sList = sBody:sub(nAuto):match("&lt;list&gt;(.-)&lt;/list&gt;");
+		if sList then
+			for sItem in sList:gmatch("&lt;li&gt;(.-)&lt;/li&gt;") do
+				table.insert(aNames, trim(plain(sItem)));
+			end
+		end
+	end
+	return aNames;
+end
+
+local function getNumbers(sText)
+	local aValues = {};
+	sText = plain(sText):gsub("\226\136\146", "-"):gsub("\226\128\147", "-");
+	for sValue in sText:gmatch("([%+%-]?%d+)") do
+		table.insert(aValues, tonumber(sValue));
+	end
+	return aValues;
+end
+
+-- Loaded records of a category by normalized name
+local function getIndex(sCategory)
+	local aIndex = {};
+	for _,node in ipairs(DB.getChildrenGlobal(aRecordPaths[sCategory])) do
+		local sName = normalize(DB.getValue(node, "name", ""));
+		if sName ~= "" and not aIndex[sName] then
+			aIndex[sName] = node;
+		end
+	end
+	return aIndex;
+end
+
+local function getLinkCategory(sClass, sRecord)
+	if sClass == "darksecret" then
+		return "sec";
+	elseif sClass == "advantagedisadvantage" then
+		if sRecord:find("disadvantage", 1, true) then
+			return "dis";
+		end
+		return "adv";
+	end
+	return nil;
+end
+
+-- Everything the setup window needs from an archetype record:
+-- { sName, sRecord, aOccupations, aPassivePool, aActivePool,
+--   aCategories = { adv/dis/sec = { aOptions = { sName, sRecord, bFixed }, nMin, nMax } } }
+function parse(nodeArchetype)
+	local rData = { sName = DB.getValue(nodeArchetype, "name", ""), sRecord = DB.getPath(nodeArchetype), aOccupations = {},
+		aPassivePool = aDefaultPassivePool, aActivePool = aDefaultActivePool, aCategories = {} };
+	local sText = DB.getValue(nodeArchetype, "description", "");
+	if type(sText) ~= "string" then
+		sText = "";
+	end
+	for _,sCategory in ipairs(CATEGORIES) do
+		rData.aCategories[sCategory] = { aOptions = {}, aSeen = {} };
+	end
+
+	local function addOption(sCategory, node, bFixed)
+		local rCategory = rData.aCategories[sCategory];
+		local sName = trim(DB.getValue(node, "name", ""));
+		local sKey = normalize(sName);
+		if sKey == "" then
+			return;
+		end
+		local rSeen = rCategory.aSeen[sKey];
+		if rSeen then
+			rSeen.bFixed = rSeen.bFixed or bFixed;
+			return;
+		end
+		local rOption = { sName = sName, sRecord = DB.getPath(node), bFixed = bFixed };
+		rCategory.aSeen[sKey] = rOption;
+		table.insert(rCategory.aOptions, rOption);
+	end
+
+	-- Link lists (&lt;link ...&gt;, not &lt;linklist&gt;)
+	for sAttributes in sText:gmatch("&lt;link%s([^&gt;]*)&gt;") do
+		local sClass = sAttributes:match('class="([^"]*)"') or "";
+		local sRecord = sAttributes:match('recordname="([^"]*)"') or "";
+		local sCategory = getLinkCategory(sClass, sRecord);
+		local node = DB.findNode(sRecord);
+		if sCategory and node then
+			addOption(sCategory, node, false);
+		end
+	end
+
+	-- Sections: counts, automatic traits, suggestions without links, occupations and attribute pools
+	local aIndexes = {};
+	for _,rSection in ipairs(getSections(sText)) do
+		local sKey = rSection.sKey;
+		if rData.aCategories[sKey] then
+			local rCategory = rData.aCategories[sKey];
+			if not rCategory.bCounted then
+				rCategory.bCounted = true;
+				aIndexes[sKey] = aIndexes[sKey] or getIndex(sKey);
+				local aFixed = getFixedNames(rSection.sBody);
+				for _,sName in ipairs(aFixed) do
+					local node = aIndexes[sKey][normalize(sName)];
+					if node then
+						addOption(sKey, node, true);
+					end
+				end
+				local nMin, nMax, bMore = getCount(rSection.sBody);
+				if bMore then
+					nMin = nMin + #aFixed;
+					nMax = nMax + #aFixed;
+				end
+				rCategory.nMin, rCategory.nMax = nMin, nMax;
+				-- Suggestions written as text, when the record has no links for them
+				if #rCategory.aOptions &lt;= #aFixed then
+					for _,sName in ipairs(getSectionNames(rSection.sBody)) do
+						local node = aIndexes[sKey][normalize(sName)];
+						if node then
+							addOption(sKey, node, false);
+						end
+					end
+				end
+			end
+		elseif sKey == "occupation" and #rData.aOccupations == 0 then
+			for sParagraph in rSection.sBody:gmatch("&lt;p&gt;(.-)&lt;/p&gt;") do
+				local sPlain = trim(plain(sParagraph));
+				local sNorm = normalize(sParagraph);
+				if sPlain:find(",", 1, true) and not sNorm:match("^elige") and not sNorm:match("^choose") then
+					for sOccupation in sPlain:gmatch("[^,]+") do
+						sOccupation = trim(sOccupation):gsub("%.$", "");
+						if sOccupation ~= "" then
+							table.insert(rData.aOccupations, (sOccupation:gsub("^%l", string.upper)));
+						end
+					end
+					break;
+				end
+			end
+		elseif sKey == "attr" then
+			for sParagraph in rSection.sBody:gmatch("&lt;p&gt;(.-)&lt;/p&gt;") do
+				local sNorm = normalize(sParagraph);
+				local aValues = getNumbers(sParagraph);
+				if sNorm:find("pasiv") or sNorm:find("passive") then
+					if #aValues == #PASSIVE then
+						rData.aPassivePool = aValues;
+					end
+				elseif sNorm:find("activ") then
+					if #aValues == #ACTIVE then
+						rData.aActivePool = aValues;
+					end
+				end
+			end
+		end
+	end
+
+	-- A category with no options cannot be enforced: it is chosen by dragging records to the sheet
+	for _,sCategory in ipairs(CATEGORIES) do
+		local rCategory = rData.aCategories[sCategory];
+		rCategory.aSeen = nil;
+		if #rCategory.aOptions == 0 then
+			rCategory.nMin, rCategory.nMax = nil, nil;
+		elseif not rCategory.nMin then
+			rCategory.nMin = 1;
+		end
+		if rCategory.nMax and rCategory.nMax &gt; #rCategory.aOptions then
+			rCategory.nMax = #rCategory.aOptions;
+		end
+		if rCategory.nMin and rCategory.nMin &gt; #rCategory.aOptions then
+			rCategory.nMin = #rCategory.aOptions;
+		end
+	end
+	return rData;
+end
+
+-- True if all ten attributes of the sheet are 0
+function hasBlankAttributes(nodeChar)
+	for _,sKey in ipairs(manager_kult.getAttributeKeys()) do
+		if DB.getValue(nodeChar, sKey, 0) ~= 0 then
+			return false;
+		end
+	end
+	return true;
+end
+
+function openSetup(nodeChar, nodeArchetype)
+	if not nodeChar or not nodeArchetype or not DB.isOwner(nodeChar) then
+		return;
+	end
+	local w = Interface.openWindow("kult_archetype_setup", "");
+	if w then
+		w.configure(nodeChar, parse(nodeArchetype));
+		w.bringToFront();
+	end
+end
+
+local function hasName(nodeList, sName)
+	local sKey = normalize(sName);
+	for _,node in pairs(DB.getChildren(nodeList)) do
+		if normalize(DB.getValue(node, "name", "")) == sKey then
+			return true;
+		end
+	end
+	return false;
+end
+
+-- Copies a trait record to the sheet, unless it already has one with that name
+local function addTrait(nodeChar, sCategory, sRecord)
+	local nodeSource = DB.findNode(sRecord);
+	if not nodeSource then
+		return nil;
+	end
+	local sName = DB.getValue(nodeSource, "name", "");
+	local sList, sClass = "abilitylist", "advantagedisadvantage";
+	if sCategory == "sec" then
+		sList, sClass = "darksecrets", "darksecret";
+	end
+	local nodeList = DB.createChild(nodeChar, sList);
+	if hasName(nodeList, sName) then
+		return sName;
+	end
+	local nodeNew = DB.createChild(nodeList);
+	DB.copyNode(nodeSource, nodeNew);
+	if sCategory == "dis" then
+		DB.setValue(nodeNew, "isdisadvantage", "number", 1);
+	end
+	DB.setValue(nodeNew, "link", "windowreference", sClass, DB.getPath(nodeNew));
+	return sName;
+end
+
+-- rChoice: { sOccupation, aRecords = { adv/dis/sec = { record paths } }, aAttributes = { key = value } or nil }
+function apply(nodeChar, rData, rChoice)
+	if not nodeChar or not DB.isOwner(nodeChar) then
+		return;
+	end
+	DB.setValue(nodeChar, "archetype", "string", rData.sName);
+	if trim(rChoice.sOccupation) ~= "" then
+		DB.setValue(nodeChar, "occupation", "string", trim(rChoice.sOccupation));
+	end
+	local aNames = {};
+	for _,sCategory in ipairs(CATEGORIES) do
+		aNames[sCategory] = {};
+		for _,sRecord in ipairs(rChoice.aRecords[sCategory] or {}) do
+			local sName = addTrait(nodeChar, sCategory, sRecord);
+			if sName then
+				table.insert(aNames[sCategory], sName);
+			end
+		end
+	end
+	if rChoice.aAttributes then
+		for sKey, nValue in pairs(rChoice.aAttributes) do
+			DB.setValue(nodeChar, sKey, "number", nValue);
+		end
+	end
+
+	local sText = string.format(Interface.getString("ARCH_CHAT"), rData.sName);
+	local aParts = {};
+	for _,sCategory in ipairs(CATEGORIES) do
+		if #aNames[sCategory] &gt; 0 then
+			table.insert(aParts, Interface.getString("ARCH_" .. sCategory:upper()) .. ": " .. table.concat(aNames[sCategory], ", "));
+		end
+	end
+	if #aParts &gt; 0 then
+		sText = sText .. "\n" .. table.concat(aParts, "\n");
+	end
+	kult_xp.sendChat(nodeChar, sText);
+end
+</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

@@ -54,6 +54,24 @@
   &lt;string name="HARM_NPC_DEAD"&gt;All Wounds marked: the NPC dies.&lt;/string&gt;
   &lt;string name="ENDURE_SENT"&gt;%s must Endure Injury (Harm %d): sent to %s.&lt;/string&gt;
 
+  &lt;string name="ARCH_TITLE"&gt;Create from archetype: %s&lt;/string&gt;
+  &lt;string name="ARCH_OPEN"&gt;Choose traits&lt;/string&gt;
+  &lt;string name="ARCH_OCCUPATION"&gt;Occupation&lt;/string&gt;
+  &lt;string name="ARCH_ADV"&gt;Advantages&lt;/string&gt;
+  &lt;string name="ARCH_DIS"&gt;Disadvantages&lt;/string&gt;
+  &lt;string name="ARCH_SEC"&gt;Dark Secrets&lt;/string&gt;
+  &lt;string name="ARCH_COUNT"&gt;%s (%d/%s)&lt;/string&gt;
+  &lt;string name="ARCH_NEED"&gt;%s: choose %s.&lt;/string&gt;
+  &lt;string name="ARCH_NO_OPTIONS"&gt;%s (none suggested)&lt;/string&gt;
+  &lt;string name="ARCH_FIXED"&gt;Comes automatically with the archetype&lt;/string&gt;
+  &lt;string name="ARCH_ATTRIBUTES"&gt;Assign the attribute modifiers&lt;/string&gt;
+  &lt;string name="ARCH_PASSIVE"&gt;Passive attributes&lt;/string&gt;
+  &lt;string name="ARCH_ACTIVE"&gt;Active attributes&lt;/string&gt;
+  &lt;string name="ARCH_UNASSIGNED"&gt;Modifiers left to assign: %s.&lt;/string&gt;
+  &lt;string name="ARCH_READY"&gt;Ready: Apply copies the choices to the sheet.&lt;/string&gt;
+  &lt;string name="ARCH_APPLY"&gt;Apply&lt;/string&gt;
+  &lt;string name="ARCH_CHAT"&gt;Takes the archetype %s&lt;/string&gt;
+
   &lt;string name="ATTRIBUTES_EDIT"&gt;Edit&lt;/string&gt;
   &lt;string name="ATTRIBUTES_DONE"&gt;Done&lt;/string&gt;
   &lt;string name="WOUND_PENALTY"&gt;Wound penalty to all rolls: %s&lt;/string&gt;
