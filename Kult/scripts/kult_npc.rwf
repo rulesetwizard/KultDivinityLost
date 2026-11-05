@@ -1,0 +1,248 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>kult_npc</ScriptName>
+    <FolderID>0</FolderID>
+    <Script>-- NPCs: the GM does not roll. NPC attacks are written in the "attacks" text as the rulebook does:
+--   Weapon: Attack [Harm] [effect]; Attack [Harm] [effect].
+-- An attack posts its Harm to the chat (message type "kultharm"), and so does a successful (10+) weapon attack of a PC.
+-- That Harm is dragged onto a combat tracker entry or a portrait: on an NPC it marks Wounds = Harm - armor
+-- (rulebook p. 159); on a PC it opens Endure Injury for its player with that Harm.
+
+HARM_TYPE = "kultharm";
+OOB_MSGTYPE_ENDURE = "kultendure";
+
+local DOT = " \194\183 ";
+
+function onInit()
+	CombatDropManager.setDragTypeDropCallback(HARM_TYPE, onHarmDrop);
+	OOBManager.registerOOBMsgHandler(OOB_MSGTYPE_ENDURE, handleEndure);
+end
+
+local function trim(s)
+	return (s or ""):match("^%s*(.-)%s*$");
+end
+
+-- Splits on ";" outside brackets
+local function splitAttacks(s)
+	local aParts = {};
+	local nDepth = 0;
+	local nStart = 1;
+	for i = 1, #s do
+		local c = s:sub(i, i);
+		if c == "[" then
+			nDepth = nDepth + 1;
+		elseif c == "]" then
+			nDepth = math.max(0, nDepth - 1);
+		elseif c == ";" and nDepth == 0 then
+			table.insert(aParts, s:sub(nStart, i - 1));
+			nStart = i + 1;
+		end
+	end
+	table.insert(aParts, s:sub(nStart));
+	return aParts;
+end
+
+-- Attacks of an NPC text: { sWeapon, sName, sHarm, nHarm (nil if the Harm is not a number), sEffect }.
+-- Lines without brackets are descriptions and are skipped.
+function getAttacks(sText)
+	local aAttacks = {};
+	for sLine in (sText or ""):gmatch("[^\r\n]+") do
+		local nBracket = sLine:find("[", 1, true);
+		if nBracket then
+			local sWeapon = "";
+			local sRest = sLine;
+			local nColon = sLine:find(":", 1, true);
+			if nColon and nColon &lt; nBracket then
+				sWeapon = trim(sLine:sub(1, nColon - 1));
+				sRest = sLine:sub(nColon + 1);
+			end
+			for _,sPart in ipairs(splitAttacks(sRest)) do
+				sPart = trim(sPart);
+				sPart = sPart:gsub("%.$", "");
+				local sName, sBlocks = sPart:match("^([^%[]-)%s*(%[.*)$");
+				if sName and trim(sName) ~= "" then
+					local aBlocks = {};
+					for sBlock in sBlocks:gmatch("%[([^%]]*)%]") do
+						table.insert(aBlocks, trim(sBlock));
+					end
+					local sHarm = aBlocks[1] or "";
+					table.remove(aBlocks, 1);
+					table.insert(aAttacks, { sWeapon = sWeapon, sName = trim(sName), sHarm = sHarm,
+						nHarm = tonumber(sHarm:match("^(%d+)$")), sEffect = table.concat(aBlocks, "; ") });
+				end
+			end
+		end
+	end
+	return aAttacks;
+end
+
+-- Rebuilds a sourceless list of npc_attack windows from the attacks text of an NPC (record or combat tracker entry)
+function fillAttackList(wList, nodeNPC)
+	if not wList or not nodeNPC then
+		return;
+	end
+	wList.closeAll();
+	for _,rAttack in ipairs(getAttacks(DB.getValue(nodeNPC, "attacks", ""))) do
+		local w = wList.createWindow();
+		if w then
+			w.setAttack(nodeNPC, rAttack);
+		end
+	end
+end
+
+-- "Weapon: Attack [Harm 2] [effect]"; without the Harm block if bNoHarm
+function getAttackText(rAttack, bNoHarm)
+	local sText = rAttack.sName;
+	if rAttack.sWeapon ~= "" then
+		sText = rAttack.sWeapon .. ": " .. sText;
+	end
+	if not bNoHarm then
+		if rAttack.nHarm then
+			sText = sText .. " [" .. string.format(Interface.getString("WEAPON_DAMAGE"), tostring(rAttack.nHarm)) .. "]";
+		elseif rAttack.sHarm ~= "" then
+			sText = sText .. " [" .. rAttack.sHarm .. "]";
+		end
+	end
+	if rAttack.sEffect ~= "" then
+		sText = sText .. " [" .. rAttack.sEffect .. "]";
+	end
+	return sText;
+end
+
+local function getActorName(rActor)
+	if not rActor then
+		return "";
+	end
+	return trim(ActorManager.getDisplayName(rActor));
+end
+
+-- First line of a Harm message and of a Harm drag: "Harm 2 · What". The chat message shows who as its sender.
+function getHarmLine(nHarm, sLabel)
+	return string.format(Interface.getString("HARM_LINE"), nHarm, sLabel or "");
+end
+
+-- A Harm in the chat that can be dragged onto a target
+function sendHarm(rSource, nHarm, sLabel)
+	local rMessage = ChatManager.createBaseMessage(rSource);
+	rMessage.type = HARM_TYPE;
+	rMessage.text = getHarmLine(nHarm, sLabel) .. "\n" .. Interface.getString("HARM_DRAG_HINT");
+	rMessage.dice = {};
+	rMessage.diemodifier = nHarm;
+	Comm.deliverChatMessage(rMessage);
+end
+
+-- An NPC attack to the chat: its Harm can be dragged from there
+function postAttack(nodeNPC, rAttack)
+	if not nodeNPC or not rAttack then
+		return;
+	end
+	local rActor = ActorManager.resolveActor(nodeNPC);
+	if rAttack.nHarm then
+		sendHarm(rActor, rAttack.nHarm, getAttackText(rAttack, true));
+	else
+		local rMessage = ChatManager.createBaseMessage(rActor);
+		rMessage.text = getAttackText(rAttack);
+		Comm.deliverChatMessage(rMessage);
+	end
+end
+
+-- Drag of an NPC attack straight from its list; the description also says who attacks
+function fillHarmDrag(draginfo, nodeNPC, rAttack)
+	if not nodeNPC or not rAttack or not rAttack.nHarm then
+		return false;
+	end
+	draginfo.setType(HARM_TYPE);
+	draginfo.setIcon("action_damage");
+	draginfo.setNumberData(rAttack.nHarm);
+	local sLabel = getActorName(ActorManager.resolveActor(nodeNPC)) .. DOT .. getAttackText(rAttack, true);
+	draginfo.setDescription(getHarmLine(rAttack.nHarm, sLabel));
+	return true;
+end
+
+-- A Harm dropped on a combat tracker entry or a portrait
+function onHarmDrop(tCustom)
+	local draginfo = tCustom.draginfo;
+	local nHarm = math.floor(tonumber(draginfo.getNumberData()) or 0);
+	local rTarget = ActorManager.resolveActor(tCustom.sTargetPath);
+	if not rTarget or nHarm &lt;= 0 then
+		return false;
+	end
+	-- The description of a chat message also has the hint line
+	local sSource = (draginfo.getDescription() or ""):match("^[^\n]*") or "";
+	if ActorManager.isPC(rTarget) then
+		requestEndure(ActorManager.getCreatureNode(rTarget), nHarm, sSource);
+		return true;
+	end
+	-- Only the GM marks the Wounds of NPCs
+	if not Session.IsHost then
+		return false;
+	end
+	applyHarm(ActorManager.getCTNode(rTarget), nHarm);
+	return true;
+end
+
+-- Wounds = Harm - armor, up to the Wounds of the NPC. Only the GM sees the result.
+function applyHarm(nodeCT, nHarm)
+	if not nodeCT then
+		return;
+	end
+	local nArmor = DB.getValue(nodeCT, "armor", 0);
+	local nWounds = math.max(0, nHarm - nArmor);
+	local nMax = DB.getValue(nodeCT, "maxWounds", 0);
+	local nCurrent = DB.getValue(nodeCT, "wounds", 0) + nWounds;
+	if nMax &gt; 0 then
+		nCurrent = math.min(nCurrent, nMax);
+	end
+	DB.setValue(nodeCT, "wounds", "number", nCurrent);
+
+	local sText = string.format(Interface.getString("HARM_NPC"), getActorName(ActorManager.resolveActor(nodeCT)), nWounds, nHarm, nArmor);
+	if nMax &gt; 0 then
+		sText = sText .. DOT .. nCurrent .. "/" .. nMax;
+	end
+	if nMax &gt; 0 and nCurrent &gt;= nMax then
+		sText = sText .. "\n" .. Interface.getString("HARM_NPC_DEAD");
+	elseif nWounds &gt; 0 then
+		sText = sText .. "\n" .. Interface.getString("HARM_NPC_MOVE");
+	end
+	ChatManager.SystemMessage(sText);
+end
+
+local function isUserActive(sUser)
+	for _,sActive in ipairs(User.getActiveUsers()) do
+		if sActive == sUser then
+			return true;
+		end
+	end
+	return false;
+end
+
+-- Endure Injury goes to the player of the PC; with no player connected, it opens here
+function requestEndure(nodeChar, nHarm, sSource)
+	if not nodeChar then
+		return;
+	end
+	local sOwner = DB.getOwner(nodeChar) or "";
+	if Session.IsHost and sOwner ~= "" and isUserActive(sOwner) then
+		Comm.deliverOOBMessage({ type = OOB_MSGTYPE_ENDURE, sChar = DB.getPath(nodeChar), nHarm = tostring(nHarm), sSource = sSource }, sOwner);
+		ChatManager.SystemMessage(string.format(Interface.getString("ENDURE_SENT"), trim(DB.getValue(nodeChar, "name", "")), nHarm, sOwner));
+		return;
+	end
+	openEndure(nodeChar, nHarm, sSource);
+end
+
+function handleEndure(msgOOB)
+	local nodeChar = DB.findNode(msgOOB.sChar or "");
+	if nodeChar and DB.isOwner(nodeChar) then
+		openEndure(nodeChar, tonumber(msgOOB.nHarm) or 0, msgOOB.sSource or "");
+	end
+end
+
+function openEndure(nodeChar, nHarm, sSource)
+	manager_kult.openRollSetup(nodeChar, { sName = Interface.getString("Endure Injury"), sMove = "endure", sAttribute = "fortitude",
+		nHarm = nHarm, sSource = sSource });
+end
+</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

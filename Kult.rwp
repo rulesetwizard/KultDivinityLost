@@ -196,6 +196,10 @@ Source code available at https://github.com/rulesetwizard/KultDivinityLost</Anno
     <FolderID>1</FolderID>
   </Windows>
   <Windows>
+    <Name>npc_attack</Name>
+    <FolderID>6</FolderID>
+  </Windows>
+  <Windows>
     <Name>npc_main</Name>
     <FolderID>6</FolderID>
   </Windows>
@@ -16324,13 +16328,83 @@ end
   </WindowControls>
   <WindowControls>
     <WindowName>ct_attacks</WindowName>
+    <ControlName>attacklist</ControlName>
+    <ZIndex>2</ZIndex>
+    <ControlClass>FGWindowList</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"AllowCreate"},
+      {"Name":"AllowDelete"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"Columns","Value":{"@xsi:type":"PropertyColumns","ColumnWidth":{"@xsi:nil":"true"},"FillDown":{"@xsi:nil":"true"},"FillWidth":{"@xsi:nil":"true"}}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"attacklist"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DataSource"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"338"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"DropTypes"},
+      {"Name":"DynamicSize","Value":{"@xsi:type":"xsd:string","#text":"Dynamic Height"}},
+      {"Name":"EmptyListFontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"EmptyListFontName"},
+      {"Name":"EmptyListText"},
+      {"Name":"EmptyListTextGM"},
+      {"Name":"Fields"},
+      {"Name":"FooterIcon"},
+      {"Name":"FrameHideReadonly"},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoScroll","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"OwnedOnly"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAllModules"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"WindowListChildDefinition","Value":{"@xsi:type":"ArrayOfChildDefinition"}},
+      {"Name":"WindowListClassName","Value":{"@xsi:type":"xsd:string","#text":"npc_attack"}},
+      {"Name":"WindowListFilterBy","Value":{"@xsi:type":"FilterByDefinition","CaseSensitive":{"@xsi:nil":"true"},"FilterSourceType":"Control","FilterOnSourceType":"Control"}},
+      {"Name":"WindowListSortBy","Value":{"@xsi:type":"ArrayOfSortByDefinition"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"6"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"26"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>ct_attacks</WindowName>
     <ControlName>attributes</ControlName>
     <ZIndex>1</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"CanGrowVert"},
       {"Name":"Center"},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"attributes"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
@@ -16338,13 +16412,17 @@ end
       {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"338"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
+      {"Name":"DropTypes"},
+      {"Name":"DynamicSize"},
       {"Name":"EmptyText"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameHideReadonly"},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -16355,7 +16433,11 @@ end
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LineOffset","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
       {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
@@ -16365,10 +16447,12 @@ end
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
-      {"Name":"ScriptFile","Value":{"@xsi:type":"xsd:string","#text":"npc/npc_roll.lua"}},
+      {"Name":"ScriptFile","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"Source"},
       {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"6"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"4"}}
@@ -16390,14 +16474,16 @@ end
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"ct_attacks"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DataSource"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"29"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"50"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"350"}},
+      {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"Dynamic"},
       {"Name":"FrameName"},
       {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"HostControl"},
       {"Name":"HoverCursor"},
+      {"Name":"InheritedTabs","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"InheritSizePosition"},
       {"Name":"Invisible"},
       {"Name":"Locked"},
@@ -16424,11 +16510,31 @@ end
       {"Name":"Tooltip"},
       {"Name":"TooltipField"},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"WindowClassCopy"},
+      {"Name":"WindowMargins"},
+      {"Name":"WindowTabs","Value":{"@xsi:type":"ArrayOfWindowTabDefinition"}},
       {"Name":"WindowTitle"},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>-- Attributes and attacks of an NPC in the combat tracker. The attacks are parsed from its text (kult_npc):
+-- double click posts one to the chat, and its Harm can be dragged onto a PC.
+local sAttacksPath = "";
+
+function onInit()
+	sAttacksPath = DB.getPath(getDatabaseNode(), "attacks");
+	DB.addHandler(sAttacksPath, "onUpdate", updateAttacks);
+	updateAttacks();
+end
+
+function onClose()
+	DB.removeHandler(sAttacksPath, "onUpdate", updateAttacks);
+end
+
+function updateAttacks()
+	kult_npc.fillAttackList(attacklist, getDatabaseNode());
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -18011,7 +18117,7 @@ end
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"DropTypes"},
-      {"Name":"DynamicSize"},
+      {"Name":"DynamicSize","Value":{"@xsi:type":"xsd:string","#text":"Dynamic Height"}},
       {"Name":"FastInit"},
       {"Name":"FrameHideReadonly"},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"ct_subgroupbox"}},
@@ -20472,7 +20578,8 @@ function configure(nodeChar, rData)
 	end
 
 	attribute.setValue(manager_kult.getAttributeKey(rData.sAttribute) or "");
-	harm.setValue(0);
+	-- The Harm of an attack dropped on the character (kult_npc)
+	harm.setValue(rData.nHarm or 0);
 	armor.setValue(DB.getValue(nodeChar, "armor", 0));
 	result.clear(true);
 	local aItems = {};
@@ -20561,6 +20668,10 @@ function refresh()
 	if sAttack ~= "" then
 		sPreview = sAttack .. "\n" .. sPreview;
 	end
+	-- The dropped Harm: "Harm 3 · Who · Attack [effect]"
+	if (rSetup.sSource or "") ~= "" then
+		sPreview = rSetup.sSource .. "\n" .. sPreview;
+	end
 	bCanRoll = bCanRoll and bAmmo;
 	preview.setValue(sPreview);
 	btnRoll.setVisible(bCanRoll);
@@ -20589,11 +20700,18 @@ function perform()
 			refresh();
 			return;
 		end
-		local sDesc = Interface.getString("ROLL_MOVE") .. " " .. rSetup.sName .. " \194\183 " .. DB.getValue(nodeWeapon, "name", "") .. ": " .. kult_weapons.getAttackText(rAttack);
+		local sWeaponName = DB.getValue(nodeWeapon, "name", "");
+		local sDesc = Interface.getString("ROLL_MOVE") .. " " .. rSetup.sName .. " \194\183 " .. sWeaponName .. ": " .. kult_weapons.getAttackText(rAttack);
 		if rAttack.nCost &gt; 0 or kult_weapons.getCapacity(nodeWeapon) &gt; 0 then
 			sDesc = sDesc .. " [" .. string.format(Interface.getString("WEAPON_AMMO"), kult_weapons.getRemaining(nodeWeapon), kult_weapons.getCapacity(nodeWeapon)) .. "]";
 		end
-		rRollData = { sName = rSetup.sName, sDesc = sDesc, sAttribute = rSetup.sAttribute };
+		-- On 10+ the result posts the Harm, to drag onto the target (kult_npc)
+		local sAttackName = sWeaponName;
+		if (rAttack.sName or "") ~= "" then
+			sAttackName = sWeaponName .. ": " .. rAttack.sName;
+		end
+		rRollData = { sName = rSetup.sName, sDesc = sDesc, sAttribute = rSetup.sAttribute,
+			nDamage = tonumber((rAttack.sDamage or ""):match("^(%d+)$")), sAttack = sAttackName };
 	end
 	manager_kult.performSetupRoll(nodeChar, rRollData, sKey, nHarm, nArmor, nGroup);
 	close();
@@ -21620,6 +21738,223 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
+    <WindowName>npc_attack</WindowName>
+    <ControlName>btnPost</ControlName>
+    <ZIndex>1</ZIndex>
+    <ControlClass>FGButton</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"AllowDoubleClick"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ButtonCaption","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"ButtonField"},
+      {"Name":"ButtonStateList","Value":{"@xsi:type":"ArrayOfButtonStateDefinition"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"btnPost"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultValue"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"DropTypes"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"button-white"}},
+      {"Name":"FrameHideReadonly"},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"HoverIconName"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"action_damage"}},
+      {"Name":"PressedIconName"},
+      {"Name":"PressedOffset"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"1"}}
+]}}</Definition>
+    <LUACode>function onButtonPress()
+	window.post();
+end
+
+function onDragStart(button, x, y, draginfo)
+	return window.drag(draginfo);
+end
+</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>npc_attack</WindowName>
+    <ControlName>npc_attack</ControlName>
+    <ZIndex>0</ZIndex>
+    <ControlClass>FGWindow</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AllowResize"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"BottomMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"Comments"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"npc_attack"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DataSource"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"22"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"258"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"Dynamic"},
+      {"Name":"FrameName"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HostControl"},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritedTabs","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"InheritSizePosition"},
+      {"Name":"Invisible"},
+      {"Name":"Locked"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"MergeWindow"},
+      {"Name":"MinimizedIcon"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NoClose"},
+      {"Name":"NoDelete"},
+      {"Name":"NoMove"},
+      {"Name":"Panel"},
+      {"Name":"PanelModeClient"},
+      {"Name":"PanelModeHost"},
+      {"Name":"PanelModeLocal"},
+      {"Name":"PlayerControl"},
+      {"Name":"Resize","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"RightMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"ScriptFile"},
+      {"Name":"Sharable"},
+      {"Name":"ShareAs"},
+      {"Name":"SoftClose"},
+      {"Name":"Tooltip"},
+      {"Name":"TooltipField"},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"WindowClassCopy"},
+      {"Name":"WindowMargins"},
+      {"Name":"WindowTabs","Value":{"@xsi:type":"ArrayOfWindowTabDefinition"}},
+      {"Name":"WindowTitle"},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
+]}}</Definition>
+    <LUACode>-- An attack of an NPC (kult_npc), parsed from its "attacks" text. Sourceless: the list rebuilds it when the text changes.
+-- Double click posts it to the chat; dragging it drags its Harm onto a target.
+local sNodePath = "";
+local rAttack = nil;
+
+function setAttack(nodeNPC, rData)
+	sNodePath = DB.getPath(nodeNPC);
+	rAttack = rData;
+	text.setValue(kult_npc.getAttackText(rData));
+	local sTooltip = Interface.getString("NPC_ATTACK_TOOLTIP");
+	text.setTooltipText(sTooltip);
+	btnPost.setTooltipText(sTooltip);
+end
+
+function post()
+	kult_npc.postAttack(DB.findNode(sNodePath), rAttack);
+end
+
+function drag(draginfo)
+	return kult_npc.fillHarmDrag(draginfo, DB.findNode(sNodePath), rAttack);
+end
+</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>npc_attack</WindowName>
+    <ControlName>text</ControlName>
+    <ZIndex>2</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"text"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"234"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"DropTypes"},
+      {"Name":"DynamicSize","Value":{"@xsi:type":"xsd:string","#text":"Dynamic Height"}},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"sheettext"}},
+      {"Name":"FrameHideReadonly"},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"HoverCursor","Value":{"@xsi:type":"xsd:string","#text":"hand"}},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing","Value":{"@xsi:type":"xsd:int","#text":"18"}},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"24"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"1"}}
+]}}</Definition>
+    <LUACode>function onDoubleClick(x, y)
+	window.post();
+	return true;
+end
+
+function onDragStart(button, x, y, draginfo)
+	return window.drag(draginfo);
+end
+</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>abilities</ControlName>
     <ZIndex>11</ZIndex>
@@ -21752,6 +22087,76 @@ end</LUACode>
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
+    <ControlName>attacklist</ControlName>
+    <ZIndex>22</ZIndex>
+    <ControlClass>FGWindowList</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"AllowCreate"},
+      {"Name":"AllowDelete"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"Columns","Value":{"@xsi:type":"PropertyColumns","ColumnWidth":{"@xsi:nil":"true"},"FillDown":{"@xsi:nil":"true"},"FillWidth":{"@xsi:nil":"true"}}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"attacklist"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DataSource"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"242"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"DropTypes"},
+      {"Name":"DynamicSize","Value":{"@xsi:type":"xsd:string","#text":"Dynamic Height"}},
+      {"Name":"EmptyListFontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"EmptyListFontName"},
+      {"Name":"EmptyListText"},
+      {"Name":"EmptyListTextGM"},
+      {"Name":"Fields"},
+      {"Name":"FooterIcon"},
+      {"Name":"FrameHideReadonly"},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoScroll","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"OwnedOnly"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith","Value":{"@xsi:type":"xsd:string","#text":"attacks"}},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAllModules"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"WindowListChildDefinition","Value":{"@xsi:type":"ArrayOfChildDefinition"}},
+      {"Name":"WindowListClassName","Value":{"@xsi:type":"xsd:string","#text":"npc_attack"}},
+      {"Name":"WindowListFilterBy","Value":{"@xsi:type":"FilterByDefinition","CaseSensitive":{"@xsi:nil":"true"},"FilterSourceType":"Control","FilterOnSourceType":"Control"}},
+      {"Name":"WindowListSortBy","Value":{"@xsi:type":"ArrayOfSortByDefinition"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"124"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"280"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>npc_main</WindowName>
     <ControlName>attacks</ControlName>
     <ZIndex>21</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -21866,7 +22271,7 @@ end</LUACode>
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
-      {"Name":"ScriptFile","Value":{"@xsi:type":"xsd:string","#text":"npc/npc_roll.lua"}},
+      {"Name":"ScriptFile","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"Source"},
       {"Name":"StackVertWith","Value":{"@xsi:type":"xsd:string","#text":"abilities"}},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
@@ -22591,7 +22996,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>lblWoundMoves</ControlName>
-    <ZIndex>22</ZIndex>
+    <ZIndex>23</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -22632,14 +23037,14 @@ end</LUACode>
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"StackVertWith","Value":{"@xsi:type":"xsd:string","#text":"attacks"}},
+      {"Name":"StackVertWith","Value":{"@xsi:type":"xsd:string","#text":"attacklist"}},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"TextUnderlined"},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"12"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"277"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"312"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -22888,8 +23293,22 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode>function onInit()
+    <LUACode>local sAttacksPath = "";
+
+function onInit()
 	self.onLockModeChanged(WindowManager.getWindowReadOnlyState(self));
+	-- The attack list is parsed from the attacks text (kult_npc)
+	sAttacksPath = DB.getPath(getDatabaseNode(), "attacks");
+	DB.addHandler(sAttacksPath, "onUpdate", updateAttacks);
+	updateAttacks();
+end
+
+function onClose()
+	DB.removeHandler(sAttacksPath, "onUpdate", updateAttacks);
+end
+
+function updateAttacks()
+	kult_npc.fillAttackList(attacklist, getDatabaseNode());
 end
 
 function onLockModeChanged(bReadOnly)
@@ -22903,7 +23322,7 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>spacer</ControlName>
-    <ZIndex>24</ZIndex>
+    <ZIndex>25</ZIndex>
     <ControlClass>FGCustomControl</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -22950,7 +23369,7 @@ end
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XMLCode"},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"125"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"308"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"332"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -23015,7 +23434,7 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>woundmoves</ControlName>
-    <ZIndex>23</ZIndex>
+    <ZIndex>24</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -23065,13 +23484,13 @@ end
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"Source"},
-      {"Name":"StackVertWith","Value":{"@xsi:type":"xsd:string","#text":"attacks"}},
+      {"Name":"StackVertWith","Value":{"@xsi:type":"xsd:string","#text":"attacklist"}},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"116"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"274"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"309"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -23166,6 +23585,252 @@ end
 function getMoves()
     return moves;
 end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+  <Scripts>
+    <ScriptName>kult_npc</ScriptName>
+    <FolderID>0</FolderID>
+    <Script>-- NPCs: the GM does not roll. NPC attacks are written in the "attacks" text as the rulebook does:
+--   Weapon: Attack [Harm] [effect]; Attack [Harm] [effect].
+-- An attack posts its Harm to the chat (message type "kultharm"), and so does a successful (10+) weapon attack of a PC.
+-- That Harm is dragged onto a combat tracker entry or a portrait: on an NPC it marks Wounds = Harm - armor
+-- (rulebook p. 159); on a PC it opens Endure Injury for its player with that Harm.
+
+HARM_TYPE = "kultharm";
+OOB_MSGTYPE_ENDURE = "kultendure";
+
+local DOT = " \194\183 ";
+
+function onInit()
+	CombatDropManager.setDragTypeDropCallback(HARM_TYPE, onHarmDrop);
+	OOBManager.registerOOBMsgHandler(OOB_MSGTYPE_ENDURE, handleEndure);
+end
+
+local function trim(s)
+	return (s or ""):match("^%s*(.-)%s*$");
+end
+
+-- Splits on ";" outside brackets
+local function splitAttacks(s)
+	local aParts = {};
+	local nDepth = 0;
+	local nStart = 1;
+	for i = 1, #s do
+		local c = s:sub(i, i);
+		if c == "[" then
+			nDepth = nDepth + 1;
+		elseif c == "]" then
+			nDepth = math.max(0, nDepth - 1);
+		elseif c == ";" and nDepth == 0 then
+			table.insert(aParts, s:sub(nStart, i - 1));
+			nStart = i + 1;
+		end
+	end
+	table.insert(aParts, s:sub(nStart));
+	return aParts;
+end
+
+-- Attacks of an NPC text: { sWeapon, sName, sHarm, nHarm (nil if the Harm is not a number), sEffect }.
+-- Lines without brackets are descriptions and are skipped.
+function getAttacks(sText)
+	local aAttacks = {};
+	for sLine in (sText or ""):gmatch("[^\r\n]+") do
+		local nBracket = sLine:find("[", 1, true);
+		if nBracket then
+			local sWeapon = "";
+			local sRest = sLine;
+			local nColon = sLine:find(":", 1, true);
+			if nColon and nColon &lt; nBracket then
+				sWeapon = trim(sLine:sub(1, nColon - 1));
+				sRest = sLine:sub(nColon + 1);
+			end
+			for _,sPart in ipairs(splitAttacks(sRest)) do
+				sPart = trim(sPart);
+				sPart = sPart:gsub("%.$", "");
+				local sName, sBlocks = sPart:match("^([^%[]-)%s*(%[.*)$");
+				if sName and trim(sName) ~= "" then
+					local aBlocks = {};
+					for sBlock in sBlocks:gmatch("%[([^%]]*)%]") do
+						table.insert(aBlocks, trim(sBlock));
+					end
+					local sHarm = aBlocks[1] or "";
+					table.remove(aBlocks, 1);
+					table.insert(aAttacks, { sWeapon = sWeapon, sName = trim(sName), sHarm = sHarm,
+						nHarm = tonumber(sHarm:match("^(%d+)$")), sEffect = table.concat(aBlocks, "; ") });
+				end
+			end
+		end
+	end
+	return aAttacks;
+end
+
+-- Rebuilds a sourceless list of npc_attack windows from the attacks text of an NPC (record or combat tracker entry)
+function fillAttackList(wList, nodeNPC)
+	if not wList or not nodeNPC then
+		return;
+	end
+	wList.closeAll();
+	for _,rAttack in ipairs(getAttacks(DB.getValue(nodeNPC, "attacks", ""))) do
+		local w = wList.createWindow();
+		if w then
+			w.setAttack(nodeNPC, rAttack);
+		end
+	end
+end
+
+-- "Weapon: Attack [Harm 2] [effect]"; without the Harm block if bNoHarm
+function getAttackText(rAttack, bNoHarm)
+	local sText = rAttack.sName;
+	if rAttack.sWeapon ~= "" then
+		sText = rAttack.sWeapon .. ": " .. sText;
+	end
+	if not bNoHarm then
+		if rAttack.nHarm then
+			sText = sText .. " [" .. string.format(Interface.getString("WEAPON_DAMAGE"), tostring(rAttack.nHarm)) .. "]";
+		elseif rAttack.sHarm ~= "" then
+			sText = sText .. " [" .. rAttack.sHarm .. "]";
+		end
+	end
+	if rAttack.sEffect ~= "" then
+		sText = sText .. " [" .. rAttack.sEffect .. "]";
+	end
+	return sText;
+end
+
+local function getActorName(rActor)
+	if not rActor then
+		return "";
+	end
+	return trim(ActorManager.getDisplayName(rActor));
+end
+
+-- First line of a Harm message and of a Harm drag: "Harm 2 · What". The chat message shows who as its sender.
+function getHarmLine(nHarm, sLabel)
+	return string.format(Interface.getString("HARM_LINE"), nHarm, sLabel or "");
+end
+
+-- A Harm in the chat that can be dragged onto a target
+function sendHarm(rSource, nHarm, sLabel)
+	local rMessage = ChatManager.createBaseMessage(rSource);
+	rMessage.type = HARM_TYPE;
+	rMessage.text = getHarmLine(nHarm, sLabel) .. "\n" .. Interface.getString("HARM_DRAG_HINT");
+	rMessage.dice = {};
+	rMessage.diemodifier = nHarm;
+	Comm.deliverChatMessage(rMessage);
+end
+
+-- An NPC attack to the chat: its Harm can be dragged from there
+function postAttack(nodeNPC, rAttack)
+	if not nodeNPC or not rAttack then
+		return;
+	end
+	local rActor = ActorManager.resolveActor(nodeNPC);
+	if rAttack.nHarm then
+		sendHarm(rActor, rAttack.nHarm, getAttackText(rAttack, true));
+	else
+		local rMessage = ChatManager.createBaseMessage(rActor);
+		rMessage.text = getAttackText(rAttack);
+		Comm.deliverChatMessage(rMessage);
+	end
+end
+
+-- Drag of an NPC attack straight from its list; the description also says who attacks
+function fillHarmDrag(draginfo, nodeNPC, rAttack)
+	if not nodeNPC or not rAttack or not rAttack.nHarm then
+		return false;
+	end
+	draginfo.setType(HARM_TYPE);
+	draginfo.setIcon("action_damage");
+	draginfo.setNumberData(rAttack.nHarm);
+	local sLabel = getActorName(ActorManager.resolveActor(nodeNPC)) .. DOT .. getAttackText(rAttack, true);
+	draginfo.setDescription(getHarmLine(rAttack.nHarm, sLabel));
+	return true;
+end
+
+-- A Harm dropped on a combat tracker entry or a portrait
+function onHarmDrop(tCustom)
+	local draginfo = tCustom.draginfo;
+	local nHarm = math.floor(tonumber(draginfo.getNumberData()) or 0);
+	local rTarget = ActorManager.resolveActor(tCustom.sTargetPath);
+	if not rTarget or nHarm &lt;= 0 then
+		return false;
+	end
+	-- The description of a chat message also has the hint line
+	local sSource = (draginfo.getDescription() or ""):match("^[^\n]*") or "";
+	if ActorManager.isPC(rTarget) then
+		requestEndure(ActorManager.getCreatureNode(rTarget), nHarm, sSource);
+		return true;
+	end
+	-- Only the GM marks the Wounds of NPCs
+	if not Session.IsHost then
+		return false;
+	end
+	applyHarm(ActorManager.getCTNode(rTarget), nHarm);
+	return true;
+end
+
+-- Wounds = Harm - armor, up to the Wounds of the NPC. Only the GM sees the result.
+function applyHarm(nodeCT, nHarm)
+	if not nodeCT then
+		return;
+	end
+	local nArmor = DB.getValue(nodeCT, "armor", 0);
+	local nWounds = math.max(0, nHarm - nArmor);
+	local nMax = DB.getValue(nodeCT, "maxWounds", 0);
+	local nCurrent = DB.getValue(nodeCT, "wounds", 0) + nWounds;
+	if nMax &gt; 0 then
+		nCurrent = math.min(nCurrent, nMax);
+	end
+	DB.setValue(nodeCT, "wounds", "number", nCurrent);
+
+	local sText = string.format(Interface.getString("HARM_NPC"), getActorName(ActorManager.resolveActor(nodeCT)), nWounds, nHarm, nArmor);
+	if nMax &gt; 0 then
+		sText = sText .. DOT .. nCurrent .. "/" .. nMax;
+	end
+	if nMax &gt; 0 and nCurrent &gt;= nMax then
+		sText = sText .. "\n" .. Interface.getString("HARM_NPC_DEAD");
+	elseif nWounds &gt; 0 then
+		sText = sText .. "\n" .. Interface.getString("HARM_NPC_MOVE");
+	end
+	ChatManager.SystemMessage(sText);
+end
+
+local function isUserActive(sUser)
+	for _,sActive in ipairs(User.getActiveUsers()) do
+		if sActive == sUser then
+			return true;
+		end
+	end
+	return false;
+end
+
+-- Endure Injury goes to the player of the PC; with no player connected, it opens here
+function requestEndure(nodeChar, nHarm, sSource)
+	if not nodeChar then
+		return;
+	end
+	local sOwner = DB.getOwner(nodeChar) or "";
+	if Session.IsHost and sOwner ~= "" and isUserActive(sOwner) then
+		Comm.deliverOOBMessage({ type = OOB_MSGTYPE_ENDURE, sChar = DB.getPath(nodeChar), nHarm = tostring(nHarm), sSource = sSource }, sOwner);
+		ChatManager.SystemMessage(string.format(Interface.getString("ENDURE_SENT"), trim(DB.getValue(nodeChar, "name", "")), nHarm, sOwner));
+		return;
+	end
+	openEndure(nodeChar, nHarm, sSource);
+end
+
+function handleEndure(msgOOB)
+	local nodeChar = DB.findNode(msgOOB.sChar or "");
+	if nodeChar and DB.isOwner(nodeChar) then
+		openEndure(nodeChar, tonumber(msgOOB.nHarm) or 0, msgOOB.sSource or "");
+	end
+end
+
+function openEndure(nodeChar, nHarm, sSource)
+	manager_kult.openRollSetup(nodeChar, { sName = Interface.getString("Endure Injury"), sMove = "endure", sAttribute = "fortitude",
+		nHarm = nHarm, sSource = sSource });
+end
+</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
   </Scripts>
@@ -24205,7 +24870,8 @@ function modRoll(rSource, rTarget, rRoll)
 end
 
 -- Opens the roll setup window. rData: sName, sDesc, sMove ("endure", "help" or ""), sAttribute,
--- sRecord (move or trait of the sheet), aGroups (labels of a trait with several rolls), bTrait, bDisadvantage
+-- sRecord (move or trait of the sheet), aGroups (labels of a trait with several rolls), bTrait, bDisadvantage,
+-- sWeapon and aAttacks (Engage in Combat with a weapon), nHarm and sSource (Endure Injury from a dropped Harm)
 function openRollSetup(nodeChar, rData)
 	local w = Interface.openWindow("kult_roll_setup", "");
 	if w then
@@ -24215,7 +24881,8 @@ function openRollSetup(nodeChar, rData)
 	end
 end
 
--- The roll prepared in the setup window; modRoll adds the Kult modifiers as in any other roll
+-- The roll prepared in the setup window; modRoll adds the Kult modifiers as in any other roll.
+-- rData.nDamage and rData.sAttack: Harm and name of a weapon attack, posted to the chat on 10+
 function performSetupRoll(nodeChar, rData, sAttributeKey, nHarm, nArmor, nGroup)
 	local rRoll = { sType = "btnRollRollAction", sDesc = rData.sDesc or (Interface.getString("ROLL_MOVE") .. " " .. rData.sName),
 		aDice = { "d10", "d10" }, nMod = 0, attribute = sAttributeKey or "" };
@@ -24237,6 +24904,10 @@ function performSetupRoll(nodeChar, rData, sAttributeKey, nHarm, nArmor, nGroup)
 	if nHarm then
 		rRoll.kultharm = tostring(nHarm);
 		rRoll.kultarmor = tostring(nArmor or 0);
+	end
+	if rData.nDamage then
+		rRoll.kultdamage = tostring(rData.nDamage);
+		rRoll.kultattack = rData.sAttack or "";
 	end
 	ActionsManager.performAction(nil, ActorManager.resolveActor(nodeChar), rRoll);
 end
@@ -24309,7 +24980,13 @@ function resolveRoll(rSource, rTarget, rRoll)
 		end
 	end
 	
-    Comm.deliverChatMessage(rMessage);    
+    Comm.deliverChatMessage(rMessage);
+
+	-- A weapon attack that hits posts its Harm, to drag onto the target (kult_npc)
+	local nDamage = tonumber(rRoll["kultdamage"]);
+	if nDamage and total &gt;= 10 then
+		kult_npc.sendHarm(rSource, nDamage, rRoll["kultattack"] or "");
+	end
 end
 
 function trim(s)
@@ -24530,6 +25207,43 @@ end</Script>
 
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <XMLFiles>
+    <XmlName>npc_record</XmlName>
+    <FolderID>6</FolderID>
+    <XML>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;root&gt;
+	&lt;!-- CoreRPG's npc with a Description tab for the record text the modules bring (field "text"); Notes stays for the GM --&gt;
+	&lt;windowclass name="npc" copy="record_window_tabbed"&gt;
+		&lt;minimize&gt;minimized_npc&lt;/minimize&gt;
+		&lt;gmexport&gt;npc&lt;/gmexport&gt;
+		&lt;tab&gt;
+			&lt;name&gt;main&lt;/name&gt;
+			&lt;resource&gt;tab_main&lt;/resource&gt;
+			&lt;class&gt;npc_main&lt;/class&gt;
+			&lt;embed /&gt;
+		&lt;/tab&gt;
+		&lt;tab merge="add"&gt;
+			&lt;name&gt;description&lt;/name&gt;
+			&lt;resource&gt;tab_description&lt;/resource&gt;
+			&lt;class&gt;record_content_text&lt;/class&gt;
+			&lt;embed /&gt;
+		&lt;/tab&gt;
+		&lt;tab merge="add"&gt;
+			&lt;name&gt;notes&lt;/name&gt;
+			&lt;resource&gt;tab_notes&lt;/resource&gt;
+			&lt;class&gt;record_content_notes&lt;/class&gt;
+			&lt;embed /&gt;
+		&lt;/tab&gt;
+		&lt;tab merge="add"&gt;
+			&lt;name&gt;pictures&lt;/name&gt;
+			&lt;resource&gt;tab_pictures&lt;/resource&gt;
+			&lt;class&gt;record_content_pictures&lt;/class&gt;
+			&lt;embed /&gt;
+		&lt;/tab&gt;
+	&lt;/windowclass&gt;
+&lt;/root&gt;
+</XML>
+  </XMLFiles>
+  <XMLFiles>
     <XmlName>SidebarStrings</XmlName>
     <FolderID>8</FolderID>
     <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
@@ -24586,6 +25300,15 @@ end</Script>
   &lt;string name="WEAPON_RELOAD"&gt;Reload&lt;/string&gt;
   &lt;string name="WEAPON_RELOADED"&gt;Reloads: %s&lt;/string&gt;
   &lt;string name="WEAPON_RANGE"&gt;Range: %s&lt;/string&gt;
+
+  &lt;string name="tab_description"&gt;Description&lt;/string&gt;
+  &lt;string name="NPC_ATTACK_TOOLTIP"&gt;Double click: post it to the chat. Drag it onto a PC to make them Endure Injury.&lt;/string&gt;
+  &lt;string name="HARM_LINE"&gt;Harm %d · %s&lt;/string&gt;
+  &lt;string name="HARM_DRAG_HINT"&gt;Drag it onto the target: an NPC takes Wounds, a PC must Endure Injury.&lt;/string&gt;
+  &lt;string name="HARM_NPC"&gt;%s: %d Wounds (Harm %d − armor %d)&lt;/string&gt;
+  &lt;string name="HARM_NPC_MOVE"&gt;The GM makes a harm move.&lt;/string&gt;
+  &lt;string name="HARM_NPC_DEAD"&gt;All Wounds marked: the NPC dies.&lt;/string&gt;
+  &lt;string name="ENDURE_SENT"&gt;%s must Endure Injury (Harm %d): sent to %s.&lt;/string&gt;
 
   &lt;string name="ATTRIBUTES_EDIT"&gt;Edit&lt;/string&gt;
   &lt;string name="ATTRIBUTES_DONE"&gt;Done&lt;/string&gt;

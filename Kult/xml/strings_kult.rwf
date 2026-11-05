@@ -45,6 +45,15 @@
   &lt;string name="WEAPON_RELOADED"&gt;Reloads: %s&lt;/string&gt;
   &lt;string name="WEAPON_RANGE"&gt;Range: %s&lt;/string&gt;
 
+  &lt;string name="tab_description"&gt;Description&lt;/string&gt;
+  &lt;string name="NPC_ATTACK_TOOLTIP"&gt;Double click: post it to the chat. Drag it onto a PC to make them Endure Injury.&lt;/string&gt;
+  &lt;string name="HARM_LINE"&gt;Harm %d · %s&lt;/string&gt;
+  &lt;string name="HARM_DRAG_HINT"&gt;Drag it onto the target: an NPC takes Wounds, a PC must Endure Injury.&lt;/string&gt;
+  &lt;string name="HARM_NPC"&gt;%s: %d Wounds (Harm %d − armor %d)&lt;/string&gt;
+  &lt;string name="HARM_NPC_MOVE"&gt;The GM makes a harm move.&lt;/string&gt;
+  &lt;string name="HARM_NPC_DEAD"&gt;All Wounds marked: the NPC dies.&lt;/string&gt;
+  &lt;string name="ENDURE_SENT"&gt;%s must Endure Injury (Harm %d): sent to %s.&lt;/string&gt;
+
   &lt;string name="ATTRIBUTES_EDIT"&gt;Edit&lt;/string&gt;
   &lt;string name="ATTRIBUTES_DONE"&gt;Done&lt;/string&gt;
   &lt;string name="WOUND_PENALTY"&gt;Wound penalty to all rolls: %s&lt;/string&gt;

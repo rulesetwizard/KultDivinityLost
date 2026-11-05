@@ -217,6 +217,14 @@ Kult</RulesetList>
 	&lt;string name="ATTRIBUTES_EDIT"&gt;Editar&lt;/string&gt;
 	&lt;string name="ATTRIBUTES_DONE"&gt;Hecho&lt;/string&gt;
 	&lt;string name="WOUND_PENALTY"&gt;Penalización por heridas a todas las tiradas: %s&lt;/string&gt;
+	&lt;string name="tab_description"&gt;Descripción&lt;/string&gt;
+	&lt;string name="NPC_ATTACK_TOOLTIP"&gt;Doble clic: enviarlo al chat. Arrástralo a un PJ para que soporte las heridas.&lt;/string&gt;
+	&lt;string name="HARM_LINE"&gt;Daño %d · %s&lt;/string&gt;
+	&lt;string name="HARM_DRAG_HINT"&gt;Arrástralo al objetivo: un PNJ sufre Heridas y un PJ debe soportar las heridas.&lt;/string&gt;
+	&lt;string name="HARM_NPC"&gt;%s: %d Heridas (Daño %d − armadura %d)&lt;/string&gt;
+	&lt;string name="HARM_NPC_MOVE"&gt;El director hace un movimiento de daño.&lt;/string&gt;
+	&lt;string name="HARM_NPC_DEAD"&gt;Todas las Heridas marcadas: el PNJ muere.&lt;/string&gt;
+	&lt;string name="ENDURE_SENT"&gt;%s debe soportar las heridas (Daño %d): enviado a %s.&lt;/string&gt;
 	&lt;string name="ROLL_SETUP_ATTACK"&gt;¿Qué ataque?&lt;/string&gt;
 	&lt;string name="WEAPON_TYPE"&gt;Arma&lt;/string&gt;
 	&lt;string name="WEAPON_ATTACK"&gt;Entablar combate con esta arma&lt;/string&gt;

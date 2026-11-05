@@ -212,7 +212,8 @@ function modRoll(rSource, rTarget, rRoll)
 end
 
 -- Opens the roll setup window. rData: sName, sDesc, sMove ("endure", "help" or ""), sAttribute,
--- sRecord (move or trait of the sheet), aGroups (labels of a trait with several rolls), bTrait, bDisadvantage
+-- sRecord (move or trait of the sheet), aGroups (labels of a trait with several rolls), bTrait, bDisadvantage,
+-- sWeapon and aAttacks (Engage in Combat with a weapon), nHarm and sSource (Endure Injury from a dropped Harm)
 function openRollSetup(nodeChar, rData)
 	local w = Interface.openWindow("kult_roll_setup", "");
 	if w then
@@ -222,7 +223,8 @@ function openRollSetup(nodeChar, rData)
 	end
 end
 
--- The roll prepared in the setup window; modRoll adds the Kult modifiers as in any other roll
+-- The roll prepared in the setup window; modRoll adds the Kult modifiers as in any other roll.
+-- rData.nDamage and rData.sAttack: Harm and name of a weapon attack, posted to the chat on 10+
 function performSetupRoll(nodeChar, rData, sAttributeKey, nHarm, nArmor, nGroup)
 	local rRoll = { sType = "btnRollRollAction", sDesc = rData.sDesc or (Interface.getString("ROLL_MOVE") .. " " .. rData.sName),
 		aDice = { "d10", "d10" }, nMod = 0, attribute = sAttributeKey or "" };
@@ -244,6 +246,10 @@ function performSetupRoll(nodeChar, rData, sAttributeKey, nHarm, nArmor, nGroup)
 	if nHarm then
 		rRoll.kultharm = tostring(nHarm);
 		rRoll.kultarmor = tostring(nArmor or 0);
+	end
+	if rData.nDamage then
+		rRoll.kultdamage = tostring(rData.nDamage);
+		rRoll.kultattack = rData.sAttack or "";
 	end
 	ActionsManager.performAction(nil, ActorManager.resolveActor(nodeChar), rRoll);
 end
@@ -316,7 +322,13 @@ function resolveRoll(rSource, rTarget, rRoll)
 		end
 	end
 	
-    Comm.deliverChatMessage(rMessage);    
+    Comm.deliverChatMessage(rMessage);
+
+	-- A weapon attack that hits posts its Harm, to drag onto the target (kult_npc)
+	local nDamage = tonumber(rRoll["kultdamage"]);
+	if nDamage and total &gt;= 10 then
+		kult_npc.sendHarm(rSource, nDamage, rRoll["kultattack"] or "");
+	end
 end
 
 function trim(s)

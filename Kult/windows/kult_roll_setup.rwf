@@ -387,7 +387,8 @@ function configure(nodeChar, rData)
 	end
 
 	attribute.setValue(manager_kult.getAttributeKey(rData.sAttribute) or "");
-	harm.setValue(0);
+	-- The Harm of an attack dropped on the character (kult_npc)
+	harm.setValue(rData.nHarm or 0);
 	armor.setValue(DB.getValue(nodeChar, "armor", 0));
 	result.clear(true);
 	local aItems = {};
@@ -476,6 +477,10 @@ function refresh()
 	if sAttack ~= "" then
 		sPreview = sAttack .. "\n" .. sPreview;
 	end
+	-- The dropped Harm: "Harm 3 · Who · Attack [effect]"
+	if (rSetup.sSource or "") ~= "" then
+		sPreview = rSetup.sSource .. "\n" .. sPreview;
+	end
 	bCanRoll = bCanRoll and bAmmo;
 	preview.setValue(sPreview);
 	btnRoll.setVisible(bCanRoll);
@@ -504,11 +509,18 @@ function perform()
 			refresh();
 			return;
 		end
-		local sDesc = Interface.getString("ROLL_MOVE") .. " " .. rSetup.sName .. " \194\183 " .. DB.getValue(nodeWeapon, "name", "") .. ": " .. kult_weapons.getAttackText(rAttack);
+		local sWeaponName = DB.getValue(nodeWeapon, "name", "");
+		local sDesc = Interface.getString("ROLL_MOVE") .. " " .. rSetup.sName .. " \194\183 " .. sWeaponName .. ": " .. kult_weapons.getAttackText(rAttack);
 		if rAttack.nCost &gt; 0 or kult_weapons.getCapacity(nodeWeapon) &gt; 0 then
 			sDesc = sDesc .. " [" .. string.format(Interface.getString("WEAPON_AMMO"), kult_weapons.getRemaining(nodeWeapon), kult_weapons.getCapacity(nodeWeapon)) .. "]";
 		end
-		rRollData = { sName = rSetup.sName, sDesc = sDesc, sAttribute = rSetup.sAttribute };
+		-- On 10+ the result posts the Harm, to drag onto the target (kult_npc)
+		local sAttackName = sWeaponName;
+		if (rAttack.sName or "") ~= "" then
+			sAttackName = sWeaponName .. ": " .. rAttack.sName;
+		end
+		rRollData = { sName = rSetup.sName, sDesc = sDesc, sAttribute = rSetup.sAttribute,
+			nDamage = tonumber((rAttack.sDamage or ""):match("^(%d+)$")), sAttack = sAttackName };
 	end
 	manager_kult.performSetupRoll(nodeChar, rRollData, sKey, nHarm, nArmor, nGroup);
 	close();

@@ -1,0 +1,39 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <XMLFiles>
+    <XmlName>npc_record</XmlName>
+    <FolderID>6</FolderID>
+    <XML>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;root&gt;
+	&lt;!-- CoreRPG's npc with a Description tab for the record text the modules bring (field "text"); Notes stays for the GM --&gt;
+	&lt;windowclass name="npc" copy="record_window_tabbed"&gt;
+		&lt;minimize&gt;minimized_npc&lt;/minimize&gt;
+		&lt;gmexport&gt;npc&lt;/gmexport&gt;
+		&lt;tab&gt;
+			&lt;name&gt;main&lt;/name&gt;
+			&lt;resource&gt;tab_main&lt;/resource&gt;
+			&lt;class&gt;npc_main&lt;/class&gt;
+			&lt;embed /&gt;
+		&lt;/tab&gt;
+		&lt;tab merge="add"&gt;
+			&lt;name&gt;description&lt;/name&gt;
+			&lt;resource&gt;tab_description&lt;/resource&gt;
+			&lt;class&gt;record_content_text&lt;/class&gt;
+			&lt;embed /&gt;
+		&lt;/tab&gt;
+		&lt;tab merge="add"&gt;
+			&lt;name&gt;notes&lt;/name&gt;
+			&lt;resource&gt;tab_notes&lt;/resource&gt;
+			&lt;class&gt;record_content_notes&lt;/class&gt;
+			&lt;embed /&gt;
+		&lt;/tab&gt;
+		&lt;tab merge="add"&gt;
+			&lt;name&gt;pictures&lt;/name&gt;
+			&lt;resource&gt;tab_pictures&lt;/resource&gt;
+			&lt;class&gt;record_content_pictures&lt;/class&gt;
+			&lt;embed /&gt;
+		&lt;/tab&gt;
+	&lt;/windowclass&gt;
+&lt;/root&gt;
+</XML>
+  </XMLFiles>
+</DocumentElement>
